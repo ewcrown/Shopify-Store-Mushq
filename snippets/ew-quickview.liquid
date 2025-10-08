@@ -1,0 +1,58 @@
+<div class="ew-quickview">
+  <button type="button" class="ew-quickview-close" aria-label="Close">&times;</button>
+
+  <h3>{{ product.title }}</h3>
+  {% render 'price', product: product %}
+
+  <div class="ew-quickview-variants">
+    {%- assign size_option_index = nil -%}
+    {%- for opt in product.options -%}
+      {%- assign opt_down = opt | downcase -%}
+      {%- if opt_down contains 'size' -%}
+        {%- assign size_option_index = forloop.index0 -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if size_option_index != nil -%}
+      <div class="ew-size-options">
+        <div class="ew-size-label">Size:</div>
+        {%- assign unique_sizes = '' -%}
+        {%- for variant in product.variants -%}
+          {%- assign size_value = variant.options[size_option_index] -%}
+          {%- unless unique_sizes contains size_value -%}
+            <label class="ew-size-option {% if forloop.first %}checked{% endif %}">
+              <input
+                type="radio"
+                name="size"
+                value="{{ size_value | escape }}"
+                data-variant-id="{{ variant.id }}"
+                {% if forloop.first %}checked{% endif %}
+              >
+              <span>{{ size_value }}</span>
+            </label>
+            {%- assign unique_sizes = unique_sizes | append: ',' | append: size_value -%}
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if product.metafields.custom.size_guide_image != blank -%}
+    <div class="ew-quickview-size-chart">
+      <button type="button" class="ew-open-sizechart">
+        {% render 'ew-size-chart-icon' %}
+        <span>Size Chart (sizing can vary, always check size guide)</span>
+      </button>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%}
+    Minimal action buttons (no layout/styling changes). Uses theme .button class if present.
+  {%- endcomment -%}
+  <div class="ew-quickview-actions">
+    <button type="button" class="button ew-add-to-cart">Add to cart</button>
+    <button type="button" class="button ew-buy-now">Buy it now</button>
+    <a href="{{ product.url }}" class="ew-view-details">VIEW MORE DETAILS</a>
+  </div>
+</div>

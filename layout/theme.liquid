@@ -159,6 +159,7 @@
 
         {{ 'swiper-bundle.min.js' | asset_url | script_tag }}
         {{ 'ew-splide.js' | asset_url | script_tag }}
+        {{ 'ew-custom.js' | asset_url | script_tag }}
         
         {%- if settings.enable_following_cursor -%}
             {% render 'cursor-fixed', style_cursor: settings.following_cursor_style %}
@@ -167,5 +168,8 @@
         {% if settings.enable_currencies and settings.currency_type == 'auto_currencies' %}
             {% render 'halo-currency-js' %}
         {% endif %}
+
+        {{ 'ew-quickview.css' | asset_url | stylesheet_tag }}
+        <script src="{{ 'ew-quickview.js' | asset_url }}" defer="defer"></script>
     </body>
 </html>

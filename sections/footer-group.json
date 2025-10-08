@@ -116,6 +116,10 @@
             "icon_color": "",
             "newsletter_margin_bottom": 20
           }
+        },
+        "social_icons_qNtQcP": {
+          "type": "social_icons",
+          "settings": {}
         }
       },
       "block_order": [
@@ -123,10 +127,11 @@
         "link_list_zDRREG",
         "a6e74cd6-bd47-4ada-98b5-15e28b94aef6",
         "2265e00a-3824-4d57-af37-fa00fa88a555",
-        "d935a709-71e0-48ff-8d74-5a367ae6d12d"
+        "d935a709-71e0-48ff-8d74-5a367ae6d12d",
+        "social_icons_qNtQcP"
       ],
       "settings": {
-        "container": "1370",
+        "container": "1770",
         "padding_full_width": 60,
         "type_footer_heading": "font_1",
         "type_footer_heading_font_size": 15,
@@ -174,7 +179,7 @@
             "text_font_weight": "400",
             "text_line_height": 1.5,
             "margin_top_text": 0,
-            "text_color": "#000",
+            "text_color": "#000000",
             "text_width": "800px"
           }
         }
@@ -184,7 +189,7 @@
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "container": "1370",
+        "container": "1770",
         "padding_full_width": 0,
         "enable_border_top": false,
         "enable_border_bottom": false,

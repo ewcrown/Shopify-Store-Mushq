@@ -1,0 +1,272 @@
+/* ----------------------------
+   EW Quickview — Consolidated
+   ---------------------------- */
+
+/* Quickview container (final layout/position chosen from duplicates) */
+.ew-quickview {
+  position: absolute;
+  /* chosen: absolute (from later rules) */
+  bottom: 44px;
+  left: 10px;
+  z-index: 2;
+  display: block;
+  width: calc(100% - 20px);
+  background: #fff;
+  padding: 30px;
+  /* chosen: 30px (later rule) */
+  border: 1px solid #eee;
+  border-radius: 0;
+  /* chosen: 0 (later rule overrides earlier 8px) */
+  font-family: inherit;
+}
+
+/* Hide when not active */
+.ew-quickview:not(.active) {
+  display: none;
+}
+
+/* Close button (top-right inside quickview) */
+.ew-quickview-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Quickview open-button (external trigger inside card) */
+.ew-quickview-button {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  display: inline-block;
+  border: none;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Title and price inside quickview */
+.ew-quickview h3 {
+  color: #1C1C1C;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18.072px;
+  letter-spacing: 2.169px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.ew-quickview .price {
+  justify-content: flex-start;
+  margin: 10px 0 20px;
+}
+
+.ew-quickview .price span {
+  color: #1C1C1C;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15.772px;
+  letter-spacing: 1.774px;
+  text-transform: uppercase;
+}
+
+/* Size options container
+   - gap uses the two-value form (row-gap column-gap) from duplicates
+*/
+.ew-size-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 40px;
+  /* combined: vertical 10px, horizontal 40px */
+  margin: 10px 0 15px;
+  align-items: center;
+}
+
+/* Size option button/label */
+.ew-size-option {
+  border: 1px solid #ddd;
+  border-radius: 0px;
+  /* chosen: 0 (later rule) */
+  padding: 6px 12px;
+  cursor: pointer;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  min-width: 100px;
+  /* from later rules */
+  opacity: 0.75;
+  /* from later rules */
+  align-items: center;
+  transition: all 0.15s ease;
+  font-size: 14px;
+}
+
+/* Hide native input but keep accessible */
+.ew-size-option input {
+  display: none;
+}
+
+/* Text inside label */
+.ew-size-option span {
+  pointer-events: none;
+}
+
+/* Checked / selected states
+   - combines background, color, border-color, weight, and opacity adjustments
+*/
+.ew-size-option input:checked+span,
+.ew-size-option.checked {
+  font-weight: 600;
+  opacity: 1;
+  border-color: #1C1C1C;
+}
+
+/* Label text styling */
+.ew-size-label {
+  font-weight: 600;
+  flex-basis: 100%;
+  margin-bottom: 0px;
+  /* chosen from later rule */
+  color: #1C1C1C;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  /* note: later rules set 400 — if you prefer 600, change here */
+  line-height: 12.651px;
+}
+
+/* Size chart trigger button (outer) */
+.ew-quickview-size-chart button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent !important;
+  border: none;
+  /* later rule removed border; keep border:none for cleaner link look */
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 10.953px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-decoration: none;
+}
+
+/* Span inside size chart button uses heading font and underline */
+.ew-quickview-size-chart button span {
+  font-family: var(--font-heading-family);
+  text-decoration: underline;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+/* Hover effect (kept from earlier rules) */
+.ew-quickview-size-chart button:hover {
+  background: #f7f7f7;
+}
+
+/* Icon sizing for size-chart svg */
+.ew-quickview-size-chart svg {
+  stroke: unset;
+  width: 17px;
+  height: 17px;
+}
+
+/* Size Chart Popup */
+.ew-sizechart-popup {
+  display: none;
+  bottom: 44px;
+  left: 10px;
+  z-index: 3;
+  width: calc(100% - 20px);
+  position: absolute;
+}
+
+.ew-sizechart-popup.active {
+  display: block;
+}
+
+.ew-sizechart-popup__overlay {
+  display: none !important;
+}
+
+.ew-sizechart-popup__content {
+  position: relative;
+  padding: 0;
+  border-radius: 8px;
+  z-index: 10;
+}
+
+.ew-sizechart-popup__content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+}
+
+.ew-sizechart-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.ew-quickview-size-chart {
+  margin-bottom: 20px;
+}
+
+.ew-add-to-cart {
+  color: #1C1C1C;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 1.281px;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid #ddd;
+}
+
+.ew-quickview-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ew-buy-now {
+  border: 0.548px solid #1C1C1C;
+  background: #1C1C1C;
+  display: flex;
+  padding: 5.69px 85.723px 6.484px 85.723px;
+  color: #FFF;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 44px;
+  letter-spacing: 1.281px;
+  text-transform: uppercase;
+  text-align: center;
+  justify-content: center;
+}
+
+.ew-view-details {
+  font-weight: 300;
+  text-align: center;
+  font-size: 14px;
+  text-decoration: underline;
+}

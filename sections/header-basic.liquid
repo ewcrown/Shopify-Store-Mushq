@@ -77,7 +77,7 @@
                                                 <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
                                                     <div class="field">
                                                         {%- if block.settings.show_search_left_to_right -%}
-                                                            <button class="button search__button field__button focus-inset" aria-label="{{ 'general.search.search' | t }}">{% render 'icon-search-03' %}</button>
+                                                            <button class="button search__button field__button focus-inset" aria-label="{{ 'general.search.search' | t }}">hello{% render 'icon-search-03' %}</button>
                                                         {%- endif -%}
                                                         <input class="search__input field__input form-input-placeholder" id="Search-In-Modal-Basic" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.search' | t }}" autocomplete="off" {%- if settings.show_quick_search -%}role="combobox" aria-expanded="false" aria-owns="predictive-search-results-list" aria-controls="predictive-search-results-list" aria-haspopup="listbox" aria-autocomplete="list" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"{%- endif -%}>
                                                         <input type="hidden" name="options[prefix]" value="last">
@@ -148,7 +148,17 @@
                                                 {%- if block.settings.show_wishlist_number -%}
                                                     {% render 'icon-cart-10' %}
                                                 {%- else -%}
-                                                    {% render 'icon-cart-03' %}
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <g clip-path="url(#clip0_16_1105)">
+    <path d="M2.42238 24H21.5778C22.2613 24.0002 22.9134 23.7131 23.3746 23.2087C23.8266 22.713 24.0497 22.0503 23.9895 21.3822L22.663 6.98278C22.5478 5.73913 21.4994 4.79086 20.2505 4.80076H17.5839C17.1156 1.71693 14.2361 -0.403431 11.1522 0.0648005C8.70683 0.436086 6.78755 2.35536 6.41627 4.80076H3.74968C2.50073 4.79086 1.45232 5.73913 1.33712 6.98278L0.0106238 21.3822C-0.0495238 22.0503 0.173517 22.713 0.625499 23.2087C1.08678 23.713 1.73886 24.0002 2.42238 24ZM12 1.60089C13.9174 1.59194 15.5791 2.92664 15.9839 4.80076H8.01621C8.42104 2.92664 10.0828 1.59189 12 1.60089ZM2.93081 7.13042C2.97251 6.71129 3.32849 6.39405 3.74968 6.4007H6.33467V8.8006C6.33467 9.24244 6.69281 9.60057 7.13464 9.60057C7.57647 9.60057 7.93461 9.24244 7.93461 8.8006V6.4007H16.0655V8.8006C16.0655 9.24244 16.4236 9.60057 16.8655 9.60057C17.3073 9.60057 17.6654 9.24244 17.6654 8.8006V6.4007H20.2504C20.6713 6.394 21.0272 6.71079 21.0693 7.12962L22.3958 21.5291C22.4169 21.7496 22.343 21.9686 22.1926 22.1313C22.0352 22.3043 21.8116 22.402 21.5777 22.4001H2.42238C2.18854 22.402 1.9649 22.3043 1.8075 22.1313C1.65706 21.9686 1.58316 21.7496 1.60431 21.5291L2.93081 7.13042Z" fill="#222222"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_16_1105">
+      <rect width="24" height="24" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
+                                                    {% comment %} {% render 'icon-cart-03' %} {% endcomment %}
                                                 {%- endif -%}
                                                 <div class="cart-count-bubble">
                                                     <span class="text" aria-hidden="true" data-cart-count>{%- if cart.item_count < 100 -%}{{ cart.item_count }}{%- else -%}{{ 'sections.cart.item_99' | t }}{%- endif -%}</span>

@@ -2,6 +2,8 @@
 <link rel="stylesheet" href="{{ 'component-list-payment.css' | asset_url }}" media="all" onload="this.media='all'">
 <noscript>{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}</noscript>
 {%- liquid
+
+  
   assign text_align = section.settings.footer_top_text_align
   assign social_block = section.blocks | where: 'type', 'social_media' | first
   assign footer_bottom_block = section.blocks | where: 'type', 'footer_bottom' | first
@@ -39,7 +41,24 @@
             {%- endif -%}
           {%- endfor -%}
         </div>
+        {%- for block in section.blocks -%}
+          {%if block.type == 'social_icons' %}
+      {%- liquid
+        assign enable_bg_social = block.settings.enable_bg_social
+        assign social_margin_top = block.settings.social_margin_top | append: 'px'
+        assign social_heading = block.settings.social_heading 
+      %}
+  
+        <div class="footer-block__list-social{% if enable_bg_social %} enable_bg_social{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="--margin-top: {{ social_margin_top }}">
+      {%- if social_heading != blank -%}
+          <h2 class="footer-block__heading">{{- social_heading | escape -}}</h2>       
+      {%- endif -%}
+      <div class="item clearfix">{% render 'halo-social-media-icons' %}</div>  
+  </div>
+  {% endif %}
+  {% endfor %}
       </div>
+
     </div>
     {%- if logo_block != null or logo_block != blank -%}
       {% render 'logo-row', block: logo_block %}
@@ -541,6 +560,11 @@
           "default": 0
         }
       ]
+    },
+    {
+      "type": "social_icons",
+      "name": "Social Icons",
+      "settings": []
     },
     {
       "type": "newsletter_with_social",

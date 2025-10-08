@@ -98,6 +98,9 @@
     <div class="card{% if product_card_product.media[0].media_type == 'video' %} has-first-video{% endif %}">
         <div class="card-product{% if product_card_product.featured_media == nil %} card--text-only card--soft{% endif %}">
             <div class="card-product__wrapper">
+                {% render 'ew-quickview-button' %}
+                {% render 'ew-quickview', product: product_card_product %}
+                {% render 'ew-sizechart', product: product_card_product %}
                 {%- if settings.show_badge -%}
                     {% render 'product-badge', product: product_card_product, class: 'card__badge', badge_detail: true, serial: serial %}
                 {%- endif -%}

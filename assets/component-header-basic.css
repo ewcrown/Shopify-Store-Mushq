@@ -125,7 +125,7 @@
 }
 
 .header-basic__item .header__iconItem + .header__iconItem {
-	margin-left: 25px;
+	margin-left: 15px;
 }
 
 /**/
@@ -321,10 +321,11 @@
 	}
 
 	.header-basic__item .header-top--right .header__search .search-modal__form .search__button svg {
-		width: 24px;
-		height: 24px;
+		width: 14px;
+		height: 14px;
 		right: -3px;
 		transform: none;
+		top: -1px;
 	}
 
 	.header-basic__item .header-top--right .header__search .search-modal__form {
