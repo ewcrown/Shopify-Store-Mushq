@@ -21,13 +21,13 @@ if (collectionSlider) {
       },
       700: {
         perPage: 2,
-        gap: '20px',
-        padding: { right: '15%' },
+        gap: '10px',
+        padding: { right: '0' },
       },
       480: {
         perPage: 1,
         gap: '10px',
-        padding: { right: '20%' },
+        padding: { right: '0' },
       },
     },
   }).mount();

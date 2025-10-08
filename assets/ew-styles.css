@@ -438,8 +438,9 @@
 }
 
 .footer-block__newsletter .footer-block__newsletter-form .field {
-    margin-right: 0 !important;
+  margin-right: 0 !important;
 }
+
 .footer-block__newsletter .footer-block__newsletter-form .newsletter-form__button {
   background: #FEBE98 !important;
   font-weight: 300 !important;
@@ -447,6 +448,55 @@
 }
 
 .footer-block__newsletter .field__input {
-background: #fff !important;
-border: 1px solid #ddd !important ;
+  background: #fff !important;
+  border: 1px solid #ddd !important;
+}
+
+@media(max-width: 767px) {
+  .luis-collection-slider-wrap {
+    display: block !important;
+  }
+
+  .ew-quickview-size-chart button span {
+    font-size: 11px;
+  }
+
+  .ew-view-details,
+  .ew-buy-now,
+  .ew-add-to-cart {
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  .ew-size-options {
+    gap: 10px;
+  }
+
+  .ew-size-option {
+    min-width: inherit;
+    font-size: 12px;
+  }
+
+  .product-card-layout-01 .card-information {
+    padding: 20px;
+  }
+
+  .card-action {
+    display: none !important;
+  }
+
+  .title .text,
+  .card-swaper-heading h2,
+  .collection-list-title {
+    font-size: 20px;
+  }
+
+  .spotlight-item.only-desktop .content {
+    gap: 12px;
+    flex-direction: column;
+  }
+
+  .sticky-toolbar-mobile .footer {
+    padding-bottom: 0 !important;
+  }
 }
