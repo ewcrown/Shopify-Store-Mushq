@@ -1,0 +1,319 @@
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.collection-list-slider .card_information a {
+  padding: 17px 30px;
+  border: 1px solid #fff;
+  display: inline-block;
+  text-decoration: none !important;
+  text-decoration: none !important;
+  letter-spacing: 1.8px;
+}
+
+.collection-list-slider .card__heading {
+  margin: 0 0 20px !important;
+}
+
+.collection-list-slider .card__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 50px;
+}
+
+.footer-block__list .list-menu__item--link,
+.rich-text__blocks .rich-text__text {
+  text-transform: uppercase;
+}
+
+
+.luis-collection-slider-row {
+  padding: var(--s120) 0px;
+}
+
+.luis-collection-slider-wrap {
+  display: grid;
+  grid-template-columns: 60rem 1fr;
+  gap: 0px 60px;
+  align-items: center;
+}
+
+.luis-collection-slider-left {
+  position: relative;
+}
+
+.luis-collection-slider-left h4 {
+  color: var(--primary);
+  font-family: var(--font300);
+  font-size: var(--f18);
+  font-style: normal;
+  letter-spacing: 3.6px;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+}
+
+.luis-collection-slider-left h2 {
+  color: var(--black);
+  font-family: var(--font400);
+  font-size: var(--f62);
+  font-style: normal;
+  line-height: var(--f62);
+  margin: 0 0 10px;
+}
+
+.luis-collection-slider-left p {
+  color: var(--black);
+  font-family: var(--font300);
+  font-size: var(--f24);
+  font-style: normal;
+  margin: 0 0 20px;
+  line-height: var(--f32);
+}
+
+.luis-collection-card-wrap span {
+  color: var(--black);
+  font-family: var(--font400);
+  font-size: var(--f22);
+  font-style: normal;
+  padding-top: 10px;
+  display: block;
+}
+
+.luis-collection-card-wrap img {
+  height: 580px;
+  object-fit: cover;
+}
+
+/* Collection Collage */
+
+.luis-collection-collage-wrap {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.luis-collection-collage-single {
+  position: relative;
+}
+
+.luis-collection-collage-text-block {
+  position: absolute;
+  bottom: 30px;
+  left: 45px;
+}
+
+.luis-collection-collage-text-block span {
+  color: var(--black);
+  font-family: var(--font300);
+  font-size: var(--f27);
+  font-style: normal;
+  line-height: var(--f27);
+}
+
+.luis-collection-collage-text-block h3 {
+  color: var(--black);
+  font-family: var(--font400);
+  font-size: var(--f44);
+  font-style: normal;
+  margin: 0;
+  line-height: var(--f44);
+}
+
+/* Hello */
+
+/* Quick view button on card (bottom-left) */
+.luis-collection-card-wrap {
+  position: relative;
+  overflow: visible;
+}
+
+.product-image-wrap {
+  position: relative;
+  display: block;
+}
+
+.product-quickview-btn {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  font-size: 13px;
+  border-radius: 2px;
+  cursor: pointer;
+  z-index: 6;
+  letter-spacing: 1px;
+}
+
+/* Modal */
+.pqv-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.pqv-modal[aria-hidden="false"] {
+  display: block;
+}
+
+.pqv-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.pqv-panel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 900px;
+  background: #fff;
+  border-radius: 6px;
+  overflow: auto;
+  max-height: 90vh;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.pqv-close {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  border: 0;
+  background: transparent;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.pqv-content {
+  padding: 28px;
+  font-family: inherit;
+}
+
+/* small responsive layout for product quick view */
+.pqv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 720px) {
+  .pqv-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* simple loader */
+.pqv-loading {
+  padding: 40px;
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+}
+
+/* quick view form styling */
+.pqv-images img {
+  max-width: 100%;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.pqv-title {
+  font-size: 20px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pqv-price {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.pqv-variant {
+  margin-bottom: 12px;
+}
+
+.pqv-add {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.pqv-add button[type="submit"] {
+  padding: 12px 20px;
+  background: #111;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pqv-qty {
+  width: 68px;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.pqv-message {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.menu-lv-1__action {
+  font-weight: normal !important;
+}
+
+.luis-collection-slider-right .text,
+.luis-collection-slider-right .card-vendor,
+.luis-collection-slider-right .card-list__Hidden {
+  display: none !important;
+}
+
+.luis-collection-slider-right .card-title {
+  text-align: left;
+  margin: 0 !important;
+}
+
+
+.luis-collection-slider-right .card-price span {
+  font-weight: normal !important;
+}
+
+.luis-collection-slider-right .card-price {
+  justify-content: flex-start !important;
+}
+
+.luis-collection-slider-right .card-eye-button {
+  width: 27px;
+  height: 27px;
+  font-weight: normal !important;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.halo-quick-view-popup .halo-productView-left {
+  display: none !important;
+  bottom: 0 !important;
+  left: 0 !important;
+}
+
+.halo-quick-view-popup {
+  position: absolute !important;
+}
+
+.halo-quick-view-popup .halo-popup-content {
+  padding: 0 !important;
+}
+
+.background-overlay {
+  display: none !important;
+}

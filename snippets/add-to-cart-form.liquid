@@ -52,10 +52,10 @@
                             {%- if settings.product_card_layout == '08' -%}
                                 {% render 'icon-cart-08' %}
                             {%- else -%}
-                                {{ 'products.product.add_to_cart' | t }}
+                                hello==>{{ 'products.product.add_to_cart' | t }}
                             {%- endif -%}
                         {%- else -%}
-                            {{ 'products.product.select_options_plus' | t }}
+                                world==>{{ 'products.product.select_options_plus' | t }}
                         {%- endunless -%}
                     </button>
                 {%- else -%}
@@ -65,7 +65,7 @@
                             {%- if settings.product_card_layout == '08' -%}
                                 {% render 'icon-cart-08' %}
                             {%- else -%}
-                                {{ 'products.product.quick_shop' | t }}
+                                Add to cart
                             {%- endif -%}
                         {%- else -%}
                             {{ 'products.product.select_options_plus' | t }}

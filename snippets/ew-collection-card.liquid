@@ -1,0 +1,7 @@
+<div class="luis-collection-card-wrap">
+    <a href="{{ product.url}}">
+        <img src="{{ product.featured_image | img_url:'master' }}" class="img-responsive" />
+        <span>{{ product.title }}</span>
+        {% render 'price', product: product, use_variant: true %}
+    </a>
+</div>

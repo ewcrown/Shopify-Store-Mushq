@@ -1,0 +1,88 @@
+<div class="luis-collection-slider-section" id="luis-collection-slider-section">
+    <div class="luis-collection-slider-row">
+       <div class="page-width">
+            <div class="luis-collection-slider-wrap">
+              {% if section.settings.side_image != blank %}
+                <div class="luis-collection-slider-left">
+                    <div class="luis-collection-slider-left-img">
+                      <a href="{{ section.settings.button_url }}">
+                        <img 
+                          src="{{ section.settings.side_image | img_url: 'master' }}" 
+                          class="img-responsive"
+                        />
+                      </a>
+                    </div>
+                    <div class="luis-collection-slider-left-content">
+                      {% if section.settings.title != blank %}
+                        <h2>{{ section.settings.title }}</h2>
+                      {% endif %}
+                      {% if section.settings.button_url != blank %}
+                          <a class="luis-primary-button" href="{{ section.settings.button_url }}">{{ section.settings.button_text }}</a>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+                <div class="luis-collection-slider-right">
+                    <div class="splide luis-collection-slider-splide">
+                        <div class="splide__track">
+                            <div class="splide__list">
+                                {% for product in section.settings.collection.products %}
+                                    {% if product.featured_image != blank %}
+                                        <div class="splide__slide" data-splide-interval="5000">
+                                            {% render 'product-card-04', product_card_product: product %}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Collection Slider",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+        {
+          "type": "image_picker",
+          "id": "side_image",
+          "label": "Side Image",
+          "info": "Image size suggestion: 650 x 650 px"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title Here",
+            "default": "New Collection"
+        },
+        {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button Url"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default": "Explore"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        }
+  ],
+  "presets": [
+    {
+        "name": "Collection Slider"
+    }
+  ]
+}
+{% endschema %}

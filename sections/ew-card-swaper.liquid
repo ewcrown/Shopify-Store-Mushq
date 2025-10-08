@@ -1,0 +1,297 @@
+<style>
+    .card-swaper-wrapper {
+      background-color:{{ section.settings.background_color }};
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    .card-swaper-heading{
+      margin-bottom: 24px;
+    }
+  .card-swaper-heading h2{
+    font-size: 18px;
+    text-align: center;
+    color:{{ section.settings.text_color }};
+    text-transform:uppercase;
+  }
+    .card-swaper .swiper-slide {
+      background: {{ section.settings.background_color }};
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+.card-swaper .swiper-slide img {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    display: block;
+}
+    .card-swaper .swiper-slide.swiper-slide-visible {
+      transform: translate3d(0px, 0px, -250px) scale(.8) !important;
+  }
+  .card-swaper .swiper-slide.swiper-slide-visible.swiper-slide-fully-visible.swiper-slide-next,
+  .card-swaper .swiper-slide.swiper-slide-visible.swiper-slide-fully-visible.swiper-slide-prev{
+    transform: translate3d(0px, 0px, -186px) scale(1) !important;
+  }
+  .card-swaper .swiper-slide.swiper-slide-visible.swiper-slide-fully-visible.swiper-slide-active{
+    transform: translate3d(0px, 0px, -0.0930233px) scale(1) !important;
+  }
+  .card-swaper-wrapper .swiper-button-next,
+  .card-swaper-wrapper .swiper-button-prev{
+    color: white;
+  }
+  .card-swaper-wrapper .swiper-button-next:after,
+  .card-swaper-wrapper .swiper-button-prev:after{
+    font-size:28px;
+    font-weight:bold;
+  }
+    @media(max-width:550px){
+      .card-swaper-wrapper .swiper-button-next,
+      .card-swaper-wrapper .swiper-button-prev{
+        display:none !important;
+      }
+    }
+
+   .margin-settings-{{ section.id }} {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .margin-settings-{{ section.id }} {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+  }
+
+  .card-swaper-wrapper .card-swaper a{
+    display: block;
+  }
+</style>
+
+<section class="card-swaper-wrapper {{ section.settings.custom_class }} margin-settings-{{ section.id }}">
+  {% if section.settings.heading_text != blank %}
+    <div class="card-swaper-heading" style="text-align: {{ section.settings.heading_position }};">
+      <h2>{{ section.settings.heading_text }}</h2>
+    </div>
+  {% endif %}
+
+  <div class="swiper card-swaper">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide">
+          <a href="{{ block.settings.link | default: '#' }}">
+            <img
+              src="{{ block.settings.image | img_url: 'master' }}"
+              alt="{{ block.settings.alt_text | escape }}"
+              width="auto"
+              height="auto"
+            >
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Navigation -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Card Swaper",
+  "tag": "section",
+  "class": "section-card-swaper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background & Text Color"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Custom Classes"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Add classes for custom styling use 'space' for more classes",
+      "default": "custom-class"
+    },
+    {
+  "type": "header",
+  "content": "Margin Settings"
+},
+{
+  "type": "range",
+  "id": "margin_top_desktop",
+  "label": "Margin Top (Desktop)",
+  "min": 0,
+  "max": 200,
+  "step": 5,
+  "unit": "px",
+  "default": 0
+},
+{
+  "type": "range",
+  "id": "margin_bottom_desktop",
+  "label": "Margin Bottom (Desktop)",
+  "min": 0,
+  "max": 200,
+  "step": 5,
+  "unit": "px",
+  "default": 0
+},
+{
+  "type": "range",
+  "id": "margin_top_mobile",
+  "label": "Margin Top (Mobile)",
+  "min": 0,
+  "max": 100,
+  "step": 5,
+  "unit": "px",
+  "default": 0
+},
+{
+  "type": "range",
+  "id": "margin_bottom_mobile",
+  "label": "Margin Bottom (Mobile)",
+  "min": 0,
+  "max": 100,
+  "step": 5,
+  "unit": "px",
+  "default": 0
+},
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "HEADING"
+    },
+    {
+      "type": "select",
+      "id": "heading_position",
+      "label": "Heading Alignment",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "autoplay_delay",
+      "label": "Autoplay Delay (ms)",
+      "min": 1000,
+      "max": 5000,
+      "step": 500,
+      "default": 3000
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Slide Link"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Image Alt Text",
+          "default": "Slide"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Card Swaper",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    new Swiper(".card-swaper", {
+      loop: true,
+      spaceBetween:80,
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      autoplay: {
+        delay: {{ section.settings.autoplay_delay }},
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      effect: "coverflow",
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth:40,
+        modifier: 4,
+        slideShadows: false
+      },
+      breakpoints: {
+        320: { slidesPerView: 1.5, spaceBetween:55 },
+        768: { slidesPerView: 3.5, spaceBetween:55 },
+        1024: { slidesPerView: 3.5, spaceBetween:55 },
+        1440: { slidesPerView: 3.5 }
+      }
+    });
+  });
+</script>
