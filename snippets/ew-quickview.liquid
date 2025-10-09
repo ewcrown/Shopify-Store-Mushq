@@ -27,6 +27,7 @@
                 name="size"
                 value="{{ size_value | escape }}"
                 data-variant-id="{{ variant.id }}"
+                {% if variant.available == false %}disabled{% endif %}
                 {% if forloop.first %}checked{% endif %}
               >
               <span>{{ size_value }}</span>
