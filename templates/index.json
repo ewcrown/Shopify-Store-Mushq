@@ -283,8 +283,8 @@
         "display_dots": false,
         "mg_top_desktop": 60,
         "mg_top_tablet": 20,
-        "mg_top_mobile": 20,
-        "mg_bottom_desktop": 50,
+        "mg_top_mobile": 70,
+        "mg_bottom_desktop": 60,
         "mg_bottom_tablet": 50,
         "mg_bottom_mobile": 50
       }
@@ -335,7 +335,7 @@
         "enable_swipe_mobile": false,
         "enable_heading_sticky": false,
         "style_block_header": "style1",
-        "title": "Discover by Style / Look",
+        "title": "Discover by Look",
         "title_color": "",
         "title_fs": 24,
         "title_fs_mb": 20,
@@ -457,6 +457,35 @@
         "padding_bottom": 40
       }
     },
+    "1760023367a9cae042": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_AGFwCG": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "#INSTA",
+            "title_color": "",
+            "title_size_v2": 24,
+            "alignment": "center",
+            "instafeed_margin_top": 40,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_AGFwCG"
+      ],
+      "settings": {
+        "include_margins": false
+      }
+    },
     "spotlight_block_En9bYd": {
       "type": "spotlight-block",
       "blocks": {
@@ -506,9 +535,9 @@
             "btn_text_transform": "uppercase",
             "btn_icon": "",
             "mg_top_btn": 30,
-            "color_button": "#ffffff",
-            "border_color_button": "#232323",
-            "bg_color_button": "#232323",
+            "color_button": "#000000",
+            "border_color_button": "#febe98",
+            "bg_color_button": "#febe98",
             "bg_color_button_gradient": "",
             "color_button_hover": "#ffffff",
             "border_color_button_hover": "#232323",
@@ -562,9 +591,9 @@
             "btn_text_transform": "uppercase",
             "btn_icon": "",
             "mg_top_btn": 30,
-            "color_button": "#ffffff",
-            "border_color_button": "#232323",
-            "bg_color_button": "#232323",
+            "color_button": "#000000",
+            "border_color_button": "#febe98",
+            "bg_color_button": "#febe98",
             "bg_color_button_gradient": "",
             "color_button_hover": "#ffffff",
             "border_color_button_hover": "#232323",
@@ -618,9 +647,9 @@
             "btn_text_transform": "uppercase",
             "btn_icon": "",
             "mg_top_btn": 30,
-            "color_button": "#ffffff",
-            "border_color_button": "#232323",
-            "bg_color_button": "#232323",
+            "color_button": "#000000",
+            "border_color_button": "#febe98",
+            "bg_color_button": "#febe98",
             "bg_color_button_gradient": "",
             "color_button_hover": "#ffffff",
             "border_color_button_hover": "#232323",
@@ -658,7 +687,7 @@
         "spotlight_bg": "#ffffff",
         "spotlight_bg_gradient": "",
         "enable_custom_position_title": false,
-        "spotlight_block_title": "Discover Us Near You",
+        "spotlight_block_title": "Our Locations",
         "enable_border_title": false,
         "use_special_header_layout": false,
         "sl_icon_position": "left",
@@ -716,35 +745,6 @@
         "mg_bottom_desktop": 50,
         "mg_bottom_tablet": 50,
         "mg_bottom_mobile": 50
-      }
-    },
-    "1760023367a9cae042": {
-      "type": "apps",
-      "blocks": {
-        "instafeed_app_block_AGFwCG": {
-          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
-          "settings": {
-            "title": "",
-            "title_color": "",
-            "title_size_v2": 0,
-            "alignment": "center",
-            "instafeed_margin_top": 0,
-            "instafeed_margin_bottom": 0,
-            "instafeed_margin_sides": 0,
-            "show_instagram_link": false,
-            "link_alignment": "left",
-            "link_color": "#000000",
-            "background_color": "",
-            "feed_id": "",
-            "html_area": ""
-          }
-        }
-      },
-      "block_order": [
-        "instafeed_app_block_AGFwCG"
-      ],
-      "settings": {
-        "include_margins": false
       }
     }
   },

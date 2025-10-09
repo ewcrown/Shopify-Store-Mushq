@@ -92,13 +92,13 @@
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": false,
             "atc_animation": "none",
-            "atc_color": "#ffffff",
-            "atc_border_color": "#232323",
-            "atc_bg_color": "#232323",
+            "atc_color": "#232323",
+            "atc_border_color": "#febe98",
+            "atc_bg_color": "#febe98",
             "atc_bg_color_gradient": "",
-            "atc_color_hover": "#232323",
+            "atc_color_hover": "#FFFFFF",
             "atc_border_color_hover": "#232323",
-            "atc_bg_color_hover": "#ffffff",
+            "atc_bg_color_hover": "#000000",
             "atc_bg_color_gradient_hover": "",
             "bin_color": "#232323",
             "bin_border_color": "#acacac",
@@ -115,7 +115,7 @@
         "custom_liquid_Y3enhU": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<div class=\"ew-estimated-delivery\">\nEstimated Delivery 3-5 Days For Un-Stitched\n</div>"
+            "custom_liquid": "{% for tag in product.tags %}\n        {% if tag contains 'TDT' %}\n          {% assign TDT = tag | split: '--' %}\n          {% assign TDT = TDT[1] | strip %}\n        {% endif %}\n      {% endfor %}\n        {% if TDT %}\n\n      <div class=\"ew-estimated-delivery\">\nEstimated Delivery 3-5 Days For Un-Stitched\n</div>\n        {% endif %}"
           }
         },
         "bd066b80-c8e3-4f3e-8280-b27fbf6e9423": {
@@ -127,26 +127,27 @@
             "maximum_des_to_show": 300
           }
         },
-        "87197f5f-be0e-4b89-9270-62bf6917ebe7": {
-          "type": "custom",
-          "settings": {
-            "open_tab_mobile": false,
-            "title": "Size & Fabric",
-            "type": "all",
-            "content": "<p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos.Donec pretium egestas sapien et mollis. Pellentesque diam dolor cosmopolis etos lobortis.</p>\n<dl>\n<dt>Comodous:</dt>\n<dd>Comodous in tempor ullamcorper miaculis</dd>\n</dl>\n<dl>\n<dt>Mattis laoreet:</dt>\n<dd>Pellentesque vitae neque mollis urna mattis laoreet.</dd>\n</dl>\n<dl>\n<dt>Divamus de ametos:</dt>\n<dd>Divamus sit amet purus justo.</dd>\n</dl>\n<dl>\n<dt>Molestie:</dt>\n<dd>Proin molestie egestas orci ac suscipit risus posuere loremous</dd>\n</dl>",
-            "product_custom_source": "dynamic",
-            "product_tab_key_metafield": "",
-            "enable_btn_show_more": false,
-            "maximum_des_to_show": 300
-          }
-        },
         "3d9ea84d-5527-4bce-abe6-5debef3ec955": {
           "type": "custom",
           "settings": {
             "open_tab_mobile": false,
             "title": "Care Instructions",
             "type": "all",
-            "content": "<h3>Returns Policy</h3>\n<p>You may return most new, unopened items within 30 days of delivery for a full refund. We'll also pay the return shipping costs if the return is a result of our error (you received an incorrect or defective item, etc.).</p>\n<p>You should expect to receive your refund within four weeks of giving your package to the return shipper, however, in many cases you will receive a refund more quickly. This time period includes the transit time for us to receive your return from the shipper (5 to 10 business days), the time it takes us to process your return once we receive it (3 to 5 business days), and the time it takes your bank to process our refund request (5 to 10 business days).</p>\n<p>If you need to return an item, simply login to your account, view the order using the \"Complete Orders\" link under the My Account menu and click the Return Item(s) button. We'll notify you via e-mail of your refund once we've received and processed the returned item.</p>\n<h3>Shipping</h3>\n<p>We can ship to virtually any address in the world. Note that there are restrictions on some products, and some products cannot be shipped to international destinations.</p>\n<p>When you place an order, we will estimate shipping and delivery dates for you based on the availability of your items and the shipping options you choose. Depending on the shipping provider you choose, shipping date estimates may appear on the shipping quotes page.</p>\n<p>Please also note that the shipping rates for many items we sell are weight-based. The weight of any such item can be found on its detail page. To reflect the policies of the shipping companies we use, all weights will be rounded up to the next full pound.</p>",
+            "content": "<p>-Do not use any kind of bleach or stain removing chemicals<br>\n          -Do not over expose damp fabric to strong sunlight<br>\n          -Iron at moderate temperature<br>\n          -Do not wash at home</p>",
+            "product_custom_source": "dynamic",
+            "product_tab_key_metafield": "",
+            "enable_btn_show_more": false,
+            "maximum_des_to_show": 300
+          }
+        },
+        "custom_Ry9QqW": {
+          "type": "custom",
+          "disabled": true,
+          "settings": {
+            "open_tab_mobile": false,
+            "title": "DELIVERY & RETURNS",
+            "type": "all",
+            "content": "{% for tag in product.tags %}\n      {% if tag contains 'TDT' %}\n      {% assign TDT = tag | split: '--' %}\n      {% assign TDT = TDT[1] | strip %}\n      {% endif %}\n      {% endfor %}\n      {% if TDT %}\n      <div class=\"dinfo\"> {{ TDT }}</div>\n      {% endif %}",
             "product_custom_source": "dynamic",
             "product_tab_key_metafield": "",
             "enable_btn_show_more": false,
@@ -159,7 +160,7 @@
             "open_tab_mobile": false,
             "title": "Disclaimers",
             "type": "all",
-            "content": "<table>\n    <tbody>\n        <tr>\n            <td class=\"tb-title\">Drostique</td>\n            <td>Nam tempus turpis at metus scelerisque placerat nulla deumantos</td>\n        </tr>\n        <tr>\n            <td class=\"tb-title\">Pharetro Lorem</td>\n            <td>Pellentesque diam dolor elementum etos lobortis des mollis</td>\n        </tr>\n        <tr>\n            <td class=\"tb-title\">Milancelos</td>\n            <td>Donec pretium egestas sapien et mollis</td>\n        </tr>\n        <tr>\n            <td class=\"tb-title\">Pellentesque</td>\n            <td>Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras</td>\n        </tr>\n        <tr>\n            <td class=\"tb-title\">Proin Molestie</td>\n            <td>Pellentesque diam dolor elementum etos lobortis des mollis</td>\n        </tr>\n        <tr>\n            <td class=\"tb-title\">Cosmopolis</td>\n            <td>Donec pretium egestas sapien et mollis</td>\n        </tr>\n    </tbody>\n</table>",
+            "content": "{% for tag in product.tags %}\n      {% if tag contains 'DIS' %}\n      {% assign DIS = tag | split: '--' %}\n      {% assign DIS = DIS[1] | strip %}\n      {% endif %}\n      {% endfor %}\n      {% if DIS %}\n      <div class=\"dinfo\"> {{ DIS }}</div>\n      {% else %}\n      <div class=\"dinfo\">\n        <p>The fabric pattern/laces, patchwork, and handmade details may vary.<br>\n          Actual colors of the outfit may also vary from the colors being displayed on your device.</p>\n        <p>All laces used for finishing of the stitched outfit especially the dupatta or trousers may vary from the shoot.&nbsp;</p>\n      </div>\n      {% endif %}",
             "product_custom_source": "dynamic",
             "product_tab_key_metafield": "",
             "enable_btn_show_more": false,
@@ -178,8 +179,8 @@
         "f1b31d90-1e43-4948-9fe3-97ba43f6fb34",
         "custom_liquid_Y3enhU",
         "bd066b80-c8e3-4f3e-8280-b27fbf6e9423",
-        "87197f5f-be0e-4b89-9270-62bf6917ebe7",
         "3d9ea84d-5527-4bce-abe6-5debef3ec955",
+        "custom_Ry9QqW",
         "b9d6eb19-10f4-41f8-bfdc-ea10e8b3182a"
       ],
       "settings": {

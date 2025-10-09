@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // close quickview when clicking outside
     document.addEventListener('click', function (e) {
       if (e.target.closest('.ew-quickview') || e.target.closest('.ew-quickview-button')) return;
-      $qsa('.ew-quickview.active').forEach(m => m.classList.remove('active'));
+      // $qsa('.ew-quickview.active').forEach(m => m.classList.remove('active'));
     });
   }
 

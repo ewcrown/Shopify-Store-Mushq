@@ -209,7 +209,7 @@
                 {% render 'product-card-summary', product: product_card_product, class: 'card-list__hidden' %}
 
                 {%- if show_price -%}
-                    <div class="card-price">{% render 'price', product: product_card_product, price_class: '' %}</div>
+                    <div class="card-price">{% render 'price', product: product_card_product, price_class: '', use_variant: true, show_compare_at_price: true %}</div>
                 {%- endif -%}
 
                 {%- if product_card_product.metafields.custom.positive_vibes_almost_sold_out or product_card_product.metafields.custom.positive_vibes_recently_people_gave_review or product_card_product.metafields.custom.positive_vibes_top_best_seller -%}

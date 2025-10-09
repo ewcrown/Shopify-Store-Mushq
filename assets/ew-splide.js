@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
       autoplay: true,
       speed: 200,
       pagination: false,
-      trimSpace: false, // allows partial slide visibility
       focus: 'left', // keeps slides aligned to the left so next one peeks
       padding: { right: '5%' }, // adjust how much of the next slide you want visible
       breakpoints: {
@@ -22,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
           padding: { right: '0' },
         },
         480: {
-          perPage: 1,
+          perPage: 2,
           gap: '10px',
           padding: { right: '0' },
         },
@@ -31,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   galleryOther?.forEach(function (splideEl) {
     let options = {
-      type: 'loop',
+      type: 'slide',
       perPage: 1,
       perMove: 1,
       autoplay: false,

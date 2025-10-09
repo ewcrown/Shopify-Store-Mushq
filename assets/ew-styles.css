@@ -415,9 +415,6 @@
 }
 
 .spotlight-inner .spotlight-button.custom-button-style {
-  border: 1px solid #222 !important;
-  background: rgba(0, 0, 0, 0.00) !important;
-  color: #222 !important;
   text-align: center;
   font-size: 14px !important;
   font-style: normal;
@@ -427,6 +424,7 @@
   text-transform: uppercase;
   min-width: 250px !important;
   margin: 0 !important;
+  text-decoration:none !important;
 }
 
 .halo-block-header .title .text {
@@ -506,6 +504,7 @@
   .ew-size-options {
     gap: 5px !important;
     margin-bottom: 10px !important;
+    justify-content: center !important;
   }
 
   .ew-quickview-size-chart {
@@ -524,7 +523,7 @@
   }
 
   .ew-quickview {
-    padding: 5px;
+    padding: 5px !important;
   }
 
   .ew-size-option-disabled::before {
@@ -546,9 +545,10 @@
   }
 
   .ew-quickview-close {
-    right: 0;
-    top: 0;
+    right: 0 !important;
+    top: -4px !important;
     font-size: 16px !important;
+    padding: 0;
   }
 
   .ew-product-size-chart {
@@ -557,10 +557,6 @@
 
   .template-collection .card-information__wrapper.text-center .card-price {
     justify-content: flex-start !important;
-  }
-
-  .product-card-layout-01 .card-information {
-    padding: 20px;
   }
 
   .luis-collection-slider-right .splide__arrow--prev {
@@ -590,7 +586,7 @@
     justify-content: center;
     gap: 14px;
     position: absolute;
-    bottom: -21px;
+    bottom: -35px;
     right: 0;
     left: 0;
   }
@@ -603,25 +599,35 @@
     padding-bottom: 0 !important;
   }
 
-  .ew-quickview-size-chart button {
-    display: none !important;
-  }
-
   .luis-collection-slider-left-img {
     margin-bottom: 20px;
   }
 
 
-  .ew-quickview-size-chart button span {
+  .ew-quickview .ew-quickview-size-chart button span {
     font-size: 8px !important;
   }
+
+  .luis-collection-slider-right {
+    padding: 0px 10px !important;
+  }
+
+  .ew-quickview .ew-open-sizechart {
+    display: none !important;
+  }
+
+  .splide-wrapper .splide__arrow svg {
+    height: 5.2em !important;
 }
+
+  
+}
+
 
 .luis-collection-slider-left-img img {
   width: 100%;
 }
 
-.card-media .splide__arrow,
 .luis-collection-slider-right .splide__arrow {
   background: #fff !important;
   opacity: 1;
@@ -837,4 +843,44 @@
 
 .halo-notifyMe {
   display: none !important;
+}
+
+.previewCartTool {
+  display: none !important;
+}
+
+.fancybox-infobar,
+.fancybox-toolbar {
+  display: none !important;
+}
+
+
+.splide-wrapper .splide__arrow{
+  background:transparent !important;
+    width: 50px;
+        opacity: 1;
+    z-index: 2 !important;
+    height: 50px;
+    font-size: 16px;
+  }
+.splide-wrapper .splide__arrow svg {
+    fill: #fff!important;
+    stroke: #fff!important;
+    height: 30px;
+    width: 30px;
+}
+
+.splide__arrow[disabled] {
+    display: none !important;
+}
+
+.new-badge {
+  display:none !important;
+}
+
+#insta-feed h2 {
+    font-size: 24px!important;
+    display: inline-block;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
 }
