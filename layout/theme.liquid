@@ -103,8 +103,11 @@
             endif
         -%}
         {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
-        {{ 'splide.min.js' | asset_url | script_tag }}
-        {{ 'splide.min.css' | asset_url | stylesheet_tag }}
+        <link rel="preload" href="{{ 'splide.min.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript>{{ 'splide.min.css' | asset_url | stylesheet_tag }}</noscript>
+
+        <!-- Load Splide JS deferred -->
+        <script src="{{ 'splide.min.js' | asset_url }}" defer></script>
         <!-- Preload -->
         <link rel="preload" href="{{ 'ew-styles.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript>{{ 'ew-styles.css' | asset_url | stylesheet_tag }}</noscript>

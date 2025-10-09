@@ -527,6 +527,15 @@
     padding: 5px;
   }
 
+  .ew-size-option-disabled::before {
+    transform: rotate(24deg) !important;
+  }
+
+  .card-media .splide__arrow {
+    width: 15px !important;
+    height: 15px !important;
+    font-size: 5px !important;
+  }
 
   .template-collection .card-information {
     padding: 10px 0 !important;
@@ -592,6 +601,10 @@
 
   .sticky-toolbar-mobile .footer {
     padding-bottom: 0 !important;
+  }
+
+  .ew-quickview-size-chart button {
+    display: none !important;
   }
 
   .luis-collection-slider-left-img {
@@ -805,12 +818,12 @@
   z-index: 9999;
 }
 
-.ew-size-option input[disabled]+span {
+.ew-size-option-disabled {
   position: relative;
   overflow: hidden;
 }
 
-.ew-size-option input[disabled]+span::before {
+.ew-size-option-disabled::before {
   background: #ff0000;
   content: '';
   position: absolute;
@@ -818,7 +831,7 @@
   left: 0;
   width: 200px;
   height: 1px;
-  transform: rotate(18deg);
+  transform: rotate(40deg);
   transform-origin: left;
 }
 

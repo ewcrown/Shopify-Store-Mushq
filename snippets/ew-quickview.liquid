@@ -21,7 +21,7 @@
         {%- for variant in product.variants -%}
           {%- assign size_value = variant.options[size_option_index] -%}
           {%- unless unique_sizes contains size_value -%}
-            <label class="ew-size-option {% if forloop.first %}checked{% endif %}">
+            <label class="{% if variant.available == false %}ew-size-option-disabled {% endif %} ew-size-option {% if forloop.first %}checked{% endif %}">
               <input
                 type="radio"
                 name="size"
