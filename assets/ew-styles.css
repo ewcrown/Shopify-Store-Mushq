@@ -36,8 +36,8 @@
 
 .luis-collection-slider-wrap {
   display: grid;
-  grid-template-columns: 40% 1fr;
-  gap: 0px 30px;
+  grid-template-columns: 35% 1fr;
+  gap: 0px 60px;
   align-items: center;
 }
 
@@ -495,9 +495,6 @@
     padding: 0;
   }
 
-  .ew-quickview-size-chart button span {
-    font-size: 8px !important;
-  }
 
   .ew-quickview .price,
   .ew-quickview h3 {
@@ -548,12 +545,20 @@
     font-size: 16px !important;
   }
 
+  .ew-product-size-chart {
+    padding: 20px 0;
+  }
+
   .template-collection .card-information__wrapper.text-center .card-price {
     justify-content: flex-start !important;
   }
 
   .product-card-layout-01 .card-information {
     padding: 20px;
+  }
+
+  .luis-collection-slider-right .splide__arrow--prev {
+    left: 1rem !important;
   }
 
   .title .text,
@@ -567,8 +572,38 @@
     flex-direction: column;
   }
 
+  .luis-collection-slider-right .splide__arrow {
+    bottom: 0 !important;
+    top: inherit;
+    position: static;
+  }
+
+  .luis-collection-slider-right .splide__arrows {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    position: absolute;
+    bottom: -21px;
+    right: 0;
+    left: 0;
+  }
+
+  .collection-list-slider .card__content {
+    padding: 0px !important;
+  }
+
   .sticky-toolbar-mobile .footer {
     padding-bottom: 0 !important;
+  }
+
+  .luis-collection-slider-left-img {
+    margin-bottom: 20px;
+  }
+
+
+  .ew-quickview-size-chart button span {
+    font-size: 8px !important;
   }
 }
 
@@ -745,4 +780,30 @@
 .template-collection .video-item video {
   object-fit: cover;
   display: block;
+}
+
+#ew-pdp-size-chart-popup .ew-sizechart-popup {
+  position: static;
+}
+
+#ew-pdp-size-chart-popup .active .ew-sizechart-popup__overlay {
+  background: rgba(0, 0, 0, 0.5);
+  display: block !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+#ew-pdp-size-chart-popup .active .ew-sizechart-popup__content {
+  width: 100% !important;
+  max-width: 650px !important;
+  margin: auto !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 9999;
 }

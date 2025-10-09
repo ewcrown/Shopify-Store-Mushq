@@ -9,6 +9,7 @@
 
 {% assign product_page_layout = settings.product_page_layout %}
 
+
 {% if product_page_layout == "default" %}
     {% render 'product-page' %}
 {% elsif product_page_layout == "full_width" %}
@@ -1045,6 +1046,11 @@
     "blocks": [
         {
           "type": "@app"
+        },
+        {
+          "type": "custom_size_chart",
+          "name": "Custom Size Chart",
+          "settings": []
         },
         {
             "type": "breadcrumb",

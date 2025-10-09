@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Handle remove / close quickview
-  document.querySelectorAll('.ew-quickview-close').forEach(btn => {
+  document.querySelectorAll('.ew-quickview-close')?.forEach(btn => {
     btn.addEventListener('click', function () {
       const quickview = btn.closest('.ew-quickview');
       if (quickview) quickview.classList.remove('active');
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Handle Size Chart popup
-  document.querySelectorAll('.ew-open-sizechart').forEach(button => {
+  document.querySelectorAll('.ew-open-sizechart')?.forEach(button => {
     button.addEventListener('click', function () {
       const quickview = button.closest('.card-product');
       const popup = quickview.querySelector('.ew-sizechart-popup');

@@ -806,6 +806,17 @@
                                     assign spacing_bottom = block.settings.spacing_bottom
                                 -%}
                                 {%- case block.type -%}
+                                    {%- when 'custom_size_chart' -%}
+                                        <div class="productView-moreItem{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+                                            {%- if product.metafields.custom.size_guide_image != blank -%}
+                                                <div class="ew-quickview-size-chart ew-product-size-chart ">
+                                                <button type="button" class="ew-open-pdp-sizechart">
+                                                    {% render 'ew-size-chart-icon' %}
+                                                    <span>Size Chart (sizing can vary, always check size guide)</span>
+                                                </button>
+                                                </div>
+                                            {%- endif -%}
+                                        </div>
                                     {%- when 'breadcrumb' -%}
                                         {%- if breadcrumb_layout == 'content' -%}
                                             <div class="productView-moreItem moreItem-breadcrumb {% unless check_breadcrumb_full %}hidden-on-mobile{% endunless %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"
@@ -1565,6 +1576,10 @@
             {%- endif -%}
         </div>
     </div>
+</div>
+
+<div id="ew-pdp-size-chart-popup">
+{% render 'ew-sizechart', product: product %}
 </div>
 
 {%- if show_size_chart and has_size_chart -%}

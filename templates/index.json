@@ -15,7 +15,8 @@
         "16321237356a896dad-0": {
           "type": "image",
           "settings": {
-            "image_slide": "shopify://shop_images/Picture_1st-oct-25-new-Slider-banner-RTW_jpg.png",
+            "image_slide": "shopify://shop_images/1_19cbed39-b50b-47f9-9b2f-176768774517.jpg",
+            "image_slide_mb": "shopify://shop_images/1_9b53685b-2372-4a33-a84c-7937130d9d9c.jpg",
             "alignment": "left",
             "enable_custom_position": false,
             "custom_horizontal": "40",
@@ -84,7 +85,7 @@
             "enable_underline": true,
             "font_size_link": 36,
             "button_slide": "",
-            "link": "#",
+            "link": "shopify://collections/festive",
             "button_style": "button",
             "button_slide_2": "",
             "link_2": "",
@@ -189,9 +190,9 @@
       "type": "ew-collection-slider",
       "name": "Collection Slider",
       "settings": {
-        "side_image": "shopify://shop_images/mobil9oct.jpg",
+        "side_image": "shopify://shop_images/banner_0a9186f0-4f83-4b2b-b3b6-d4cf53e36c44.jpg",
         "title": "New In",
-        "button_url": "shopify://collections/adelaide-pret-couture",
+        "button_url": "shopify://collections/aura-debut",
         "button_text": "Shop Now",
         "collection": "nirvana-printed-silk"
       }
@@ -331,7 +332,7 @@
         "section_bg_color": "",
         "section_bg_gradient": "",
         "collection_list_style": "style_2",
-        "enable_swipe_mobile": true,
+        "enable_swipe_mobile": false,
         "enable_heading_sticky": false,
         "style_block_header": "style1",
         "title": "Discover by Style / Look",

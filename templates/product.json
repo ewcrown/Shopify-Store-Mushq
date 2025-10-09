@@ -82,6 +82,10 @@
             "spacing_bottom": 15
           }
         },
+        "custom_size_chart_GV637B": {
+          "type": "custom_size_chart",
+          "settings": {}
+        },
         "f1b31d90-1e43-4948-9fe3-97ba43f6fb34": {
           "type": "buy_buttons",
           "settings": {
@@ -119,7 +123,7 @@
           "settings": {
             "open_tab_mobile": false,
             "title": "Description",
-            "enable_btn_show_more": false,
+            "enable_btn_show_more": true,
             "maximum_des_to_show": 300
           }
         },
@@ -170,6 +174,7 @@
         "4f95b592-8369-4ab0-b30d-24e463fb6890",
         "d98e243b-3682-495a-965a-1c7f7d460880",
         "faa2b3e6-c0a1-4269-baa6-d2605efe4c05",
+        "custom_size_chart_GV637B",
         "f1b31d90-1e43-4948-9fe3-97ba43f6fb34",
         "custom_liquid_Y3enhU",
         "bd066b80-c8e3-4f3e-8280-b27fbf6e9423",
