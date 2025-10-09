@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
   const collectionSlider = document.querySelector('.splide.luis-collection-slider-splide');
-
   if (collectionSlider) {
     new Splide(collectionSlider, {
       perPage: 2,
@@ -33,8 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
       },
     }).mount();
-  }
-
+  }  
   document.querySelectorAll('.card-media-splide').forEach(function (splideEl) {
     var options = {
       type: 'loop',
