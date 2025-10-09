@@ -807,3 +807,20 @@
   transform: translate(-50%, -50%) !important;
   z-index: 9999;
 }
+
+.ew-size-option input[disabled]+span {
+  position: relative;
+  overflow: hidden;
+}
+
+.ew-size-option input[disabled]+span::before {
+  background: #ff0000;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 1px;
+  transform: rotate(18deg);
+  transform-origin: left;
+}

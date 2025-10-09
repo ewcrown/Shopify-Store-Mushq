@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
       rewind: true,
       gap: '7px',
       arrows: true,
-      // autoplay: true,
-      // speed: 200,
+      autoplay: true,
+      speed: 200,
       pagination: false,
       trimSpace: false, // allows partial slide visibility
       focus: 'left', // keeps slides aligned to the left so next one peeks
