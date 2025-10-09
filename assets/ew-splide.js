@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
       type: 'loop',
       perPage: 1,
       perMove: 1,
-      autoplay: true,
+      autoplay: false,
       arrows: true,
       pagination: false,
       gap: '0.5rem',

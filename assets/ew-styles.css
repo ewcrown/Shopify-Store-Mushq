@@ -18,9 +18,6 @@
 }
 
 .collection-list-slider .card__content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   padding: 50px;
 }
 
@@ -823,4 +820,8 @@
   height: 1px;
   transform: rotate(18deg);
   transform-origin: left;
+}
+
+.halo-notifyMe {
+  display: none !important;
 }
