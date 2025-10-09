@@ -104,10 +104,53 @@
                 {%- if settings.show_badge -%}
                     {% render 'product-badge', product: product_card_product, class: 'card__badge', badge_detail: true, serial: serial %}
                 {%- endif -%}
-                <div class="card-media card-media--{{ media_size }}{% if product_card_product.media[1] != nil and settings.show_image_swap %} media--hover-effect{% endif%}{% if loading %} media--loading-effect{% endif %}"{% if product_card_product.featured_media %}{% if media_size == 'adapt' %} style="padding-bottom: {{ 1 | divided_by: featured_media_aspect_ratio | times: 100 }}%;"{% elsif media_size == 'square' %} style="padding-bottom: 100%;"{% elsif media_size == 'portrait' %}{% if portrait_aspect_ratio != blank %} style="padding-bottom: {{ portrait_aspect_ratio | append: '%' }};"{% endif %}{% endif %}{% endif %}>
+                {%- comment -%}
+  START: Splide slider for product media
+  This replacement should go where you previously rendered the product image(s).
+{%- endcomment -%}
+
+<div class="card-media card-media--{{ media_size }} splide-wrapper" id="splide-wrapper-{{ product_card_product.id }}"{% if product_card_product.featured_media %}{% if media_size == 'adapt' %} style="padding-bottom: {{ 1 | divided_by: featured_media_aspect_ratio | times: 100 }}%;"{% elsif media_size == 'square' %} style="padding-bottom: 100%;"{% elsif media_size == 'portrait' %}{% if portrait_aspect_ratio != blank %} style="padding-bottom: {{ portrait_aspect_ratio | append: '%' }};"{% endif %}{% endif %}{% endif %}>
+  <div id="splide-{{ product_card_product.id }}" class="splide card-media-splide" aria-label="{{ product_card_product.title }}">
+    <div class="splide__track">
+      <ul class="splide__list">
+        {%- for media in product_card_product.media -%}
+          <li class="splide__slide">
+            {%- if media.media_type == 'image' -%}
+              {%- comment -%}
+                Use existing lazyload render so your theme's lazy loading keeps working.
+              {%- endcomment -%}
+              {%- assign width = media.width -%}
+              {%- assign height = media.width | divided_by: media.aspect_ratio | round -%}
+              <div class="card-media__item">
+                <img {% render 'lazyload', preview_img: media, class: true, width: width, height: height, enable_rtl: settings.enable_layout_rtl %} />
+              </div>
+            {%- elsif media.media_type == 'video' -%}
+              <div class="card-media__item video-item">
+                {{ media | video_tag: muted: true, loop: true, controls: false }}
+              </div>
+            {%- elsif media.media_type == 'model' -%}
+              {%- comment -%} 3D models fallback: render the preview image if available {%- endcomment -%}
+              {%- if media.preview_image != nil -%}
+                <div class="card-media__item">
+                  {%- assign width = media.preview_image.width -%}
+                  {%- assign height = media.preview_image.width | divided_by: media.preview_image.aspect_ratio | round -%}
+                  <img {% render 'lazyload', preview_img: media.preview_image, class: true, width: width, height: height, enable_rtl: settings.enable_layout_rtl %} />
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+
+  </div>
+
+  <a class="card-link" href="{{ product_card_product.url }}" title="{{ product_card_product.title | escape }}"></a>
+</div>
+                {% comment %} <div class="card-media card-media--{{ media_size }}{% if product_card_product.media[1] != nil and settings.show_image_swap %} media--hover-effect{% endif%}{% if loading %} media--loading-effect{% endif %}"{% if product_card_product.featured_media %}{% if media_size == 'adapt' %} style="padding-bottom: {{ 1 | divided_by: featured_media_aspect_ratio | times: 100 }}%;"{% elsif media_size == 'square' %} style="padding-bottom: 100%;"{% elsif media_size == 'portrait' %}{% if portrait_aspect_ratio != blank %} style="padding-bottom: {{ portrait_aspect_ratio | append: '%' }};"{% endif %}{% endif %}{% endif %}>
                     {% render 'image-product-card', product_card_product: product_card_product, variant_img: variant_img, has_video: has_video, loading: loading %}
                     <a class="card-link" href="{{ product_card_product.url }}" title="{{ product_card_product.title | escape }}"></a>
-                </div>
+                </div> {% endcomment %}
 
                 {%- if product_action_group -%}
                     <div class="card-product__group group-{{ settings.group_quickview_wishlist }}">

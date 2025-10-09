@@ -12,8 +12,7 @@
   display: block;
   width: calc(100% - 20px);
   background: #fff;
-  padding: 30px;
-  /* chosen: 30px (later rule) */
+  padding: 15px;
   border: 1px solid #eee;
   border-radius: 0;
   /* chosen: 0 (later rule overrides earlier 8px) */
@@ -53,7 +52,7 @@
 /* Title and price inside quickview */
 .ew-quickview h3 {
   color: #1C1C1C;
-  font-size: 18px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 18.072px;
@@ -69,7 +68,7 @@
 
 .ew-quickview .price span {
   color: #1C1C1C;
-  font-size: 14px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 15.772px;
@@ -83,8 +82,7 @@
 .ew-size-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 40px;
-  /* combined: vertical 10px, horizontal 40px */
+  gap: 10px;
   margin: 10px 0 15px;
   align-items: center;
 }
@@ -93,19 +91,15 @@
 .ew-size-option {
   border: 1px solid #ddd;
   border-radius: 0px;
-  /* chosen: 0 (later rule) */
   padding: 6px 12px;
   cursor: pointer;
   display: flex;
   text-align: center;
   justify-content: center;
-  min-width: 100px;
-  /* from later rules */
   opacity: 0.75;
-  /* from later rules */
   align-items: center;
   transition: all 0.15s ease;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 /* Hide native input but keep accessible */
@@ -135,7 +129,7 @@
   margin-bottom: 0px;
   /* chosen from later rule */
   color: #1C1C1C;
-  font-size: 14px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   /* note: later rules set 400 — if you prefer 600, change here */
@@ -149,13 +143,12 @@
   gap: 6px;
   background: transparent !important;
   border: none;
-  /* later rule removed border; keep border:none for cleaner link look */
   color: #000;
-  font-size: 14px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 300;
   line-height: 10.953px;
-  padding: 8px 10px;
+  padding: 0 !important;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.15s;
@@ -167,7 +160,9 @@
   font-family: var(--font-heading-family);
   text-decoration: underline;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 12px;
+  line-height: normal;
+  text-align: left;
 }
 
 /* Hover effect (kept from earlier rules) */
@@ -231,10 +226,10 @@
 .ew-add-to-cart {
   color: #1C1C1C;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 22px;
+  line-height: 18px;
   letter-spacing: 1.281px;
   text-transform: uppercase;
   background: none;
@@ -253,11 +248,10 @@
   display: flex;
   padding: 5.69px 85.723px 6.484px 85.723px;
   color: #FFF;
-  text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 300;
-  line-height: 44px;
+  line-height: 32px;
   letter-spacing: 1.281px;
   text-transform: uppercase;
   text-align: center;
@@ -267,6 +261,6 @@
 .ew-view-details {
   font-weight: 300;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   text-decoration: underline;
 }

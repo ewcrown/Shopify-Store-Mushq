@@ -17,7 +17,11 @@
                         <h2>{{ section.settings.title }}</h2>
                       {% endif %}
                       {% if section.settings.button_url != blank %}
-                          <a class="luis-primary-button" href="{{ section.settings.button_url }}">{{ section.settings.button_text }}</a>
+                          <a class="luis-primary-button" href="{{ section.settings.button_url }}">{{ section.settings.button_text }}
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                            <path d="M10.7751 9.48691H2.73657V8.16641H10.7751L7.0777 4.46902L8.01855 3.54468L13.3005 8.82666L8.01855 14.1086L7.0777 13.1843L10.7751 9.48691Z" fill="white"/>
+                          </svg>
+                          </a>
                       {% endif %}
                     </div>
                   </div>

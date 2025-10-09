@@ -189,10 +189,10 @@
       "type": "ew-collection-slider",
       "name": "Collection Slider",
       "settings": {
-        "side_image": "shopify://shop_images/Picture_23rd-sept-25-DESKTOP-Skirts_jpg.png",
-        "title": "",
-        "button_url": "#",
-        "button_text": "",
+        "side_image": "shopify://shop_images/mobil9oct.jpg",
+        "title": "New In",
+        "button_url": "shopify://collections/adelaide-pret-couture",
+        "button_text": "Shop Now",
         "collection": "nirvana-printed-silk"
       }
     },
@@ -387,7 +387,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Slide_1.png",
-            "link": "",
+            "link": "shopify://collections",
             "alt_text": "Slide"
           }
         },
@@ -395,7 +395,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Slide_2.png",
-            "link": "",
+            "link": "shopify://collections/agadir",
             "alt_text": "Slide"
           }
         },
@@ -403,7 +403,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Slide_3.png",
-            "link": "",
+            "link": "shopify://collections/basic-solids-winter",
             "alt_text": "Slide"
           }
         },
@@ -411,7 +411,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Slide_1.png",
-            "link": "",
+            "link": "shopify://collections/basic-solids-winter",
             "alt_text": "Slide"
           }
         },
@@ -419,7 +419,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Slide_2.png",
-            "link": "",
+            "link": "shopify://collections/casual-pret",
             "alt_text": "Slide"
           }
         },
@@ -427,7 +427,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Slide_3.png",
-            "link": "",
+            "link": "shopify://collections/debuteid21",
             "alt_text": "Slide"
           }
         }
@@ -552,7 +552,7 @@
             "enable_des_hover": false,
             "button_style": "button_1",
             "button": "Get Directions",
-            "link": "#",
+            "link": "https://www.google.com/maps/place/Gulberg+III,+Lahore/@31.482594,74.3817961,13z/data=!4m6!3m5!1s0x3919045a28ff1d39:0xf71e739b84b3c3c!8m2!3d31.5105453!4d74.3412813!16s%2Fg%2F1tgb5r9j?entry=ttu&g_ep=EgoyMDI1MTAwNi4wIKXMDSoASAFQAw%3D%3D",
             "fontsize_btn": 16,
             "button_width": 190,
             "bg_opacity_button": 1,
