@@ -15,7 +15,7 @@
   padding: 15px;
   border: 1px solid #eee;
   border-radius: 0;
-  /* chosen: 0 (later rule overrides earlier 8px) */
+  z-index: 3;
   font-family: inherit;
 }
 
@@ -263,4 +263,10 @@
   text-align: center;
   font-size: 12px;
   text-decoration: underline;
+}
+
+.ew-estimated-delivery {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px;
 }

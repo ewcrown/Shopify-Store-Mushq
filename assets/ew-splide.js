@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   const collectionSlider = document.querySelector('.splide.luis-collection-slider-splide');
+
   if (collectionSlider) {
     new Splide(collectionSlider, {
       perPage: 2,
@@ -32,8 +33,9 @@ document.addEventListener('DOMContentLoaded', function () {
         },
       },
     }).mount();
-  }  
-  document.querySelectorAll('.card-media-splide').forEach(function (splideEl) {
+  }
+  
+  document.querySelectorAll('.template-collection .card-media-splide').forEach(function (splideEl) {
     var options = {
       type: 'loop',
       perPage: 1,
@@ -41,9 +43,11 @@ document.addEventListener('DOMContentLoaded', function () {
       autoplay: false,
       arrows: true,
       pagination: false,
+      autoHeight: true,
       gap: '0.5rem',
     };
     var sp = new Splide(splideEl, options);
     sp.mount();
   });
+  
 });

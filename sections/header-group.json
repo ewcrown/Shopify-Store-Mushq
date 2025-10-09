@@ -134,6 +134,20 @@
     "9c03747e-b054-4db8-8194-5a35c71f82ca": {
       "type": "header-navigation-plain",
       "blocks": {
+        "logo_9i8ciU": {
+          "type": "logo",
+          "settings": {
+            "logo_position": "sticky_menu",
+            "logo": "shopify://shop_images/Mushq_International.png",
+            "logo_width": 160,
+            "logo_width_fixed": 55,
+            "logo_text": "",
+            "logo_font_size": 20,
+            "logo_font_weight": "900",
+            "logo_text_transform": "uppercase",
+            "logo_color": "#ffffff"
+          }
+        },
         "sections--14682829619277__9c03747e-b054-4db8-8194-5a35c71f82ca-1680876693acfad79f-1": {
           "type": "main_menu",
           "settings": {
@@ -192,6 +206,7 @@
         }
       },
       "block_order": [
+        "logo_9i8ciU",
         "sections--14682829619277__9c03747e-b054-4db8-8194-5a35c71f82ca-1680876693acfad79f-1",
         "megamenu_style_1_bhPNKN"
       ],

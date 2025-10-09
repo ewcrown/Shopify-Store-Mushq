@@ -94,6 +94,19 @@
 
     assign show_price = settings.show_price
 -%}
+
+{%- assign splide_wrapper_style = '' -%}
+{%- if template.name == 'collection' and product_card_product.featured_media -%}
+  {%- if media_size == 'adapt' -%}
+    {%- assign splide_wrapper_style = 'padding-bottom: ' | append: 1 | divided_by: featured_media_aspect_ratio | times: 100 | append: '%;' -%}
+  {%- elsif media_size == 'square' -%}
+    {%- assign splide_wrapper_style = 'padding-bottom: 100%;' -%}
+  {%- elsif media_size == 'portrait' and portrait_aspect_ratio != blank -%}
+    {%- assign splide_wrapper_style = 'padding-bottom: ' | append: portrait_aspect_ratio | append: '%;' -%}
+  {%- endif -%}
+{%- endif -%}
+
+
 <div class="product-item{% if sold_out %} sold-out{% endif %}{% if sold_out and settings.show_notify_form %} has-notify{% endif %}" data-product-id="{{ product_card_product.id }}" data-json-product='{"id": {{product_card_product.id}},"handle": "{{product_card_product.handle}}","media": {{product.media | json | escape}},"variants": {{ product_card_product.variants | json | escape }}}'>
     <div class="card{% if product_card_product.media[0].media_type == 'video' %} has-first-video{% endif %}">
         <div class="card-product{% if product_card_product.featured_media == nil %} card--text-only card--soft{% endif %}">
@@ -104,8 +117,9 @@
                 {%- if settings.show_badge -%}
                     {% render 'product-badge', product: product_card_product, class: 'card__badge', badge_detail: true, serial: serial %}
                 {%- endif -%}
+
                 {% if template.name == 'collection' %}
-                <div class="card-media card-media--{{ media_size }} splide-wrapper" id="splide-wrapper-{{ product_card_product.id }}"{% if product_card_product.featured_media %}{% if media_size == 'adapt' %} style="padding-bottom: {{ 1 | divided_by: featured_media_aspect_ratio | times: 100 }}%;"{% elsif media_size == 'square' %} style="padding-bottom: 100%;"{% elsif media_size == 'portrait' %}{% if portrait_aspect_ratio != blank %} style="padding-bottom: {{ portrait_aspect_ratio | append: '%' }};"{% endif %}{% endif %}{% endif %}>
+                <div class="card-media card-media--{{ media_size }} splide-wrapper {% unless template.name == 'collection' %}variable-height{% endunless %}" id="splide-wrapper-{{ product_card_product.id }}" {% if splide_wrapper_style != '' %} style="{{ splide_wrapper_style }}"{% endif %}>
                     <div id="splide-{{ product_card_product.id }}" class="splide card-media-splide" aria-label="{{ product_card_product.title }}">
                         <div class="splide__track">
                         <ul class="splide__list">
@@ -119,17 +133,26 @@
                                         </div>
                                     </li>
                                 {%- endif -%}
+                                {%- if media.media_type == 'video' -%}
+                                    <li class="splide__slide">
+                                        <div class="card-media__item video-item">
+                                            {{ media | video_tag: muted: true, loop: true, controls: false, autoplay: true }}
+                                        </div>
+                                    </li>
+                                {% endif %}
                             {%- endfor -%}
                         </ul>
                         </div>
                     </div>
                 </div>
                 <a class="card-link" href="{{ product_card_product.url }}" title="{{ product_card_product.title | escape }}"></a>
-                {% endif %}
-                {% comment %} <div class="card-media card-media--{{ media_size }}{% if product_card_product.media[1] != nil and settings.show_image_swap %} media--hover-effect{% endif%}{% if loading %} media--loading-effect{% endif %}"{% if product_card_product.featured_media %}{% if media_size == 'adapt' %} style="padding-bottom: {{ 1 | divided_by: featured_media_aspect_ratio | times: 100 }}%;"{% elsif media_size == 'square' %} style="padding-bottom: 100%;"{% elsif media_size == 'portrait' %}{% if portrait_aspect_ratio != blank %} style="padding-bottom: {{ portrait_aspect_ratio | append: '%' }};"{% endif %}{% endif %}{% endif %}>
+            {% else %}
+                   <div class="card-media card-media--{{ media_size }}{% if product_card_product.media[1] != nil and settings.show_image_swap %} media--hover-effect{% endif%}{% if loading %} media--loading-effect{% endif %}"{% if product_card_product.featured_media %}{% if media_size == 'adapt' %} style="padding-bottom: {{ 1 | divided_by: featured_media_aspect_ratio | times: 100 }}%;"{% elsif media_size == 'square' %} style="padding-bottom: 100%;"{% elsif media_size == 'portrait' %}{% if portrait_aspect_ratio != blank %} style="padding-bottom: {{ portrait_aspect_ratio | append: '%' }};"{% endif %}{% endif %}{% endif %}>
                     {% render 'image-product-card', product_card_product: product_card_product, variant_img: variant_img, has_video: has_video, loading: loading %}
                     <a class="card-link" href="{{ product_card_product.url }}" title="{{ product_card_product.title | escape }}"></a>
-                </div> {% endcomment %}
+                </div>
+                {% endif %}
+
 
                 {%- if product_action_group -%}
                     <div class="card-product__group group-{{ settings.group_quickview_wishlist }}">
