@@ -148,55 +148,84 @@
             "logo_color": "#ffffff"
           }
         },
-        "sections--14682829619277__9c03747e-b054-4db8-8194-5a35c71f82ca-1680876693acfad79f-1": {
+        "main_menu_JWKV8N": {
           "type": "main_menu",
           "settings": {
-            "menu": "ella-menu",
+            "menu": "e-menu",
             "menu_top_spacing": 11,
             "menu_bottom_spacing": 12,
             "grid_gap_menu_item": 20,
             "alignment": "center",
             "bg_mega_menu": "#ffffff",
             "bg_mega_menu_gradient": "",
-            "lv_1_color": "#000000",
-            "lv_1_color_hover": "#bcbcbc",
+            "lv_1_color": "#232323",
+            "lv_1_color_hover": "#505656",
             "lv_2_color": "#232323",
             "lv_2_color_hover": "#232323",
             "lv_3_color": "#3c3c3c",
             "lv_3_color_hover": "#3c3c3c",
-            "sale_item_1": "ELLA 30% OFF",
+            "sale_item_1": "",
             "sale_item_2": "",
             "sale_item_3": "",
-            "sale_item_color": "#ff002c",
-            "label_position": "none",
-            "show_label_blink": true,
+            "sale_item_color": "#d12442",
+            "label_position": "main_menu",
+            "show_label_blink": false,
             "new_label_1": "",
-            "new_label_2": "Wishlist",
-            "new_label_3": "Home 21 - Yoga, Home 22 - Eyes Wears, Home 23 - Plant+ Garden, Home 24 - Bicycle, Mobile Sticky Toolbar, Home 25 - Swimwear 2, Sticky Promotion, Marquee Function, Home 26 - Bagratica, Section Groups, Home 27 - Men Fashion 02, Scroll Section",
+            "new_label_2": "",
+            "new_label_3": "",
             "new_label_color": "#ffffff",
-            "new_label_bg": "#06bfe2",
+            "new_label_bg": "#bae4ed",
             "new_label_bg_gradient": "",
-            "sale_label_1": "30% Off",
+            "sale_label_1": "",
             "sale_label_2": "",
             "sale_label_3": "",
             "sale_label_color": "#ffffff",
-            "sale_label_bg": "#ff1a00",
+            "sale_label_bg": "#d12442",
             "sale_label_bg_gradient": "",
             "hot_label_1": "",
-            "hot_label_2": "RTL Layout, Store Locator",
-            "hot_label_3": "Bundle - Upsell, Variant Image Grouped, Home 02 - Trendy Style, Home 04 - High Fashion, Home 06 - SuperMarket, Home 15 - Automotive 2, Home 09 - Pet Supplies, Different Mobile Menu, Custom Options, Variant Metafield, Notify Me (Out Of Stock), Color Comparison, Product Combo",
+            "hot_label_2": "",
+            "hot_label_3": "",
             "hot_label_color": "#ffffff",
-            "hot_label_bg": "#ffbb49",
+            "hot_label_bg": "#fff993",
             "hot_label_bg_gradient": ""
           }
         },
-        "megamenu_style_1_bhPNKN": {
+        "megamenu_style_1_YCMQmP": {
           "type": "megamenu_style_1",
           "settings": {
             "layout_block": "custom_width",
             "header_custom_width_size": 1200,
-            "item": "NEW IN",
+            "item": "Unstitched",
+            "column": 2,
+            "show_banner_1": false,
+            "banner_1": "shopify://shop_images/web_banners_54ea4dce-c633-4e79-859e-ed3eb256a4a6.jpg",
+            "banner_url_1": "",
+            "show_product": false,
+            "product_title": "Featured Products",
+            "product_collection": "aanya"
+          }
+        },
+        "megamenu_style_1_b6DtJf": {
+          "type": "megamenu_style_1",
+          "settings": {
+            "layout_block": "custom_width",
+            "header_custom_width_size": 1200,
+            "item": "Ready to Wear",
             "column": 3,
+            "show_banner_1": false,
+            "banner_url_1": "",
+            "show_product": false,
+            "product_title": "Featured Products",
+            "product_collection": ""
+          }
+        },
+        "megamenu_style_1_M3AVGx": {
+          "type": "megamenu_style_1",
+          "settings": {
+            "layout_block": "custom_width",
+            "header_custom_width_size": 1200,
+            "item": "Hemline",
+            "column": 2,
             "show_banner_1": false,
             "banner_url_1": "",
             "show_product": false,
@@ -207,8 +236,10 @@
       },
       "block_order": [
         "logo_9i8ciU",
-        "sections--14682829619277__9c03747e-b054-4db8-8194-5a35c71f82ca-1680876693acfad79f-1",
-        "megamenu_style_1_bhPNKN"
+        "main_menu_JWKV8N",
+        "megamenu_style_1_YCMQmP",
+        "megamenu_style_1_b6DtJf",
+        "megamenu_style_1_M3AVGx"
       ],
       "settings": {
         "container": "1770",

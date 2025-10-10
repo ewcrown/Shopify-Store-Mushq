@@ -782,7 +782,7 @@
 }
 
 .template-collection .card-media__item {
-  padding-top: 150%;
+  padding-top: 120%;
 }
 
 .template-collection .card-media__item video,
@@ -883,4 +883,8 @@
     display: inline-block;
     border-bottom: 2px solid #ddd;
     padding-bottom: 10px;
+}
+
+.pagination-page-total {
+  display:none !important;
 }

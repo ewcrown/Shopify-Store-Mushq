@@ -42,3 +42,31 @@ document.addEventListener('DOMContentLoaded', function () {
     sp.mount();
   });
 });
+
+(function(){
+  function initSplide(context){
+    context = context || document;
+
+    const collectionSlider = context.querySelector('.splide.luis-collection-slider-splide');
+    const galleryOther = context.querySelectorAll('.template-collection .card-media-splide');
+
+    if(collectionSlider && !collectionSlider.classList.contains('splide-initialized')){
+      new Splide(collectionSlider, {
+        perPage: 2, perMove: 1, rewind: true, gap: '7px', arrows: true,
+        autoplay: true, speed: 200, pagination: false, focus: 'left',
+        padding: { right: '5%' },
+        breakpoints: { 700: { perPage: 2, gap: '10px', padding:{right:0}}, 480:{perPage:2,gap:'10px',padding:{right:0}} }
+      }).mount();
+      collectionSlider.classList.add('splide-initialized');
+    }
+
+    galleryOther.forEach(el => {
+      if (el.classList.contains('splide-initialized')) return;
+      new Splide(el, { type:'slide', perPage:1, perMove:1, autoplay:false, arrows:true, pagination:false, gap:'0.5rem' }).mount();
+      el.classList.add('splide-initialized');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => initSplide(document));
+  window.EWSplide = { init: initSplide };
+})();

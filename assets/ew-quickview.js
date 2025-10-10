@@ -333,3 +333,168 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
 })();
+
+(function () {
+  'use strict';
+
+  function $qs(selector, root) { return (root || document).querySelector(selector); }
+  function $qsa(selector, root) { return Array.from((root || document).querySelectorAll(selector)); }
+
+  function showEwMiniToast(message, timeout = 2500) {
+    const existing = document.querySelector('.ew-mini-toast');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.className = 'ew-mini-toast';
+    toast.textContent = message;
+    Object.assign(toast.style, {
+      position: 'fixed', right: '16px', bottom: '16px',
+      background: '#111', color: '#fff', padding: '8px 12px',
+      borderRadius: '6px', zIndex: 99999, boxShadow: '0 6px 18px rgba(0,0,0,0.18)',
+      transition: 'opacity .25s ease'
+    });
+    document.body.appendChild(toast);
+    setTimeout(() => toast.style.opacity = '0', timeout);
+    setTimeout(() => toast.remove(), timeout + 300);
+  }
+
+  function ajaxAddToCart(variantId, quantity = 1) {
+    return fetch('/cart/add.js', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: variantId, quantity })
+    }).then(res => {
+      if (!res.ok) return res.json().then(err => { throw err; });
+      return res.json();
+    });
+  }
+
+  function fetchCart() {
+    return fetch('/cart.js', { credentials: 'same-origin' }).then(res => res.json());
+  }
+
+  function updateCartCount(cart) {
+    $qsa('[data-cart-count]').forEach(el => el.textContent = cart.item_count || 0);
+  }
+
+  function dispatchCartEvents(cart) {
+    try { window.dispatchEvent(new CustomEvent('ew:cart-updated', { detail: cart })); } catch(e){}
+    try { window.dispatchEvent(new CustomEvent('cart:updated', { detail: cart })); } catch(e){}
+    try { document.dispatchEvent(new CustomEvent('cart:updated', { detail: cart })); } catch(e){}
+  }
+
+  function openCartByIcon() {
+    const cartIcon = document.querySelector('.header-basic__content #cart-icon-bubble');
+    if (cartIcon) { try { cartIcon.click(); return true; } catch(e){ return false; } }
+    return false;
+  }
+
+  function refreshEllaDrawer(cart) {
+    dispatchCartEvents(cart);
+    try { if (window.Ella && typeof window.Ella.refreshCart === 'function') { window.Ella.refreshCart(cart); return true; } } catch(e){}
+    try { if (window.theme && typeof window.theme.refreshCart === 'function') { window.theme.refreshCart(cart); return true; } } catch(e){}
+    try { if (window.cartDrawer && typeof window.cartDrawer.refresh === 'function') { window.cartDrawer.refresh(cart); return true; } } catch(e){}
+    return false;
+  }
+
+  function handlePostAdd(addResult) {
+    return fetchCart().then(cart => {
+      updateCartCount(cart);
+      dispatchCartEvents(cart);
+      const opened = openCartByIcon();
+      setTimeout(() => { if (!opened) refreshEllaDrawer(cart); }, 250);
+      return cart;
+    });
+  }
+
+  function initQuickview(context) {
+    context = context || document;
+
+    // Open quickview
+    $qsa('.ew-quickview-button', context).forEach(btn => {
+      btn.addEventListener('click', function () {
+        $qsa('.ew-quickview.active').forEach(m => m.classList.remove('active'));
+        const card = btn.closest('.product-item');
+        if (!card) return;
+        const quickview = card.querySelector('.ew-quickview');
+        if (quickview) quickview.classList.add('active');
+      });
+    });
+
+    // Close quickview
+    $qsa('.ew-quickview-close', context).forEach(btn => {
+      btn.addEventListener('click', function () {
+        const quickview = btn.closest('.ew-quickview');
+        if (quickview) quickview.classList.remove('active');
+      });
+    });
+
+    // Size radios
+    $qsa('.ew-quickview', context).forEach(q => {
+      const radios = $qsa('input[type="radio"][name="size"]', q);
+      radios.forEach(r => { r.closest('.ew-size-option').classList.toggle('checked', r.checked); });
+      q.addEventListener('change', e => {
+        if (!e.target.matches('input[type="radio"][name="size"]')) return;
+        radios.forEach(r => r.closest('.ew-size-option').classList.toggle('checked', r.checked));
+      });
+    });
+
+    // Add-to-cart & buy-now
+    $qsa('.ew-quickview', context).forEach(q => {
+      const addBtn = q.querySelector('.ew-add-to-cart');
+      const buyBtn = q.querySelector('.ew-buy-now');
+      const qtyInput = q.querySelector('.ew-qty-input');
+
+      function getSelectedVariantId() {
+        const checked = q.querySelector('input[type="radio"][name="size"]:checked');
+        return checked?.dataset?.variantId || null;
+      }
+
+      function setLoading(state) {
+        [addBtn, buyBtn].forEach(b => { if (!b) return; b.disabled = state; b.classList.toggle('is-loading', state); });
+      }
+
+      if (addBtn) {
+        addBtn.addEventListener('click', () => {
+          const variantId = getSelectedVariantId();
+          if (!variantId) { alert('Please select a size.'); return; }
+          const qty = qtyInput ? Math.max(1, parseInt(qtyInput.value,10)||1) : 1;
+          setLoading(true);
+          ajaxAddToCart(variantId, qty)
+            .then(handlePostAdd)
+            .catch(err => alert(err?.description || 'Could not add to cart'))
+            .finally(() => setLoading(false));
+        });
+      }
+
+      if (buyBtn) {
+        buyBtn.addEventListener('click', () => {
+          const variantId = getSelectedVariantId();
+          if (!variantId) { alert('Please select a size.'); return; }
+          const qty = qtyInput ? Math.max(1, parseInt(qtyInput.value,10)||1) : 1;
+          setLoading(true);
+          ajaxAddToCart(variantId, qty)
+            .then(() => fetchCart())
+            .then(cart => {
+              openCartByIcon();
+              setTimeout(() => { refreshEllaDrawer(cart); window.location.href='/checkout'; },150);
+            })
+            .catch(err => alert(err?.description || 'Could not proceed to checkout'));
+        });
+      }
+    });
+
+    // Size chart
+    $qsa('.ew-open-sizechart', context).forEach(btn => {
+      btn.addEventListener('click', () => {
+        const quick = btn.closest('.ew-quickview');
+        const popup = quick?.querySelector('.ew-sizechart-popup');
+        if (popup) popup.classList.add('active');
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => initQuickview(document));
+
+  // Expose global for infinite scroll
+  window.EWQuickview = { init: initQuickview };
+
+})();
