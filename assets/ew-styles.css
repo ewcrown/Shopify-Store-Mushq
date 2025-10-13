@@ -335,13 +335,6 @@
   letter-spacing: 2px;
 }
 
-.site-nav-list>.site-nav-title span {
-  font-weight: 500;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 5px;
-  margin-bottom: 5px;
-  display: block;
-}
 
 .menu-dropdown__column .site-nav {
   margin: 0 !important;
@@ -887,4 +880,100 @@
 
 .pagination-page-total {
   display:none !important;
+}
+
+/* .megamenu_style_3 .site-nav-list .image {
+  padding-top:150% !important;
+} */
+
+.megamenu_style_3 .site-nav-list .text{
+  display:none !important;
+}
+.megamenu_style_3 .site-nav-list{
+  width:100%;
+}
+
+.megamenu_style_2 .site-nav-banner--item img {
+    width: 100%;
+    max-height: inherit !important;
+    height: 100%;
+}
+
+.megamenu_style_2 .site-nav-banner--item .banner {
+    width: 100%;
+    margin: 0 !important;
+}
+
+.megamenu_style_2 .site-nav-banner--item {
+    display: flex;
+    width: 100% !important;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    flex-direction:column;
+}
+
+.megamenu_style_2 .site-nav-list {
+  margin-bottom:20px;
+}
+
+@media(min-width:768px){
+  .site-nav-list>.site-nav-title span {
+  font-weight: 500;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+}
+@media(max-width:767px){
+  .collection-sub-list .item a span {
+    font-size: 14px !important;
+    letter-spacing: 0px !important;
+}
+  .megamenu_style_2 .site-nav-list {
+    margin-bottom: 0 !important;
+  }
+}
+
+.site-nav-banner--title {
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 1.08px;
+    text-transform: uppercase;
+}
+.site-nav-banner--button {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+.site-nav-banner--text-content {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    -webkit-backdrop-filter: blur(10px);
+    background: #ffffff0d;
+    backdrop-filter: blur(9.903714179992676px);
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.site-nav-banner--button svg {
+    width: 12px;
+    height: 14px;
+    vertical-align: -2px;
 }

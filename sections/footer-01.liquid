@@ -1,4 +1,6 @@
-{{ 'section-footer.css' | asset_url | stylesheet_tag }}
+<link rel="preload" href="{{ 'section-footer.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>{{ 'section-footer.css' | asset_url | stylesheet_tag }}</noscript>
+
 <link rel="stylesheet" href="{{ 'component-list-payment.css' | asset_url }}" media="all" onload="this.media='all'">
 <noscript>{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}</noscript>
 {%- liquid

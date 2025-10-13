@@ -69,7 +69,7 @@
           {%- if sub_collection_title -%}
     					<div class="item-title text-{{ collection_description_align }}"><span>{{ sub_collection_title}}</span></div>
           {%- endif -%}
-    				<div class="collection-sub-list list-unstyled text-{{ collection_description_align }}" {% if sub_collection_layout == 'slider' %}{% if settings.layout_body == 'default' %} data-rows="6"{% else %} data-rows="8"{% endif %} data-sub-collection-slider data-link="{{ linklists[collection.handle].links.size }}"{% endif %} {% if sub_collection_layout == 'grid' %}data-sub-collection-show-more style="--max-height: {{maxheight_sub_collection}}; --max-height-mb: 110"{% endif %}>
+    				<div class="hello collection-sub-list list-unstyled text-{{ collection_description_align }}" {% if sub_collection_layout == 'slider' %}{% if settings.layout_body == 'default' %} data-rows="6"{% else %} data-rows="8"{% endif %} data-sub-collection-slider data-link="{{ linklists[collection.handle].links.size }}"{% endif %} {% if sub_collection_layout == 'grid' %}data-sub-collection-show-more style="--max-height: {{maxheight_sub_collection}}; --max-height-mb: 110"{% endif %}>
     					{%- liquid
     						if sub_collection_type == 'some'
     							assign limit = 5

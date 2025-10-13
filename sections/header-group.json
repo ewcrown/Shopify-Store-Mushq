@@ -190,56 +190,102 @@
             "hot_label_bg_gradient": ""
           }
         },
-        "megamenu_style_1_YCMQmP": {
-          "type": "megamenu_style_1",
+        "megamenu_style_3_QNKGtC": {
+          "type": "megamenu_style_3",
+          "settings": {
+            "layout_block": "custom_width",
+            "header_custom_width_size": 1200,
+            "mega_tyle": "style1",
+            "item": "New In",
+            "column": 3,
+            "show_banner_1": true,
+            "banner_1": "shopify://shop_images/NEW_IN_305X344_be78ca27-a53d-4b22-83d0-64201bb8a2d3.jpg",
+            "banner_url_1": "shopify://collections/sham-shandaar-festive",
+            "banner_text_1": "Sham Shandaar | Chiffon",
+            "show_banner_2": true,
+            "banner_2": "shopify://shop_images/NEW_IN_305X344_2.jpg",
+            "banner_url_2": "shopify://collections/celestine-pret",
+            "banner_text_2": "Celestine | The Silk Saga'25",
+            "show_banner_3": true,
+            "banner_3": "shopify://shop_images/NEW_IN_305X344_3.jpg",
+            "banner_url_3": "shopify://collections/nirvana-printed-silk",
+            "banner_text_3": "Nirvana Printed Silk",
+            "show_banner_4": false,
+            "banner_url_4": "",
+            "banner_text_4": "",
+            "show_banner_5": false,
+            "banner_url_5": "",
+            "banner_text_5": "",
+            "show_banner_6": false,
+            "banner_url_6": "",
+            "banner_text_6": ""
+          }
+        },
+        "megamenu_style_2_Cy3gNe": {
+          "type": "megamenu_style_2",
           "settings": {
             "layout_block": "custom_width",
             "header_custom_width_size": 1200,
             "item": "Unstitched",
             "column": 2,
-            "show_banner_1": false,
-            "banner_1": "shopify://shop_images/web_banners_54ea4dce-c633-4e79-859e-ed3eb256a4a6.jpg",
-            "banner_url_1": "",
-            "show_product": false,
-            "product_title": "Featured Products",
-            "product_collection": "aanya"
+            "show_banner_1": true,
+            "banner_1": "shopify://shop_images/Untitched_490x342_9a52fd61-2cfa-4bdb-b218-721a2a95126d.jpg",
+            "banner_url_1": "shopify://collections/unstitched",
+            "banner_text_1": "UNSTITCHED",
+            "show_banner_2": false,
+            "banner_url_2": "",
+            "banner_text_2": "",
+            "show_banner_3": false,
+            "banner_url_3": "",
+            "banner_text_3": ""
           }
         },
-        "megamenu_style_1_b6DtJf": {
-          "type": "megamenu_style_1",
+        "megamenu_style_2_LfAxQT": {
+          "type": "megamenu_style_2",
           "settings": {
             "layout_block": "custom_width",
             "header_custom_width_size": 1200,
             "item": "Ready to Wear",
-            "column": 3,
-            "show_banner_1": false,
-            "banner_url_1": "",
-            "show_product": false,
-            "product_title": "Featured Products",
-            "product_collection": ""
+            "column": 2,
+            "show_banner_1": true,
+            "banner_1": "shopify://shop_images/RTW_490x342_f73ba2bb-4cb8-4c5c-a3d6-8b10552d9fbe.jpg",
+            "banner_url_1": "shopify://collections/ready-to-wear",
+            "banner_text_1": "READY TO WEAR",
+            "show_banner_2": false,
+            "banner_url_2": "",
+            "banner_text_2": "",
+            "show_banner_3": false,
+            "banner_url_3": "",
+            "banner_text_3": ""
           }
         },
-        "megamenu_style_1_M3AVGx": {
-          "type": "megamenu_style_1",
+        "megamenu_style_2_Pnwdrn": {
+          "type": "megamenu_style_2",
           "settings": {
             "layout_block": "custom_width",
             "header_custom_width_size": 1200,
             "item": "Hemline",
             "column": 2,
-            "show_banner_1": false,
-            "banner_url_1": "",
-            "show_product": false,
-            "product_title": "Featured Products",
-            "product_collection": ""
+            "show_banner_1": true,
+            "banner_1": "shopify://shop_images/Untitched_490x342_2.jpg",
+            "banner_url_1": "shopify://collections/hemline",
+            "banner_text_1": "Hemline",
+            "show_banner_2": false,
+            "banner_url_2": "",
+            "banner_text_2": "",
+            "show_banner_3": false,
+            "banner_url_3": "",
+            "banner_text_3": ""
           }
         }
       },
       "block_order": [
         "logo_9i8ciU",
         "main_menu_JWKV8N",
-        "megamenu_style_1_YCMQmP",
-        "megamenu_style_1_b6DtJf",
-        "megamenu_style_1_M3AVGx"
+        "megamenu_style_3_QNKGtC",
+        "megamenu_style_2_Cy3gNe",
+        "megamenu_style_2_LfAxQT",
+        "megamenu_style_2_Pnwdrn"
       ],
       "settings": {
         "container": "1770",

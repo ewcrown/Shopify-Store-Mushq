@@ -1,23 +1,240 @@
 document.addEventListener('DOMContentLoaded', function () {
+  var $body = $('body');
+
+  // helper: add item to cart via Shopify-style endpoint
+  function addToCart(variantId, quantity = 1) {
+    return $.ajax({
+      type: 'POST',
+      url: window.routes.root + '/cart/add.js',
+      dataType: 'json',
+      data: {
+        id: variantId,
+        quantity: quantity
+      }
+    });
+  }
+
+  // update the sidebar cart using your supplied logic (refactored into function)
+  function updateSidebarCart(cart) {
+    if (!$.isEmptyObject(cart)) {
+      const $cartDropdown = $('#halo-cart-sidebar .halo-sidebar-wrapper .previewCart-wrapper');
+      const $cartLoading = '<div class="loading-overlay loading-overlay--custom">\
+              <div class="loading-overlay__spinner">\
+                  <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">\
+                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>\
+                  </svg>\
+              </div>\
+          </div>';
+      const loadingClass = 'is-loading';
+
+      $cartDropdown
+        .addClass(loadingClass)
+        .prepend($cartLoading);
+
+      $.ajax({
+        type: 'GET',
+        url: window.routes.root + '/cart?view=ajax_side_cart',
+        cache: false,
+        success: function (data) {
+          var response = $(data);
+
+          $cartDropdown
+            .removeClass(loadingClass)
+            .html(response);
+
+          if (typeof halo !== 'undefined' && halo.dispatchChangeForShippingMessage) {
+            halo.dispatchChangeForShippingMessage();
+          }
+        },
+        error: function (xhr, text) {
+          try {
+            var json = JSON.parse(xhr.responseText);
+            if (json && json.description && typeof halo !== 'undefined' && halo.showWarning) {
+              halo.showWarning(json.description);
+            }
+          } catch (e) {
+            console.error('Error updating sidebar cart:', e);
+          }
+        },
+        complete: function () {
+          // update cart counts / UI text
+          $body.find('[data-cart-count]').text(cart.item_count);
+          if (cart.item_count >= 100) {
+            $body.find('.cart-count-bubble [data-cart-count]').text(window.cartStrings && window.cartStrings.item_99 ? window.cartStrings.item_99 : '99+');
+          }
+          if (cart.item_count === 1) {
+            $body.find('[data-cart-text]').text(window.cartStrings && window.cartStrings.item ? window.cartStrings.item : 'item');
+          } else {
+            $body.find('[data-cart-text]').text(window.cartStrings && window.cartStrings.items ? window.cartStrings.items : 'items');
+          }
+
+          if (typeof halo !== 'undefined') {
+            if (halo.productCollectionCartSlider) halo.productCollectionCartSlider();
+            if (halo.updateGiftWrapper) halo.updateGiftWrapper();
+            if (halo.checkNeedToConvertCurrency && halo.checkNeedToConvertCurrency()) {
+              if (window.shop_currency && $('#currencies .active').attr('data-currency') && typeof Currency !== 'undefined') {
+                Currency.convertAll(window.shop_currency, $('#currencies .active').attr('data-currency'), 'span.money', 'money_format');
+              }
+            }
+          }
+
+          // re-dispatch cart update event
+          document.dispatchEvent(new CustomEvent('cart-update', { detail: cart }));
+
+          if ($('body').hasClass('cursor-fixed__show') && window.sharedFunctionsAnimation) {
+            if (window.sharedFunctionsAnimation.onEnterButton) window.sharedFunctionsAnimation.onEnterButton();
+            if (window.sharedFunctionsAnimation.onLeaveButton) window.sharedFunctionsAnimation.onLeaveButton();
+          }
+        }
+      });
+    }
+  }
+
+  // Attach quickview button handlers
+  const quickviewButtons = document.querySelectorAll('.ew-quickview-button');
+  if (quickviewButtons.length > 0) {
+    quickviewButtons.forEach(button => {
+      button.addEventListener('click', function () {
+        // close other quickviews
+        document.querySelectorAll('.ew-quickview.active').forEach(modal => modal.classList.remove('active'));
+
+        const card = button.closest('.product-item');
+        if (!card) return;
+        const quickviewModal = card.querySelector('.ew-quickview');
+        if (quickviewModal) {
+          quickviewModal.classList.add('active');
+        }
+
+        // find buttons inside this card
+        const cart_button = card.querySelector('.ew-add-to-cart');
+        const buy_now_button = card.querySelector('.ew-buy-now');
+
+        // ensure we don't attach duplicate listeners: remove any existing data flag first
+        if (cart_button) {
+          // Remove previous handler if present by using a namespaced jQuery handler (if using jQuery)
+          // but since cart_button is a DOM node, use jQuery to safely rebind.
+          $(cart_button).off('click.ewQuickviewAddToCart');
+          $(cart_button).on('click.ewQuickviewAddToCart', function (e) {
+            e.preventDefault();
+
+            const checked_input = card.querySelector('.ew-size-option.checked input');
+            if (!checked_input) {
+              // if you have a UX layer to show "Please select size", call it here
+              if (typeof halo !== 'undefined' && halo.showWarning) {
+                halo.showWarning('Please select a size.');
+              } else {
+                alert('Please select a size.');
+              }
+              return;
+            }
+
+            const selected_variant_id = checked_input.dataset.variantId || checked_input.getAttribute('data-variant-id') || checked_input.value;
+            if (!selected_variant_id) {
+              console.error('Variant id not found on selected input:', checked_input);
+              if (typeof halo !== 'undefined' && halo.showWarning) {
+                halo.showWarning('Variant not found.');
+              }
+              return;
+            }
+
+            // optional: show loading state on button
+            $(cart_button).prop('disabled', true).addClass('is-loading');
+
+            // Call addToCart -> then updateSidebarCart on success
+            addToCart(selected_variant_id, 1)
+              .done(function (cartResponse) {
+                $.ajax({
+                  type: 'GET',
+                  url: window.routes.root + '/cart.js',
+                  dataType: 'json',
+                  success: function (cart) {
+                    const updateCart = updateSidebarCart(cart);
+                    console.log()
+                    if (typeof halo !== 'undefined' && halo.showSuccess) {
+                      halo.showSuccess('Added to cart');
+                      $(cart_button).prop('disabled', false).removeClass('is-loading');
+                    }
+                  },
+                  error: function (err) {
+                    console.error('Failed to fetch cart after add:', err);
+                  }
+                });
+              })
+              .fail(function (xhr) {
+                // handle error from add.js
+                var message = 'Could not add to cart.';
+                try {
+                  var json = JSON.parse(xhr.responseText);
+                  if (json && json.description) message = json.description;
+                } catch (e) { /* ignore parse error */ }
+
+                if (typeof halo !== 'undefined' && halo.showWarning) {
+                  halo.showWarning(message);
+                } else {
+                  alert(message);
+                }
+              })
+              .always(function () {
+                $(cart_button).prop('disabled', false).removeClass('is-loading');
+                document.body.classList.add('cart-sidebar-show')
+              });
+          });
+        }
+
+        // buy_now_button optionally: add handler to add + open checkout
+        if (buy_now_button) {
+          $(buy_now_button).off('click.ewQuickviewBuyNow');
+          $(buy_now_button).on('click.ewQuickviewBuyNow', function (e) {
+            e.preventDefault();
+
+            const checked_input = card.querySelector('.ew-size-option.checked input');
+            if (!checked_input) {
+              if (typeof halo !== 'undefined' && halo.showWarning) {
+                halo.showWarning('Please select a size.');
+              } else {
+                alert('Please select a size.');
+              }
+              return;
+            }
+
+            const selected_variant_id = checked_input.dataset.variantId || checked_input.getAttribute('data-variant-id') || checked_input.value;
+            if (!selected_variant_id) {
+              if (typeof halo !== 'undefined' && halo.showWarning) halo.showWarning('Variant not found.');
+              return;
+            }
+
+            $(buy_now_button).prop('disabled', true).addClass('is-loading');
+
+            // Add to cart then redirect to checkout
+            addToCart(selected_variant_id, 1)
+              .done(function () {
+                // redirect to checkout (Shopify standard)
+                window.location.href = window.routes.root + '/checkout';
+              })
+              .fail(function (xhr) {
+                var message = 'Could not add to cart.';
+                try {
+                  var json = JSON.parse(xhr.responseText);
+                  if (json && json.description) message = json.description;
+                } catch (e) { /* ignore parse error */ }
+                if (typeof halo !== 'undefined' && halo.showWarning) halo.showWarning(message);
+              })
+              .always(function () {
+                $(buy_now_button).prop('disabled', false).removeClass('is-loading');
+              });
+          });
+        }
+
+      });
+    });
+  }
+
   // Handle variant size selection
   document.querySelectorAll('.ew-size-option input[type="radio"]').forEach(function (radio) {
-    radio.addEventListener('change', function () {
+    radio.addEventListener('change', (e) => {
       const all = radio.closest('.ew-size-options').querySelectorAll('.ew-size-option');
       all.forEach(lbl => lbl.classList.remove('checked'));
       radio.closest('.ew-size-option').classList.add('checked');
-
-      const variantId = radio.dataset.variantId;
-      const quickForm = document.querySelector('form[action="/cart/add"]');
-      if (quickForm && variantId) {
-        let idInput = quickForm.querySelector('input[name="id"]');
-        if (!idInput) {
-          idInput = document.createElement('input');
-          idInput.type = 'hidden';
-          idInput.name = 'id';
-          quickForm.appendChild(idInput);
-        }
-        idInput.value = variantId;
-      }
     });
   });
 
@@ -45,456 +262,5 @@ document.addEventListener('DOMContentLoaded', function () {
       if (popup) popup.classList.remove('active');
     }
   });
+
 });
-
-/**
- * assets/ew-quickview.js
- * Complete quickview script: open/close quickview, size radios, add-to-cart, buy-now,
- * fetch cart, update cart count, open Ella cart drawer (via your cart icon selector),
- * and refresh notification/events so theme CartItems updates correctly.
- *
- * Include with: <script src="{{ 'ew-quickview.js' | asset_url }}" defer></script>
- */
-
-(function () {
-  'use strict';
-
-  // ---------- tiny DOM helpers ----------
-  function $qs(selector, root) { return (root || document).querySelector(selector); }
-  function $qsa(selector, root) { return Array.from((root || document).querySelectorAll(selector)); }
-
-  // ---------- small UI toast fallback ----------
-  function showEwMiniToast(message, timeout = 2500) {
-    try {
-      const existing = document.querySelector('.ew-mini-toast');
-      if (existing) existing.remove();
-      const toast = document.createElement('div');
-      toast.className = 'ew-mini-toast';
-      toast.textContent = message;
-      Object.assign(toast.style, {
-        position: 'fixed',
-        right: '16px',
-        bottom: '16px',
-        background: '#111',
-        color: '#fff',
-        padding: '8px 12px',
-        borderRadius: '6px',
-        zIndex: 99999,
-        boxShadow: '0 6px 18px rgba(0,0,0,0.18)',
-        transition: 'opacity .25s ease'
-      });
-      document.body.appendChild(toast);
-      setTimeout(() => (toast.style.opacity = '0'), timeout);
-      setTimeout(() => { if (toast && toast.parentNode) toast.parentNode.removeChild(toast); }, timeout + 300);
-    } catch (e) { /* ignore */ }
-  }
-
-  // ---------- cart AJAX helpers ----------
-  function ajaxAddToCart(variantId, quantity = 1) {
-    return fetch('/cart/add.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: variantId, quantity })
-    }).then(res => {
-      if (!res.ok) return res.json().then(err => { throw err; });
-      return res.json();
-    });
-  }
-
-  function fetchCart() {
-    return fetch('/cart.js', { credentials: 'same-origin' }).then(res => {
-      if (!res.ok) throw new Error('Could not fetch cart');
-      return res.json();
-    });
-  }
-
-  function updateCartCount(cart) {
-    if (!cart) return;
-    $qsa('[data-cart-count]').forEach(el => { el.textContent = cart.item_count || 0; });
-  }
-
-  // ---------- event dispatch (so theme code can react) ----------
-  function dispatchCartEvents(cart) {
-    try { window.dispatchEvent(new CustomEvent('ew:cart-updated', { detail: cart })); } catch(e){}
-    try { window.dispatchEvent(new CustomEvent('cart:updated', { detail: cart })); } catch(e){}
-    try { document.dispatchEvent(new CustomEvent('cart:updated', { detail: cart })); } catch(e){}
-  }
-
-  // ---------- open drawer by clicking your cart icon bubble ----------
-  function openCartByIcon() {
-    const cartIcon = document.querySelector('.header-basic__content #cart-icon-bubble');
-    if (cartIcon) {
-      try { cartIcon.click(); console.info('EW: clicked cart icon bubble'); return true; } catch(e) { console.warn('EW: click failed', e); return false; }
-    }
-    return false;
-  }
-
-  // ---------- attempt to refresh drawer content (best-effort) ----------
-  function refreshEllaDrawer(cart) {
-    dispatchCartEvents(cart);
-
-    // Try common theme-exposed refresh functions (best-effort)
-    try {
-      if (window.Ella && typeof window.Ella.refreshCart === 'function') { window.Ella.refreshCart(cart); return true; }
-      if (window.theme && typeof window.theme.refreshCart === 'function') { window.theme.refreshCart(cart); return true; }
-      if (window.cartDrawer && typeof window.cartDrawer.refresh === 'function') { window.cartDrawer.refresh(cart); return true; }
-    } catch(e) { /* ignore */ }
-
-    // Try updating a few likely drawer elements (simple pieces) to avoid showing stale totals/count
-    try {
-      const drawerSelectors = [
-        '.drawer--cart', '#CartDrawer', '.cart-drawer', '.ajaxcart__inner', '.drawer--right[data-drawer="cart"]'
-      ];
-      for (const sel of drawerSelectors) {
-        const container = document.querySelector(sel);
-        if (!container) continue;
-
-        // update count badges within drawer if present
-        container.querySelectorAll('[data-cart-count]').forEach(el => { el.textContent = cart.item_count || 0; });
-
-        // update simple subtotal-like elements (best effort)
-        const subtotalEls = container.querySelectorAll('.cart-subtotal, .ajaxcart__subtotal, .drawer-subtotal, .cart__subtotal');
-        subtotalEls.forEach(el => {
-          try {
-            const cents = cart.items_subtotal_price || cart.total_price || 0;
-            el.textContent = '$' + (Number(cents) / 100).toFixed(2);
-          } catch (err) { /* ignore formatting errors */ }
-        });
-
-        return true;
-      }
-    } catch (err) { /* ignore */ }
-
-    return false;
-  }
-
-  // ---------- Combined post-add handler ----------
-  // Fetches cart, updates counts, opens drawer and triggers refresh/events.
-  function handlePostAdd(addResult) {
-    return fetchCart()
-      .then(cart => {
-        updateCartCount(cart);
-
-        // dispatch events so theme code updates
-        dispatchCartEvents(cart);
-
-        // open drawer (click icon) — preferred
-        const opened = openCartByIcon();
-
-        // short delay to let drawer mount, then attempt refresh
-        setTimeout(() => {
-          const refreshed = refreshEllaDrawer(cart);
-          if (!opened && !refreshed) {
-            // if neither opened nor refreshed, show toast fallback
-            showEwMiniToast('Added to cart');
-          }
-        }, 250);
-
-        return cart;
-      });
-  }
-
-  // ---------- Quickview UI: triggers, radios, actions, size chart ----------
-  function initQuickviewTriggers() {
-    $qsa('.ew-quickview-button').forEach(button => {
-      button.addEventListener('click', function () {
-        $qsa('.ew-quickview.active').forEach(m => m.classList.remove('active'));
-        const card = this.closest('.product-item');
-        if (!card) return;
-        const quickviewModal = card.querySelector('.ew-quickview');
-        if (quickviewModal) quickviewModal.classList.add('active');
-      });
-    });
-
-    // close quickview when clicking outside
-    document.addEventListener('click', function (e) {
-      if (e.target.closest('.ew-quickview') || e.target.closest('.ew-quickview-button')) return;
-      // $qsa('.ew-quickview.active').forEach(m => m.classList.remove('active'));
-    });
-  }
-
-  function initSizeRadios() {
-    $qsa('.ew-quickview').forEach(quickview => {
-      const radios = $qsa('input[type="radio"][name="size"]', quickview);
-      if (!radios.length) return;
-      // initial classes
-      radios.forEach(r => { const lbl = r.closest('.ew-size-option'); if (lbl) lbl.classList.toggle('checked', r.checked); });
-      quickview.addEventListener('change', function (e) {
-        if (!e.target.matches('input[type="radio"][name="size"]')) return;
-        radios.forEach(r => { const lbl = r.closest('.ew-size-option'); if (lbl) lbl.classList.toggle('checked', r.checked); });
-      });
-    });
-  }
-
-  function initQuickviewActions() {
-    $qsa('.ew-quickview').forEach(quickview => {
-      const addBtn = quickview.querySelector('.ew-add-to-cart');
-      const buyBtn = quickview.querySelector('.ew-buy-now');
-      const qtyInput = quickview.querySelector('.ew-qty-input'); // optional
-
-      function getSelectedVariantId() {
-        const checked = quickview.querySelector('input[type="radio"][name="size"]:checked');
-        if (checked && checked.dataset && checked.dataset.variantId) return checked.dataset.variantId;
-        const any = quickview.querySelector('input[type="radio"][name="size"][data-variant-id]');
-        return any ? any.dataset.variantId : null;
-      }
-
-      function setLoading(state) {
-        [addBtn, buyBtn].forEach(b => { if (!b) return; b.disabled = state; b.classList.toggle('is-loading', state); });
-      }
-
-      if (addBtn) {
-        addBtn.addEventListener('click', function () {
-          const variantId = getSelectedVariantId();
-          if (!variantId) { alert('Please select a size.'); return; }
-          const qty = qtyInput ? Math.max(1, parseInt(qtyInput.value, 10) || 1) : 1;
-
-          setLoading(true);
-          ajaxAddToCart(variantId, qty)
-            .then(addResult => handlePostAdd(addResult))
-            .catch(err => {
-              console.error('Add to cart error', err);
-              alert((err && err.description) ? err.description : 'Could not add to cart — please try again.');
-            })
-            .finally(() => setLoading(false));
-        });
-      }
-
-      if (buyBtn) {
-        buyBtn.addEventListener('click', function () {
-          const variantId = getSelectedVariantId();
-          if (!variantId) { alert('Please select a size.'); return; }
-          const qty = qtyInput ? Math.max(1, parseInt(qtyInput.value, 10) || 1) : 1;
-
-          setLoading(true);
-          ajaxAddToCart(variantId, qty)
-            .then(() => fetchCart())
-            .then(cart => {
-              // ensure drawer refresh attempt before redirecting to checkout
-              openCartByIcon();
-              setTimeout(() => { refreshEllaDrawer(cart); window.location.href = '/checkout'; }, 150);
-            })
-            .catch(err => {
-              console.error('Buy now error', err);
-              alert((err && err.description) ? err.description : 'Could not proceed to checkout — please try again.');
-            });
-        });
-      }
-    });
-  }
-
-  function initSizeChartPopup() {
-    $qsa('.ew-open-sizechart').forEach(btn => {
-      btn.addEventListener('click', function () {
-        const quick = this.closest('.ew-quickview');
-        const popup = quick ? quick.querySelector('.ew-sizechart-popup') : null;
-        if (popup) { popup.classList.add('active'); popup.setAttribute('aria-hidden', 'false'); }
-      });
-    });
-
-    // close size chart
-    document.addEventListener('click', function (e) {
-      if (e.target.matches('.ew-sizechart-popup__overlay') || e.target.matches('.ew-sizechart-close')) {
-        const popup = e.target.closest('.ew-sizechart-popup');
-        if (popup) { popup.classList.remove('active'); popup.setAttribute('aria-hidden', 'true'); }
-      }
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' || e.key === 'Esc') {
-        $qsa('.ew-sizechart-popup.active').forEach(p => { p.classList.remove('active'); p.setAttribute('aria-hidden', 'true'); });
-      }
-    });
-  }
-
-  function initQuickviewClose() {
-    $qsa('.ew-quickview-close').forEach(btn => {
-      btn.addEventListener('click', function () { const q = this.closest('.ew-quickview'); if (q) q.classList.remove('active'); });
-    });
-  }
-
-  // ---------- Initialize on DOM ready ----------
-  document.addEventListener('DOMContentLoaded', function () {
-    initQuickviewTriggers();
-    initSizeRadios();
-    initQuickviewActions();
-    initSizeChartPopup();
-    initQuickviewClose();
-  });
-
-  // expose helpers for debugging
-  window.ewQuickview = {
-    ajaxAddToCart,
-    fetchCart,
-    handlePostAdd,
-    openCartByIcon,
-    refreshEllaDrawer,
-    showEwMiniToast
-  };
-
-})();
-
-(function () {
-  'use strict';
-
-  function $qs(selector, root) { return (root || document).querySelector(selector); }
-  function $qsa(selector, root) { return Array.from((root || document).querySelectorAll(selector)); }
-
-  function showEwMiniToast(message, timeout = 2500) {
-    const existing = document.querySelector('.ew-mini-toast');
-    if (existing) existing.remove();
-    const toast = document.createElement('div');
-    toast.className = 'ew-mini-toast';
-    toast.textContent = message;
-    Object.assign(toast.style, {
-      position: 'fixed', right: '16px', bottom: '16px',
-      background: '#111', color: '#fff', padding: '8px 12px',
-      borderRadius: '6px', zIndex: 99999, boxShadow: '0 6px 18px rgba(0,0,0,0.18)',
-      transition: 'opacity .25s ease'
-    });
-    document.body.appendChild(toast);
-    setTimeout(() => toast.style.opacity = '0', timeout);
-    setTimeout(() => toast.remove(), timeout + 300);
-  }
-
-  function ajaxAddToCart(variantId, quantity = 1) {
-    return fetch('/cart/add.js', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: variantId, quantity })
-    }).then(res => {
-      if (!res.ok) return res.json().then(err => { throw err; });
-      return res.json();
-    });
-  }
-
-  function fetchCart() {
-    return fetch('/cart.js', { credentials: 'same-origin' }).then(res => res.json());
-  }
-
-  function updateCartCount(cart) {
-    $qsa('[data-cart-count]').forEach(el => el.textContent = cart.item_count || 0);
-  }
-
-  function dispatchCartEvents(cart) {
-    try { window.dispatchEvent(new CustomEvent('ew:cart-updated', { detail: cart })); } catch(e){}
-    try { window.dispatchEvent(new CustomEvent('cart:updated', { detail: cart })); } catch(e){}
-    try { document.dispatchEvent(new CustomEvent('cart:updated', { detail: cart })); } catch(e){}
-  }
-
-  function openCartByIcon() {
-    const cartIcon = document.querySelector('.header-basic__content #cart-icon-bubble');
-    if (cartIcon) { try { cartIcon.click(); return true; } catch(e){ return false; } }
-    return false;
-  }
-
-  function refreshEllaDrawer(cart) {
-    dispatchCartEvents(cart);
-    try { if (window.Ella && typeof window.Ella.refreshCart === 'function') { window.Ella.refreshCart(cart); return true; } } catch(e){}
-    try { if (window.theme && typeof window.theme.refreshCart === 'function') { window.theme.refreshCart(cart); return true; } } catch(e){}
-    try { if (window.cartDrawer && typeof window.cartDrawer.refresh === 'function') { window.cartDrawer.refresh(cart); return true; } } catch(e){}
-    return false;
-  }
-
-  function handlePostAdd(addResult) {
-    return fetchCart().then(cart => {
-      updateCartCount(cart);
-      dispatchCartEvents(cart);
-      const opened = openCartByIcon();
-      setTimeout(() => { if (!opened) refreshEllaDrawer(cart); }, 250);
-      return cart;
-    });
-  }
-
-  function initQuickview(context) {
-    context = context || document;
-
-    // Open quickview
-    $qsa('.ew-quickview-button', context).forEach(btn => {
-      btn.addEventListener('click', function () {
-        $qsa('.ew-quickview.active').forEach(m => m.classList.remove('active'));
-        const card = btn.closest('.product-item');
-        if (!card) return;
-        const quickview = card.querySelector('.ew-quickview');
-        if (quickview) quickview.classList.add('active');
-      });
-    });
-
-    // Close quickview
-    $qsa('.ew-quickview-close', context).forEach(btn => {
-      btn.addEventListener('click', function () {
-        const quickview = btn.closest('.ew-quickview');
-        if (quickview) quickview.classList.remove('active');
-      });
-    });
-
-    // Size radios
-    $qsa('.ew-quickview', context).forEach(q => {
-      const radios = $qsa('input[type="radio"][name="size"]', q);
-      radios.forEach(r => { r.closest('.ew-size-option').classList.toggle('checked', r.checked); });
-      q.addEventListener('change', e => {
-        if (!e.target.matches('input[type="radio"][name="size"]')) return;
-        radios.forEach(r => r.closest('.ew-size-option').classList.toggle('checked', r.checked));
-      });
-    });
-
-    // Add-to-cart & buy-now
-    $qsa('.ew-quickview', context).forEach(q => {
-      const addBtn = q.querySelector('.ew-add-to-cart');
-      const buyBtn = q.querySelector('.ew-buy-now');
-      const qtyInput = q.querySelector('.ew-qty-input');
-
-      function getSelectedVariantId() {
-        const checked = q.querySelector('input[type="radio"][name="size"]:checked');
-        return checked?.dataset?.variantId || null;
-      }
-
-      function setLoading(state) {
-        [addBtn, buyBtn].forEach(b => { if (!b) return; b.disabled = state; b.classList.toggle('is-loading', state); });
-      }
-
-      if (addBtn) {
-        addBtn.addEventListener('click', () => {
-          const variantId = getSelectedVariantId();
-          if (!variantId) { alert('Please select a size.'); return; }
-          const qty = qtyInput ? Math.max(1, parseInt(qtyInput.value,10)||1) : 1;
-          setLoading(true);
-          ajaxAddToCart(variantId, qty)
-            .then(handlePostAdd)
-            .catch(err => alert(err?.description || 'Could not add to cart'))
-            .finally(() => setLoading(false));
-        });
-      }
-
-      if (buyBtn) {
-        buyBtn.addEventListener('click', () => {
-          const variantId = getSelectedVariantId();
-          if (!variantId) { alert('Please select a size.'); return; }
-          const qty = qtyInput ? Math.max(1, parseInt(qtyInput.value,10)||1) : 1;
-          setLoading(true);
-          ajaxAddToCart(variantId, qty)
-            .then(() => fetchCart())
-            .then(cart => {
-              openCartByIcon();
-              setTimeout(() => { refreshEllaDrawer(cart); window.location.href='/checkout'; },150);
-            })
-            .catch(err => alert(err?.description || 'Could not proceed to checkout'));
-        });
-      }
-    });
-
-    // Size chart
-    $qsa('.ew-open-sizechart', context).forEach(btn => {
-      btn.addEventListener('click', () => {
-        const quick = btn.closest('.ew-quickview');
-        const popup = quick?.querySelector('.ew-sizechart-popup');
-        if (popup) popup.classList.add('active');
-      });
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', () => initQuickview(document));
-
-  // Expose global for infinite scroll
-  window.EWQuickview = { init: initQuickview };
-
-})();

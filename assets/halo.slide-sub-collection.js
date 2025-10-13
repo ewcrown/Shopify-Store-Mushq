@@ -16,7 +16,7 @@
                   prevArrow: '<button type="button" class="slick-prev" aria-label="Previous"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path></svg></button>',
                   slidesToShow: rows,
                   slidesToScroll: rows,
-                  centerMode: false,
+                  centerMode: true,
                   responsive: [
                       {
                         breakpoint: 1450,

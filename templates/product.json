@@ -96,7 +96,7 @@
             "atc_border_color": "#febe98",
             "atc_bg_color": "#febe98",
             "atc_bg_color_gradient": "",
-            "atc_color_hover": "#FFFFFF",
+            "atc_color_hover": "#ffffff",
             "atc_border_color_hover": "#232323",
             "atc_bg_color_hover": "#000000",
             "atc_bg_color_gradient_hover": "",
@@ -115,7 +115,7 @@
         "custom_liquid_Y3enhU": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{% for tag in product.tags %}\n        {% if tag contains 'TDT' %}\n          {% assign TDT = tag | split: '--' %}\n          {% assign TDT = TDT[1] | strip %}\n        {% endif %}\n      {% endfor %}\n        {% if TDT %}\n\n      <div class=\"ew-estimated-delivery\">\nEstimated Delivery 3-5 Days For Un-Stitched\n</div>\n        {% endif %}"
+            "custom_liquid": "{% for tag in product.tags %}\n        {% if tag contains 'TDT' %}\n          {% assign TDT = tag | split: '--' %}\n          {% assign TDT = TDT[1] | strip %}\n        {% endif %}\n      {% endfor %}\n        {% if TDT %}\n\n      <div class=\"ew-estimated-delivery\">\nAll Unstitched orders will be dispatched within 3 working days. <br>\nAll Stitched orders will be dispatched within 10 working days.\n</div>\n        {% endif %}"
           }
         },
         "bd066b80-c8e3-4f3e-8280-b27fbf6e9423": {

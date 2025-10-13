@@ -15,8 +15,8 @@
         "16321237356a896dad-0": {
           "type": "image",
           "settings": {
-            "image_slide": "shopify://shop_images/1_19cbed39-b50b-47f9-9b2f-176768774517.jpg",
-            "image_slide_mb": "shopify://shop_images/1_9b53685b-2372-4a33-a84c-7937130d9d9c.jpg",
+            "image_slide": "shopify://shop_images/web_banners_7ce6ad1f-d8e7-4910-bb93-882dcdbcbbf4.jpg",
+            "image_slide_mb": "shopify://shop_images/mob_banner_d37331a3-58f2-4d21-a59e-458ca93b811e.jpg",
             "alignment": "left",
             "enable_custom_position": false,
             "custom_horizontal": "40",
@@ -192,9 +192,9 @@
       "settings": {
         "side_image": "shopify://shop_images/banner_0a9186f0-4f83-4b2b-b3b6-d4cf53e36c44.jpg",
         "title": "New In",
-        "button_url": "shopify://collections/aura-debut",
+        "button_url": "shopify://collections/sham-shandaar-festive",
         "button_text": "Shop Now",
-        "collection": "nirvana-printed-silk"
+        "collection": "sham-shandaar-festive"
       }
     },
     "collection_list_cRFLfC": {
@@ -493,7 +493,7 @@
           "type": "image",
           "settings": {
             "enable_image": true,
-            "image": "shopify://shop_images/Mask_group_3.webp_2_37b83ad8-b996-4c3d-985f-4eec14809134.png",
+            "image": "shopify://shop_images/Mask_group_3_webp_94f8d066-a02e-483b-a0b0-b33a232a620f.png",
             "title_align": "center",
             "enable_absolute": false,
             "enable_absolute_mobile": false,
@@ -549,7 +549,7 @@
           "type": "image",
           "settings": {
             "enable_image": true,
-            "image": "shopify://shop_images/Mask_group_3_webp_94f8d066-a02e-483b-a0b0-b33a232a620f.png",
+            "image": "shopify://shop_images/1_9170b2ae-4f4d-4965-8159-2697be02481a.jpg",
             "title_align": "center",
             "enable_absolute": false,
             "enable_absolute_mobile": false,
@@ -605,7 +605,7 @@
           "type": "image",
           "settings": {
             "enable_image": true,
-            "image": "shopify://shop_images/Mask_group_3.webp_1_8787e028-7a28-4a1f-a5a3-72eacc6b6b67.png",
+            "image": "shopify://shop_images/3_b9f23b45-8bf0-4585-a778-87d8345dc774.jpg",
             "title_align": "center",
             "enable_absolute": false,
             "enable_absolute_mobile": false,
