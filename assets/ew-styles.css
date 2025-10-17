@@ -573,17 +573,16 @@
     position: static;
   }
 
-  .luis-collection-slider-right .splide__arrows {
+.luis-collection-slider-right .splide__arrows {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 14px;
+    gap: 30px;
     position: absolute;
-    bottom: -35px;
+    bottom: -60px;
     right: 0;
     left: 0;
-  }
-
+}
   .collection-list-slider .card__content {
     padding: 0px !important;
   }
@@ -685,8 +684,10 @@
   }
 
 }
-
-.filter-display-show-more .facets__list {
+.sidebarBlock-contentWrapper {
+    display: block !important;
+}
+.facets__list {
   max-height: max-content !important;
 }
 
@@ -886,9 +887,6 @@
   padding-top:150% !important;
 } */
 
-.megamenu_style_3 .site-nav-list .text{
-  display:none !important;
-}
 .megamenu_style_3 .site-nav-list{
   width:100%;
 }
@@ -918,16 +916,32 @@
 }
 
 @media(min-width:768px){
-  .site-nav-list>.site-nav-title span {
-  font-weight: 500;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 5px;
-  margin-bottom: 5px;
-  display: block;
+
+
+.megamenu_style_3 .site-nav-list .text{
+  display:none !important;
 }
+  .site-nav-list>.site-nav-title span {
+    font-weight: 500;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 18px;
+
+}
+.site-nav-list .site-nav-link {
+    font-size: 18px;
+    line-height: normal;  
+}
+ 
 
 }
 @media(max-width:767px){
+  .menu-dropdown__banner,
+  .halo-sidebar_menu .megamenu_style_3 .site-nav-list .image {
+    display:none !important;
+  }
   .collection-sub-list .item a span {
     font-size: 14px !important;
     letter-spacing: 0px !important;
@@ -976,4 +990,59 @@
     width: 12px;
     height: 14px;
     vertical-align: -2px;
+}
+
+.ew-quickview-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.list-product-tabs {
+    display: none !important;
+}
+
+.ew-product-description .toggle-description-btn {
+    margin: 0 0 10px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: underline;
+}
+
+.ew-quickview-price .ew-price-compare span {
+    text-decoration: line-through;
+    padding-left: 6px;
+    color: #ff0000;
+}
+
+
+/* Ensure Splide images are always visible */
+.card-media-splide .splide__slide {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.card-media__img {
+  opacity: 1 !important;
+  transition: opacity 0.2s ease;
+}
+
+/* Prevent layout shifts */
+.card-media .splide-wrapper {
+  min-height: 200px; /* Adjust based on your image height */
+  position: relative;
+}
+
+.card-media .splide__track {
+  overflow: visible !important;
+}
+
+/* Loading state */
+.card-media .splide:not(.splide-initialized) .splide__list {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card-media .splide:not(.splide-initialized) .splide__slide {
+  flex: 0 0 auto;
+  width: 100%;
 }

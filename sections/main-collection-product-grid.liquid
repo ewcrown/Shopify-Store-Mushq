@@ -1,5 +1,8 @@
-{{ 'component-grid.css' | asset_url | stylesheet_tag }}
-{{ 'component-product-listing.css' | asset_url | stylesheet_tag }}
+<link rel="preload" href="{{ 'component-grid.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>{{ 'component-grid.css' | asset_url | stylesheet_tag }}</noscript>
+
+<link rel="preload" href="{{ 'component-product-listing.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>{{ 'component-product-listing.css' | asset_url | stylesheet_tag }}</noscript>
 
 {%- assign collection_layout = settings.collection_layout -%}
 

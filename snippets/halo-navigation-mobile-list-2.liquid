@@ -20,7 +20,7 @@
             <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
                 <a {% if menu_item_url == blank %} role="link" aria-disabled="true"{% else %} href="{{ menu_item_url }}"{% endif %} class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset">
                     <span class="text">
-                        {{ 'general.navigation.go_to' | t }} {{ menu_item_heading | escape }}
+                          {{ menu_item_heading | escape }}
                     </span>
                 </a>
             </li>

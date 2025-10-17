@@ -118,7 +118,7 @@
                                                     <li class="menu-mobile-lv-2 text-left">
                                                         <a href="{{ link.url }}" class="menu--mobile-lv-2__action menu-drawer__menu-item link link--text list-menu__item focus-inset"{% if link.current %} aria-current="page"{% endif %}>
                                                             <span class="text{% if link.child_active %} menu-drawer__menu-item--active{% endif %}">
-                                                                {{ 'general.navigation.go_to' | t }} {{ link.title | escape }}
+                                                                  {{ link.title | escape }}
                                                             </span>
                                                         </a>
                                                     </li>
@@ -150,7 +150,7 @@
                                                                             <li class="menu-mobile-lv-3 text-left">
                                                                                 <a href="{{ childlink.url }}" class="menu--mobile-lv-3__action menu-drawer__menu-item link link--text list-menu__item focus-inset"{% if childlink.current %} aria-current="page"{% endif %}>
                                                                                     <span class="text{% if childlink.current %} menu-drawer__menu-item--active{% endif %}">
-                                                                                        {{ 'general.navigation.go_to' | t }} {{ childlink.title | escape }}
+                                                                                          {{ childlink.title | escape }}
                                                                                     </span>
                                                                                 </a>
                                                                             </li>

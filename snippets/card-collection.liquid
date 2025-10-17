@@ -13,18 +13,26 @@
   {% render 'card-collection' %}
 {% endcomment %}
 
+{% assign ftrd_image = '' %}
+{% if block.settings.collection_image != blank %}
+  {% assign ftrd_image = block.settings.collection_image %}
+{% else %}
+  {% assign ftrd_image = card_collection.featured_image %}
+{% endif %}
+
 <div class="card-wrapper collection-card-wrapper">
     <div class="card__inner o-hidden p-relative">
-      {%- if card_collection.featured_image -%}
         <div class="card__media">
           <div class="media media--transparent media--hover-effect">
-            <a class="image image-{{ image_ratio }} adaptive_height image-zoom" href="{{ card_collection.url }}"{% if image_ratio == 'adapt' %} style="padding-bottom: {{ 1 | divided_by: card_collection.featured_image.aspect_ratio | times: 100 }}%;"{% elsif image_ratio == 'square' %} style="padding-bottom: 100%;"{% elsif image_ratio == 'portrait' %}{% if portrait_aspect_ratio != blank %} style="padding-bottom: {{ portrait_aspect_ratio | append: '%' }};"{% endif %}{% endif %}>
-              <img {% if settings.enable_lazyload %}data-{% endif %}srcset="{{ card_collection.featured_image | img_url: 'master' }}" {% unless settings.enable_lazyload %}src="{{ card_collection.featured_image | img_url: 'master' }}"{% endunless %} alt="{{ card_collection.featured_image.alt | default: shop.name | escape }}"{% if settings.enable_lazyload %} class="lazyload" loading="lazy"{% endif %}>
+            <a 
+              class="image image-{{ image_ratio }} adaptive_height image-zoom" 
+              href="{{ card_collection.url }}"{% if image_ratio == 'adapt' %} 
+                style="padding-bottom: {{ 1 | divided_by: ftrd_image.aspect_ratio | times: 100 }}%;"{% elsif image_ratio == 'square' %} style="padding-bottom: 100%;"{% elsif image_ratio == 'portrait' %}{% if portrait_aspect_ratio != blank %} style="padding-bottom: {{ portrait_aspect_ratio | append: '%' }};"{% endif %}{% endif %}>
+              <img {% if settings.enable_lazyload %}data-{% endif %}srcset="{{ ftrd_image | img_url: 'master' }}" {% unless settings.enable_lazyload %}src="{{ ftrd_image | img_url: 'master' }}"{% endunless %} alt="{{ ftrd_image.alt | default: shop.name | escape }}"{% if settings.enable_lazyload %} class="lazyload" loading="lazy"{% endif %}>
               {%- if settings.enable_lazyload -%}<span class="data-lazy-loading"></span>{%- endif -%}
             </a>
           </div>
         </div>
-      {%- endif -%}
       {%- if card_collection == blank -%}
         <div class="card__media">
           {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}

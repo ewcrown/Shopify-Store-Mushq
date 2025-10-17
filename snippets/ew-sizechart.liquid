@@ -1,13 +1,9 @@
 {%- if product.metafields.custom.size_guide_image != blank -%}
-  <div class="ew-sizechart-popup" aria-hidden="true">
-    <div class="ew-sizechart-popup__overlay"></div>
-    <div class="ew-sizechart-popup__content">
-      <button class="ew-sizechart-close" aria-label="Close">&times;</button>
-      <img
-        src="{{ product.metafields.custom.size_guide_image | image_url: width: 800 }}"
-        alt="Size guide for {{ product.title }}"
-        loading="lazy"
-      >
-    </div>
+<div class="ew-sizechart-popup" aria-hidden="true">
+  <div class="ew-sizechart-popup__overlay"></div>
+  <div class="ew-sizechart-popup__content">
+    <button class="ew-sizechart-close" aria-label="Close">&times;</button>
+    <img src="{{ product.metafields.custom.size_guide_image | image_url: width: 800 }}" alt="Size guide">
   </div>
+</div>
 {%- endif -%}

@@ -14,6 +14,15 @@
     "header_basic_XdVmNT": {
       "type": "header-basic",
       "blocks": {
+        "conversion_group_9UbpVG": {
+          "type": "conversion_group",
+          "settings": {
+            "show_language_currency": false,
+            "language_currency_color": "#3c3c3c",
+            "customer_service_text": "",
+            "text_color": "#3c3c3c"
+          }
+        },
         "logo_XFRqQa": {
           "type": "logo",
           "settings": {
@@ -50,6 +59,7 @@
         }
       },
       "block_order": [
+        "conversion_group_9UbpVG",
         "logo_XFRqQa",
         "function_group_zNigWd"
       ],
@@ -139,8 +149,8 @@
           "settings": {
             "logo_position": "sticky_menu",
             "logo": "shopify://shop_images/Mushq_International.png",
-            "logo_width": 160,
-            "logo_width_fixed": 55,
+            "logo_width": 220,
+            "logo_width_fixed": 80,
             "logo_text": "",
             "logo_font_size": 20,
             "logo_font_weight": "900",
@@ -288,7 +298,7 @@
         "megamenu_style_2_Pnwdrn"
       ],
       "settings": {
-        "container": "1770",
+        "container": "full",
         "padding_full_width": 0,
         "header_navigation_bg": "#ffffff",
         "header_navigation_bg_gradient": "",

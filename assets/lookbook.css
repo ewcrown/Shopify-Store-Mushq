@@ -104,7 +104,7 @@
 }
 
 /* Dots */
-.slick-dotted.slick-slider {
+/* .slick-dotted.slick-slider {
   margin-bottom: 30px;
 }
 .slick-dots {
@@ -164,7 +164,7 @@
 .slick-dots li.slick-active button:before {
   opacity: .75;
   color: black;
-}
+} */
 /********************/
 .book-list.catalog {
     margin: 0;

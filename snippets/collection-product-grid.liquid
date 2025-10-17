@@ -111,7 +111,7 @@
     {%- if settings.layout != '4' or sidebar_type != 'horizontal' -%}
         <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
     {%- endif -%}
-        <div class="ew-sidebar-filter halo-collection-content halo-grid-content sidebar--layout_{{ sidebar_type }}">
+        <div class="ew-sidebar-filter ew__sidebar--content halo-collection-content halo-grid-content sidebar--layout_{{ sidebar_type }}">
             {%- if has_sidebar -%}
                 {{ 'component-main-sidebar.css' | asset_url | stylesheet_tag }}
                 <div class="page-sidebar page-sidebar-{{ sidebar_position }} page-sidebar--{{ sidebar_type }} sidebar--{{ sidebar_layout }}{% if enable_sticky %} has-sticky{% endif %}" id="halo-sidebar">

@@ -806,6 +806,8 @@
                                     assign spacing_bottom = block.settings.spacing_bottom
                                 -%}
                                 {%- case block.type -%}
+                                    {%- when 'custom_description' -%} 
+                                                {% render 'ew-product-description', description: product.description %}
                                     {%- when 'custom_size_chart' -%}
                                         <div class="productView-moreItem{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
                                             {%- if product.metafields.custom.size_guide_image != blank -%}
@@ -833,6 +835,7 @@
                                                 %}
                                             </div>
                                         {%- endif -%}
+                                        
                                     {%- when 'vendor' -%}
                                         <div class="productView-moreItem{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"
                                             style="--spacing-top: {{ spacing_top | append: 'px' }};

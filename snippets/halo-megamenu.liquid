@@ -34,7 +34,7 @@
                     <div class="menu-dropdown__wrapper d-flex flex-wrap flex-align-stretch flex-jc-between">
                         <div class="nav-title-mobile text-center"><span class="icon-dropdown">{% render 'icon-arrow-nav' %}</span>{{ link.title | escape }}</div>
                         <div class="site-nav navigation_all_mobile d-none">
-                            <div class="site-nav-list "><a href="{{ link.url }}" class="site-nav-title menu-lv-2"><span>{{ 'general.navigation.go_to' | t }} {{ link.title | escape }}</span></a></div>
+                            <div class="site-nav-list "><a href="{{ link.url }}" class="site-nav-title menu-lv-2"><span>{{ link.title | escape }}</span></a></div>
                         </div>
                         <div class="menu-dropdown__column menu-dropdown__column-{{ column }} w-auto{% unless show_banner_1 or show_product %} column-full{% endunless %}{% unless show_product %} no_show_product{% endunless %}{% unless show_banner_1 %} no_show_banner{% endunless %}" data-masonry='{ "itemSelector": "[data-gridItem]", "columnWidth": ".grid-sizer" }'>
                             <div class="grid-sizer"></div>
@@ -59,7 +59,7 @@
                                             <div class="site-nav-sub">
                                                 <div class="nav-title-mobile text-center"><span class="icon-dropdown">{% render 'icon-arrow-nav' %}</span> {{ childlink.title | escape }}</div>
                                                 <ul class="list-unstyled">
-                                                    <li class="site-nav-item menu-lv-3 text-left navigation_all_mobile d-none"><a href="{{ childlink.url }}" class="site-nav-link m-zero link link-underline link--text focus-inset link-effect caption-large"><span class="text p-relative">{{ 'general.navigation.go_to' | t }} {{ childlink.title | escape }}</span></a></li>
+                                                    <li class="site-nav-item menu-lv-3 text-left navigation_all_mobile d-none"><a href="{{ childlink.url }}" class="site-nav-link m-zero link link-underline link--text focus-inset link-effect caption-large"><span class="text p-relative">  {{ childlink.title | escape }}</span></a></li>
                                                     {%- for grandchildlink in childlink.links -%}
                                                         {% assign grandchildtitle = grandchildlink.title | escape | downcase | handle %}
                                                         <li class="site-nav-item menu-lv-3 text-left{% if sale_item_lv3 contains grandchildtitle %} active-sale{% endif %}">
@@ -134,7 +134,7 @@
                     <div class="menu-dropdown__wrapper d-flex flex-wrap flex-align-stretch flex-jc-between">
                         <div class="nav-title-mobile text-center"><span class="icon-dropdown">{% render 'icon-arrow-nav' %}</span> {{ link.title | escape }}</div>
                         <div class="site-nav navigation_all_mobile d-none">
-                            <div class="site-nav-list "><a href="{{ link.url }}" class="site-nav-title menu-lv-2"><span>{{ 'general.navigation.go_to' | t }} {{ link.title | escape }}</span></a></div>
+                            <div class="site-nav-list "><a href="{{ link.url }}" class="site-nav-title menu-lv-2"><span>  {{ link.title | escape }}</span></a></div>
                         </div>
                         <div class="menu-dropdown__column menu-dropdown__column-{{ column }} w-auto{% unless show_banner_1 or show_banner_2 or show_banner_3 %} column-full{% endunless %}" data-masonry='{ "itemSelector": "[data-gridItem]", "columnWidth": ".grid-sizer" }'>
                             <div class="grid-sizer"></div>
@@ -159,7 +159,7 @@
                                             <div class="site-nav-sub">
                                                 <div class="nav-title-mobile text-center"><span class="icon-dropdown">{% render 'icon-arrow-nav' %}</span> {{ childlink.title | escape }}</div>
                                                 <ul class="list-unstyled">
-                                                    <li class="site-nav-item menu-lv-3 text-left navigation_all_mobile d-none"><a href="{{ childlink.url }}" class="site-nav-link m-zero link link-underline link--text focus-inset link-effect caption-large"><span class="text  p-relative">{{ 'general.navigation.go_to' | t }} {{ childlink.title | escape }}</span></a></li>
+                                                    <li class="site-nav-item menu-lv-3 text-left navigation_all_mobile d-none"><a href="{{ childlink.url }}" class="site-nav-link m-zero link link-underline link--text focus-inset link-effect caption-large"><span class="text  p-relative">  {{ childlink.title | escape }}</span></a></li>
                                                     {%- for grandchildlink in childlink.links -%}
                                                         {% assign grandchildtitle = grandchildlink.title | escape | downcase | handle %}
                                                         <li class="site-nav-item text-left{% if sale_item_lv3 contains grandchildtitle %} active-sale{% endif %}">
@@ -243,7 +243,7 @@
                     <div class="menu-dropdown__wrapper d-flex flex-wrap flex-align-stretch flex-jc-between">
                         <div class="nav-title-mobile text-center"><span class="icon-dropdown">{% render 'icon-arrow-nav' %}</span> {{ link.title | escape }}</div>
                         <div class="site-nav navigation_all_mobile d-none">
-                            <div class="site-nav-list "><a href="{{ link.url }}" class="site-nav-title menu-lv-2"><span>{{ 'general.navigation.go_to' | t }} {{ link.title | escape }}</span></a></div>
+                            <div class="site-nav-list "><a href="{{ link.url }}" class="site-nav-title menu-lv-2"><span>  {{ link.title | escape }}</span></a></div>
                         </div>
                         {% if mega_tyle == 'style1' %}
                             <div class="menu-dropdown__column menu-dropdown__column-{{ column }} w-auto" data-masonry='{ "itemSelector": "[data-gridItem]", "columnWidth": ".grid-sizer" }'>
@@ -349,7 +349,7 @@
                                                 <div class="site-nav-sub">
                                                     <div class="nav-title-mobile text-center"><span class="icon-dropdown">{% render 'icon-arrow-nav' %}</span> {{ childlink.title | escape }}</div>
                                                     <ul class="list-unstyled">
-                                                        <li class="site-nav-item menu-lv-3 text-left navigation_all_mobile d-none"><a href="{{ childlink.url }}" class="site-nav-link m-zero link link-underline link--text focus-inset link-effect caption-large"><span class="text p-relative">{{ 'general.navigation.go_to' | t }} {{ childlink.title | escape }}</span></a></li>
+                                                        <li class="site-nav-item menu-lv-3 text-left navigation_all_mobile d-none"><a href="{{ childlink.url }}" class="site-nav-link m-zero link link-underline link--text focus-inset link-effect caption-large"><span class="text p-relative">  {{ childlink.title | escape }}</span></a></li>
                                                         {%- for grandchildlink in childlink.links -%}
                                                             {% assign grandchildtitle = grandchildlink.title | escape | downcase | handle %}
                                                             <li class="site-nav-item text-left{% if sale_item_lv3 contains grandchildtitle %} active-sale{% endif %}">
@@ -504,7 +504,7 @@
                         <div class="nav-title-mobile text-center"><span class="icon-dropdown">{% render 'icon-arrow-nav' %}</span>{{ link.title | escape }}</div>
                         <div class="site-nav navigation_all_mobile d-none">
                             <div class="site-nav-list">
-                                <a href="{{ link.url }}" class="site-nav-title menu-lv-2"><span>{{ 'general.navigation.go_to' | t }} {{ link.title | escape }}</span></a>
+                                <a href="{{ link.url }}" class="site-nav-title menu-lv-2"><span>  {{ link.title | escape }}</span></a>
                             </div>
                         </div>
                         <div class="wrapper-colunm-menu">
@@ -544,7 +544,7 @@
                                                         <div class="nav-title-mobile text-center"><span class="icon-dropdown">{% render 'icon-arrow-nav' %}</span> {{ childlink.title | escape }}</div>
                                                         <ul class="list-unstyled">
                                                             <li class="site-nav-item menu-lv-3 text-left navigation_all_mobile d-none">
-                                                                <a href="{{ childlink.url }}" class="site-nav-link m-zero link link-underline link--text focus-inset link-effect caption-large"><span class="text p-relative">{{ 'general.navigation.go_to' | t }} {{ childlink.title | escape }}</span></a>
+                                                                <a href="{{ childlink.url }}" class="site-nav-link m-zero link link-underline link--text focus-inset link-effect caption-large"><span class="text p-relative">  {{ childlink.title | escape }}</span></a>
                                                             </li>
                                                             {%- for grandchildlink in childlink.links -%}
                                                                 {% assign grandchildtitle = grandchildlink.title | escape | downcase | handle %}
@@ -653,7 +653,7 @@
                     <div class="menu-dropdown__wrapper d-flex flex-wrap flex-align-stretch flex-jc-between" style="--site_text_width: {{ site_text_width | default: '0' }}">
                         <div class="nav-title-mobile text-center"><span class="icon-dropdown">{% render 'icon-arrow-nav' %}</span>{{ link.title | escape }}</div>
                         <div class="site-nav navigation_all_mobile d-none">
-                            <div class="site-nav-list"><a href="{{ link.url }}" class="site-nav-title menu-lv-2"><span>{{ 'general.navigation.go_to' | t }} {{ link.title | escape }}</span></a></div>
+                            <div class="site-nav-list"><a href="{{ link.url }}" class="site-nav-title menu-lv-2"><span>  {{ link.title | escape }}</span></a></div>
                         </div>
                         <div class="wrapper-colunm-menu{% unless show_banner_1 %} not_banner{% endunless %}">
                             {%- if menu_text_left != blank -%}
@@ -691,7 +691,7 @@
                                                 <div class="site-nav-sub">
                                                     <div class="nav-title-mobile text-center"><span class="icon-dropdown">{% render 'icon-arrow-nav' %}</span>{{ childlink.title | escape }}</div>
                                                     <ul class="list-unstyled">
-                                                        <li class="site-nav-item menu-lv-3 text-left navigation_all_mobile d-none"><a href="{{ childlink.url }}" class="site-nav-link m-zero link link-underline link--text focus-inset link-effect caption-large"><span class="text p-relative">{{ 'general.navigation.go_to' | t }} {{ childlink.title | escape }}</span></a></li>
+                                                        <li class="site-nav-item menu-lv-3 text-left navigation_all_mobile d-none"><a href="{{ childlink.url }}" class="site-nav-link m-zero link link-underline link--text focus-inset link-effect caption-large"><span class="text p-relative">  {{ childlink.title | escape }}</span></a></li>
                                                         {%- for grandchildlink in childlink.links -%}
                                                             {% assign grandchildtitle = grandchildlink.title | escape | downcase | handle %}
                                                             <li class="site-nav-item text-left{% if sale_item_lv3 contains grandchildtitle %} active-sale{% endif %}">

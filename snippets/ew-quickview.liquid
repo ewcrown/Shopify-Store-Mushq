@@ -1,10 +1,41 @@
-<div class="ew-quickview">
+{%- comment -%}
+ Quickview markup (Liquid)
+ - Expose variant data safely via individual data-* attributes
+ - Select the first available variant as default (first_available_id)
+ - Deduplicate size options
+ - Accessibility: role="dialog", aria-live, labelledby
+{%- endcomment -%}
+
+{%- assign first_available_id = nil -%}
+{%- for v in product.variants -%}
+  {%- if v.available and first_available_id == nil -%}
+    {%- assign first_available_id = v.id -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<div class="ew-quickview" role="dialog" aria-modal="true" aria-labelledby="ew-quickview-title-{{ product.id }}" tabindex="-1">
   <button type="button" class="ew-quickview-close" aria-label="Close">&times;</button>
 
-  <h3>{{ product.title }}</h3>
-  {% render 'price', product: product %}
+  <h3 id="ew-quickview-title-{{ product.id }}">{{ product.title }}</h3>
+
+  <div class="ew-quickview-price" aria-live="polite">
+    <span class="ew-price-current">
+      {%- if product.price_varies -%}
+        {{ product.price_min | money }}
+      {%- else -%}
+        {{ product.price | money }}
+      {%- endif -%}
+    </span>
+
+    {%- if product.compare_at_price_min and product.compare_at_price_min > product.price_min -%}
+      <span class="ew-price-compare">{{ product.compare_at_price_min | money }}</span>
+    {%- else -%}
+      <span class="ew-price-compare" style="display:none;"></span>
+    {%- endif -%}
+  </div>
 
   <div class="ew-quickview-variants">
+    {%- comment -%} find size option index if exists {%- endcomment -%}
     {%- assign size_option_index = nil -%}
     {%- for opt in product.options -%}
       {%- assign opt_down = opt | downcase -%}
@@ -15,50 +46,73 @@
     {%- endfor -%}
 
     {%- if size_option_index != nil -%}
-      <div class="ew-size-options">
+      <div class="ew-size-options" role="radiogroup" aria-label="Size options">
         <div class="ew-size-label">Size:</div>
-        {%- assign unique_sizes = '' -%}
+
+        {%- comment -%}
+          Build a deduplicated list of size values (preserve order of first occurrence)
+        {%- endcomment -%}
+        {%- assign unique_sizes = '|' -%}
+
         {%- for variant in product.variants -%}
-          {%- assign size_value = variant.options[size_option_index] -%}
-          {%- unless unique_sizes contains size_value -%}
-            <label class="{% if variant.available == false %}ew-size-option-disabled {% endif %} ew-size-option {% if forloop.first %}checked{% endif %}">
+          {%- assign raw_size = variant.options[size_option_index] | strip -%}
+          {%- assign size_key = raw_size | downcase | strip -%}
+          {%- assign check_key = '|' | append: size_key | append: '|' -%}
+
+          {%- unless unique_sizes contains check_key -%}
+            {%- assign unique_sizes = unique_sizes | append: size_key | append: '|' -%}
+
+            {%- comment -%}
+              Determine whether this variant should be the default checked radio:
+              - prefer a currently available variant
+              - if multiple sizes map to multiple variants, we check the first available one
+            {%- endcomment -%}
+            {%- assign is_available = variant.available -%}
+            {%- assign checked_attr = '' -%}
+            {%- if is_available and first_available_id == variant.id -%}
+              {%- assign checked_attr = 'checked' -%}
+            {%- elsif first_available_id == nil and forloop.first -%}
+              {%- assign checked_attr = 'checked' -%}
+            {%- endif -%}
+
+            <label class="ew-size-option {% unless is_available %}ew-size-option-disabled{% endunless %}{% if checked_attr == 'checked' %} checked{% endif %}">
               <input
                 type="radio"
-                name="size"
-                value="{{ size_value | escape }}"
+                name="size-{{ product.id }}"
+                value="{{ raw_size | escape }}"
                 data-variant-id="{{ variant.id }}"
-                {% if variant.available == false %}disabled{% endif %}
-                {% if forloop.first %}checked{% endif %}
+                data-variant-price="{{ variant.price }}"
+                data-variant-price-formatted="{{ variant.price | money | escape }}"
+                data-compare-at-price="{{ variant.compare_at_price | default: '' }}"
+                data-compare-at-price-formatted="{% if variant.compare_at_price and variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money | escape }}{% else %}{% endif %}"
+                {% unless is_available %}disabled="disabled"{% endunless %}
+                {{ checked_attr }}
               >
-              <span>{{ size_value }}</span>
+              <span>{{ raw_size }}</span>
             </label>
-            {%- assign unique_sizes = unique_sizes | append: ',' | append: size_value -%}
           {%- endunless -%}
         {%- endfor -%}
+
       </div>
     {%- endif -%}
   </div>
 
   {%- if product.metafields.custom.size_guide_image != blank -%}
     <div class="ew-quickview-size-chart">
-      <button type="button" class="ew-open-sizechart">
+      <button type="button" class="ew-open-sizechart" aria-haspopup="dialog" aria-controls="ew-sizechart-{{ product.id }}">
         {% render 'ew-size-chart-icon' %}
         <span>Size Chart</span>
       </button>
     </div>
   {%- endif -%}
 
-  {%- comment -%}
-    Minimal action buttons (no layout/styling changes). Uses theme .button class if present.
-  {%- endcomment -%}
   <div class="ew-quickview-actions">
     {% if product.tags contains 'callprice' %}
-      <a class="ew-view-details" title="whatsapp" href="https://api.whatsapp.com/send?phone=923266660230&amp;text=Hi! I have a question" data-title="WhatsApp Us!" target="_blank">TALK TO US</a>
+      <a class="ew-view-details" title="whatsapp" href="https://api.whatsapp.com/send?phone=923266660230&amp;text=Hi! I have a question" data-title="WhatsApp Us!" target="_blank" rel="noopener">TALK TO US</a>
     {% else %}
       <button type="button" class="button ew-add-to-cart" data-btn-addToCart>Add to cart</button>
-      <button type="button" class="button ew-buy-now">Buy it now</button>
+      <button type="button" class="button ew-buy-now">Buy now</button>
     {% endif %}
-    
     <a href="{{ product.url }}" class="ew-view-details">VIEW MORE DETAILS</a>
   </div>
 </div>

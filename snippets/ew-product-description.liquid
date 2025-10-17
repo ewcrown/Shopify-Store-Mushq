@@ -1,0 +1,56 @@
+{% if description != blank %}
+    <div class="productView-moreItem productView-moreItem-description">
+  <div class="ew-product-description">
+    <div class="description-text">
+      {{ description }}
+    </div>
+    <button class="toggle-description-btn" type="button">Read more</button>
+  </div>
+
+  <style>
+    .description-text {
+      max-height: 300px; /* Show only a part of the text initially */
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .description-text.expanded {
+      max-height: none; /* Show full text when expanded */
+    }
+
+    .toggle-description-btn {
+      background: none;
+      border: none;
+      color: #007acc;
+      cursor: pointer;
+      font-weight: 500;
+      margin-top: 8px;
+      padding: 0;
+    }
+
+    .toggle-description-btn:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const desc = document.querySelector(".ew-product-description .description-text");
+      const btn = document.querySelector(".ew-product-description .toggle-description-btn");
+
+      if (desc && btn) {
+        const initialHeight = desc.scrollHeight > 300; // only show button if content is longer than 150px
+
+        if (!initialHeight) {
+          btn.style.display = "none"; // hide button if short description
+        }
+
+        btn.addEventListener("click", () => {
+          desc.classList.toggle("expanded");
+          btn.textContent = desc.classList.contains("expanded") ? "Read less" : "Read more";
+        });
+      }
+    });
+  </script>
+  </div>
+{% endif %}

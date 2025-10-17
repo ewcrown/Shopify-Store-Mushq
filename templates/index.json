@@ -197,6 +197,119 @@
         "collection": "sham-shandaar-festive"
       }
     },
+    "product_tab_block_nUy9r8": {
+      "type": "product-tab-block",
+      "blocks": {
+        "product_tabs_xUzfTY": {
+          "type": "ProductTabs",
+          "settings": {
+            "title": "",
+            "collection": "best-of-mushq"
+          }
+        }
+      },
+      "block_order": [
+        "product_tabs_xUzfTY"
+      ],
+      "name": "t:sections.product_tab_block.name",
+      "settings": {
+        "container": "fullwidth",
+        "padding_full_width": 20,
+        "disable_padding_content": false,
+        "product_bg": "#ffffff",
+        "product_bg_gradient": "",
+        "product_block_layout": "slider",
+        "product_block_limit": 8,
+        "product_block_title": "Best of Mushq",
+        "fontsize_title": 16,
+        "fontsize_title_mb": 16,
+        "mg_bottom_title": 50,
+        "enable_border_title": false,
+        "border_color_title": "#232323",
+        "enable_border_title2": false,
+        "border_color_title2": "#232323",
+        "color_title": "#232323",
+        "title_align": "center",
+        "view_all_style": "style_1",
+        "view_all": "",
+        "font_weight_view_all": "400",
+        "mg_bottom_view": 30,
+        "link_view_all": "",
+        "color_view_all": "#3c3c3c",
+        "image_behavior": "none",
+        "product_block_per_row": "5",
+        "product_block_infinite_scroll": true,
+        "min_width_button": "",
+        "product_block_dots": false,
+        "product_block_dots_mb": true,
+        "product_block_arrows": true,
+        "product_block_arrows_mb": false,
+        "product_block_arrows_custom_position": false,
+        "product_block_progress_bar": false,
+        "enable_infinite": true,
+        "product_block_show": "5",
+        "product_block_per_view": "4",
+        "show_half": true,
+        "scroll_height": 4,
+        "scroll_track_bg": "#f1f1f1",
+        "scroll_thumb_color": "#000000",
+        "scroll_thumb_hover_color": "#444444",
+        "display_button": false,
+        "button_text_scroll": "Shop Now",
+        "enable_button_icon": false,
+        "button_width": 280,
+        "btn_spacing_top": 49,
+        "position": "left",
+        "width_banner": 20,
+        "tab_title_style": "style_1",
+        "layout_mobile": "grid",
+        "mg_bottom_title_tab": 24,
+        "type_tab_font": "font_1",
+        "separation": false,
+        "style_separation": "style1",
+        "color_separation": "",
+        "enable_scroll_title": true,
+        "fontsize_tab": 14,
+        "fontsize_tab_mb": 14,
+        "font_weight_tab": "700",
+        "font_weight_active_tab": "700",
+        "spacing_between_title": 24,
+        "line_height_tab": 20,
+        "line_height_tab_mobile": 24,
+        "border_tab_radius": 3,
+        "min_width_tab": 5,
+        "border_width_tab": 3,
+        "tab_align": "center",
+        "color_tab": "#232323",
+        "border_color_tab": "",
+        "bg_color_tab": "#ffffff",
+        "bg_color_gradient_tab": "",
+        "color_tab_active": "#232323",
+        "border_color_tab_active": "",
+        "bg_color_tab_active": "#f8f8f8",
+        "bg_color_gradient_tab_active": "",
+        "enable_layout_special": false,
+        "bg_card": "#ffffff",
+        "padding_card": 15,
+        "border_radius_card": 5,
+        "border_layout_card": "full",
+        "border_width_card": 5,
+        "border_color_card": "#f0f1f4",
+        "enable_custom_color": false,
+        "product_vendor_color": "#010101",
+        "product_title_color": "#505050",
+        "product_title_color_hover": "#505050",
+        "product_price_color": "#010101",
+        "product_price_sale_color": "#d12442",
+        "product_price_compare_color": "#808080",
+        "mg_top_desktop": 50,
+        "mg_top_tablet": 50,
+        "mg_top_mobile": 60,
+        "mg_bottom_desktop": 0,
+        "mg_bottom_tablet": 0,
+        "mg_bottom_mobile": 0
+      }
+    },
     "collection_list_cRFLfC": {
       "type": "collection-list",
       "blocks": {
@@ -296,6 +409,7 @@
           "type": "featured_collection",
           "settings": {
             "collection": "pishwas-1",
+            "collection_image": "shopify://shop_images/isadora-_pishwas_2667a601-36a1-4b1e-92eb-360be1d9a04e.jpg",
             "custom_collection_badge_text": "",
             "custom_collection_badge_color": "#ffffff",
             "custom_collection_badge_background": "#ffffff"
@@ -305,6 +419,7 @@
           "type": "featured_collection",
           "settings": {
             "collection": "gown",
+            "collection_image": "shopify://shop_images/zarim_gown_b01e8af4-1056-41b1-ad51-8c9072e9a6b4.jpg",
             "custom_collection_badge_text": "",
             "custom_collection_badge_color": "#ffffff",
             "custom_collection_badge_background": "#ffffff"
@@ -314,6 +429,7 @@
           "type": "featured_collection",
           "settings": {
             "collection": "lehnga",
+            "collection_image": "shopify://shop_images/mirabelle_lehanga_0c1fb822-1be5-4960-a8cc-b6a12d26bee0.jpg",
             "custom_collection_badge_text": "",
             "custom_collection_badge_color": "#ffffff",
             "custom_collection_badge_background": "#ffffff"
@@ -384,19 +500,19 @@
     "ew_card_swaper_N77BWW": {
       "type": "ew-card-swaper",
       "blocks": {
-        "slide_VU8bhB": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Slide_1.png",
-            "link": "shopify://collections",
-            "alt_text": "Slide"
-          }
-        },
         "slide_rbjaMH": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Slide_2.png",
-            "link": "shopify://collections/agadir",
+            "link": "shopify://collections/bridals",
+            "alt_text": "Slide"
+          }
+        },
+        "slide_VU8bhB": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Slide_1.png",
+            "link": "shopify://collections/zarminay-luxury-pret",
             "alt_text": "Slide"
           }
         },
@@ -404,42 +520,42 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Slide_3.png",
-            "link": "shopify://collections/basic-solids-winter",
+            "link": "shopify://collections/zarminay-luxury-pret",
             "alt_text": "Slide"
           }
         },
-        "slide_CLGF39": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Slide_1.png",
-            "link": "shopify://collections/basic-solids-winter",
-            "alt_text": "Slide"
-          }
-        },
-        "slide_pcP4Kf": {
+        "slide_dEaCx7": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Slide_2.png",
-            "link": "shopify://collections/casual-pret",
+            "link": "shopify://collections/bridals",
             "alt_text": "Slide"
           }
         },
-        "slide_y9pVGV": {
+        "slide_zG4t7T": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Slide_1.png",
+            "link": "shopify://collections/zarminay-luxury-pret",
+            "alt_text": "Slide"
+          }
+        },
+        "slide_BTWmfm": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Slide_3.png",
-            "link": "shopify://collections/debuteid21",
+            "link": "shopify://collections/zarminay-luxury-pret",
             "alt_text": "Slide"
           }
         }
       },
       "block_order": [
-        "slide_VU8bhB",
         "slide_rbjaMH",
+        "slide_VU8bhB",
         "slide_YJrx9L",
-        "slide_CLGF39",
-        "slide_pcP4Kf",
-        "slide_y9pVGV"
+        "slide_dEaCx7",
+        "slide_zG4t7T",
+        "slide_BTWmfm"
       ],
       "name": "Card Swaper",
       "settings": {
@@ -493,7 +609,7 @@
           "type": "image",
           "settings": {
             "enable_image": true,
-            "image": "shopify://shop_images/Mask_group_3_webp_94f8d066-a02e-483b-a0b0-b33a232a620f.png",
+            "image": "shopify://shop_images/aaa.jpg",
             "title_align": "center",
             "enable_absolute": false,
             "enable_absolute_mobile": false,
@@ -549,7 +665,7 @@
           "type": "image",
           "settings": {
             "enable_image": true,
-            "image": "shopify://shop_images/1_9170b2ae-4f4d-4965-8159-2697be02481a.jpg",
+            "image": "shopify://shop_images/Mask_group_3_webp_94f8d066-a02e-483b-a0b0-b33a232a620f.png",
             "title_align": "center",
             "enable_absolute": false,
             "enable_absolute_mobile": false,
@@ -751,6 +867,7 @@
   "order": [
     "16321237356a896dad",
     "ew_collection_slider_ikkFpr",
+    "product_tab_block_nUy9r8",
     "collection_list_cRFLfC",
     "collection_list_rT8C3h",
     "ew_card_swaper_N77BWW",

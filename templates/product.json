@@ -61,6 +61,10 @@
             "spacing_bottom": 17
           }
         },
+        "custom_description_aGD9UB": {
+          "type": "custom_description",
+          "settings": {}
+        },
         "d98e243b-3682-495a-965a-1c7f7d460880": {
           "type": "variant_picker",
           "settings": {
@@ -118,22 +122,26 @@
             "custom_liquid": "{% for tag in product.tags %}\n        {% if tag contains 'TDT' %}\n          {% assign TDT = tag | split: '--' %}\n          {% assign TDT = TDT[1] | strip %}\n        {% endif %}\n      {% endfor %}\n        {% if TDT %}\n\n      <div class=\"ew-estimated-delivery\">\nAll Unstitched orders will be dispatched within 3 working days. <br>\nAll Stitched orders will be dispatched within 10 working days.\n</div>\n        {% endif %}"
           }
         },
-        "bd066b80-c8e3-4f3e-8280-b27fbf6e9423": {
-          "type": "description",
-          "settings": {
-            "open_tab_mobile": false,
-            "title": "Description",
-            "enable_btn_show_more": true,
-            "maximum_des_to_show": 300
-          }
-        },
-        "3d9ea84d-5527-4bce-abe6-5debef3ec955": {
+        "b9d6eb19-10f4-41f8-bfdc-ea10e8b3182a": {
           "type": "custom",
           "settings": {
             "open_tab_mobile": false,
             "title": "Care Instructions",
             "type": "all",
             "content": "<p>-Do not use any kind of bleach or stain removing chemicals<br>\n          -Do not over expose damp fabric to strong sunlight<br>\n          -Iron at moderate temperature<br>\n          -Do not wash at home</p>",
+            "product_custom_source": "dynamic",
+            "product_tab_key_metafield": "",
+            "enable_btn_show_more": false,
+            "maximum_des_to_show": 300
+          }
+        },
+        "custom_nXgXb3": {
+          "type": "custom",
+          "settings": {
+            "open_tab_mobile": false,
+            "title": "Disclaimers",
+            "type": "all",
+            "content": "{% for tag in product.tags %}\n      {% if tag contains 'DIS' %}\n      {% assign DIS = tag | split: '--' %}\n      {% assign DIS = DIS[1] | strip %}\n      {% endif %}\n      {% endfor %}\n      {% if DIS %}\n      <div class=\"dinfo\"> {{ DIS }}</div>\n      {% else %}\n      <div class=\"dinfo\">\n        <p>The fabric pattern/laces, patchwork, and handmade details may vary.<br>\n          Actual colors of the outfit may also vary from the colors being displayed on your device.</p>\n        <p>All laces used for finishing of the stitched outfit especially the dupatta or trousers may vary from the shoot.&nbsp;</p>\n      </div>\n      {% endif %}",
             "product_custom_source": "dynamic",
             "product_tab_key_metafield": "",
             "enable_btn_show_more": false,
@@ -153,19 +161,6 @@
             "enable_btn_show_more": false,
             "maximum_des_to_show": 300
           }
-        },
-        "b9d6eb19-10f4-41f8-bfdc-ea10e8b3182a": {
-          "type": "custom",
-          "settings": {
-            "open_tab_mobile": false,
-            "title": "Disclaimers",
-            "type": "all",
-            "content": "{% for tag in product.tags %}\n      {% if tag contains 'DIS' %}\n      {% assign DIS = tag | split: '--' %}\n      {% assign DIS = DIS[1] | strip %}\n      {% endif %}\n      {% endfor %}\n      {% if DIS %}\n      <div class=\"dinfo\"> {{ DIS }}</div>\n      {% else %}\n      <div class=\"dinfo\">\n        <p>The fabric pattern/laces, patchwork, and handmade details may vary.<br>\n          Actual colors of the outfit may also vary from the colors being displayed on your device.</p>\n        <p>All laces used for finishing of the stitched outfit especially the dupatta or trousers may vary from the shoot.&nbsp;</p>\n      </div>\n      {% endif %}",
-            "product_custom_source": "dynamic",
-            "product_tab_key_metafield": "",
-            "enable_btn_show_more": false,
-            "maximum_des_to_show": 300
-          }
         }
       },
       "block_order": [
@@ -173,15 +168,15 @@
         "b0ea69b7-8a54-4a3c-9abd-0fcceeabaaa0",
         "4e59f24a-8859-4579-a80a-d70e6f1bf66b",
         "4f95b592-8369-4ab0-b30d-24e463fb6890",
+        "custom_description_aGD9UB",
         "d98e243b-3682-495a-965a-1c7f7d460880",
         "faa2b3e6-c0a1-4269-baa6-d2605efe4c05",
         "custom_size_chart_GV637B",
         "f1b31d90-1e43-4948-9fe3-97ba43f6fb34",
         "custom_liquid_Y3enhU",
-        "bd066b80-c8e3-4f3e-8280-b27fbf6e9423",
-        "3d9ea84d-5527-4bce-abe6-5debef3ec955",
-        "custom_Ry9QqW",
-        "b9d6eb19-10f4-41f8-bfdc-ea10e8b3182a"
+        "b9d6eb19-10f4-41f8-bfdc-ea10e8b3182a",
+        "custom_nXgXb3",
+        "custom_Ry9QqW"
       ],
       "settings": {
         "container": "1770",

@@ -40,7 +40,7 @@
                 <li class="menu-lv-item menu-lv-2 text-left navigation_all_mobile d-none">
                     <a {% if link.url == blank %} role="link" aria-disabled="true"{% else %} href="{{ link.url }}"{% endif %} class="menu-lv-2__action header__menu-item list-menu__item link link--text focus-inset caption-large"{% if childlink.current %} aria-current="page"{% endif %}>
                         <span class="text{%- if link.child_active %} header__active-menu-item{% endif %}">
-                            {{ 'general.navigation.go_to' | t }} {{ link.title | escape }}
+                            {{ link.title | escape }}
                         </span>
                     </a>
                 </li>
@@ -74,7 +74,7 @@
                                         <li class="menu-lv-item menu-lv-3 text-left navigation_all_mobile d-none">
                                                 <a {% if childlink.url == blank %} role="link" aria-disabled="true"{% else %} href="{{ childlink.url }}"{% endif %} class="menu-lv-3__action header__menu-item list-menu__item link link--text focus-inset caption-large">
                                                     <span class="text">
-                                                         {{ 'general.navigation.go_to' | t }} {{ childlink.title | escape }}
+{{ childlink.title | escape }}
                                                     </span>
                                                 </a>
                                             </li>
