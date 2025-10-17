@@ -4,6 +4,7 @@
  * - Added auto infinite scroll functionality
  * - Fixed slider reinitialization after infinite scroll
  * - Added filter button functionality with single event listener
+ * - Added product size chart button functionality
  */
 
 (function () {
@@ -260,6 +261,57 @@
     } else {
       console.log('Filter button not found');
     }
+  }
+
+  /* ----------------------------------------------
+   * PRODUCT SIZE CHART BUTTON FUNCTIONALITY
+   * ---------------------------------------------- */
+  
+  function setupProductSizeChartButtons() {
+    // Handle product size chart button clicks
+    document.addEventListener('click', function(e) {
+      const productSizeChartBtn = e.target.closest('.ew-product-size-chart');
+      if (productSizeChartBtn) {
+        e.preventDefault();
+        console.log('Product size chart button clicked!');
+        
+        // Look for the size chart popup in various locations
+        let sizeChartPopup = null;
+        
+        // Method 1: Look in the same product item
+        const productItem = productSizeChartBtn.closest('.product-item');
+        if (productItem) {
+          sizeChartPopup = productItem.querySelector('.ew-sizechart-popup');
+          if (sizeChartPopup) {
+            console.log('Found size chart popup in product item');
+            sizeChartPopup.classList.add('active');
+            return;
+          }
+        }
+        
+        // Method 2: Look in the same card
+        const cardProduct = productSizeChartBtn.closest('.card-product');
+        if (cardProduct) {
+          sizeChartPopup = cardProduct.querySelector('.ew-sizechart-popup');
+          if (sizeChartPopup) {
+            console.log('Found size chart popup in card product');
+            sizeChartPopup.classList.add('active');
+            return;
+          }
+        }
+        
+        // Method 3: Global search as fallback
+        console.log('Searching globally for size chart popup...');
+        const allPopups = document.querySelectorAll('.ew-sizechart-popup');
+        if (allPopups.length > 0) {
+          sizeChartPopup = allPopups[0];
+          console.log('Using first available size chart popup');
+          sizeChartPopup.classList.add('active');
+        } else {
+          console.error('No size chart popup found for product size chart button');
+        }
+      }
+    });
   }
 
   /* ----------------------------------------------
@@ -580,6 +632,7 @@
           setupCollectionListeners();
           setupAutoInfiniteScroll(); // Initialize infinite scroll
           setupFilterButton(); // Initialize filter button
+          setupProductSizeChartButtons(); // Initialize product size chart buttons
         }, 100);
       });
     } else {
@@ -588,6 +641,7 @@
         setupCollectionListeners();
         setupAutoInfiniteScroll(); // Initialize infinite scroll
         setupFilterButton(); // Initialize filter button
+        setupProductSizeChartButtons(); // Initialize product size chart buttons
       }, 100);
     }
   }
