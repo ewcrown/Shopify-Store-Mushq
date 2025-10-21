@@ -19,7 +19,7 @@
           "settings": {
             "custom_width": "15",
             "heading": "BRAND",
-            "menu": "footer1",
+            "menu": "brand",
             "mg_bottom": 11
           }
         },
@@ -28,7 +28,7 @@
           "settings": {
             "custom_width": "15",
             "heading": "ABOUT US",
-            "menu": "footer2",
+            "menu": "about-us",
             "mg_bottom": 11
           }
         },
@@ -37,7 +37,7 @@
           "settings": {
             "custom_width": "15",
             "heading": "INFORMATION",
-            "menu": "footer3",
+            "menu": "information-1",
             "mg_bottom": 10
           }
         },
@@ -46,7 +46,7 @@
           "settings": {
             "custom_width": "20",
             "heading": "CUSTOMER SERVICE",
-            "menu": "footer4",
+            "menu": "customer-service",
             "mg_bottom": 10
           }
         },

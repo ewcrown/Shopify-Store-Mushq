@@ -224,7 +224,9 @@
                 {% comment %} {% render 'product-card-summary', product: product_card_product, class: 'card-list__hidden' %} {% endcomment %}
 
                 {%- if show_price -%}
+                    {% unless product_card_product.tags contains 'coming-soon' %}
                     <div class="card-price">{% render 'price', product: product_card_product, price_class: '', use_variant: true, show_compare_at_price: true %}</div>
+                    {% endunless %}
                 {%- endif -%}
 
                 {% comment %} {%- if product_card_product.metafields.custom.positive_vibes_almost_sold_out or product_card_product.metafields.custom.positive_vibes_recently_people_gave_review or product_card_product.metafields.custom.positive_vibes_top_best_seller -%}

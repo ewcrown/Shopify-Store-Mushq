@@ -178,6 +178,9 @@
         "custom_nXgXb3",
         "custom_Ry9QqW"
       ],
+      "custom_css": [
+        ".ew-estimated-delivery {text-align: center; font-weight: 500;}"
+      ],
       "settings": {
         "container": "1770",
         "padding_full_width": 0,

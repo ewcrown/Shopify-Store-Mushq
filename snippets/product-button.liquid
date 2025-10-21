@@ -224,6 +224,7 @@
     margin: -5px 0 0;
     max-width: 400px;">TALK TO US</a>
     {% else %}
+      {% unless product.tags contains 'coming-soon' %}
       <div class="product-form__buttons">
                                 {%- if current_variant.available -%}
                                     {%- if current_variant.inventory_management -%}
@@ -262,7 +263,9 @@
                                     <button{% if variant_type > 1 %} data-action="cart"{% endif %} type="submit" name="add" data-btn-addToCart class="product-form__submit button{% if settings.animations_hover_elements == '3d-lift' or settings.animations_hover_elements == 'vertical-lift' %} button-not-animation{% endif %}" id="product-add-to-cart" disabled>{{ 'products.product.sold_out' | t }}</button>
                                 {%- endif -%}
                             </div>
-    {% endif %}
+    
+    
+    {% endunless %}                      {% endif %}
                             
 
 

@@ -17,7 +17,7 @@
           "settings": {
             "show_collection_description": false,
             "show_read_more_read_less": false,
-            "collection_description_position": "relative",
+            "collection_description_position": "absolute",
             "collection_description_align_tb": "center",
             "collection_description_align": "center",
             "maxwidth_collection_description": 40,
@@ -57,17 +57,18 @@
       "block_order": [
         "description_qFqHaf"
       ],
+      "custom_css": [],
       "settings": {
-        "container": "1770",
+        "container": "1170",
         "padding_full_width": 0,
         "layout": "1",
         "show_breadcrumb": false,
         "breadcrumb_alignment": "center",
         "breadcrumb_color": "#999999",
-        "breadcrumb_bg": "rgba(0,0,0,0)",
+        "breadcrumb_bg": "#ffffff",
         "breadcrumb_gradient": "",
         "breadcrumb_color_mb": "",
-        "breadcrumb_bg_mb": "#f6f6f6",
+        "breadcrumb_bg_mb": "#ffffff",
         "breadcrumb_gradient_mb": "",
         "show_page_title": false,
         "page_title_alignment": "center",

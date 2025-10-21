@@ -164,7 +164,7 @@
     "category_filter_label2": "",
     "category_filter_label3": "",
     "quick_search_to_show": 3,
-    "search_type": "all",
+    "search_type": "product",
     "show_search_trending": false,
     "search_trending_title": "Trending Now",
     "seach_trending_item_1": "dempus",
@@ -864,6 +864,11 @@
       },
       "8764476057892802672": {
         "type": "shopify://apps/stoq/blocks/main/4bb73be2-b7c2-4870-949f-c528145452a3",
+        "disabled": false,
+        "settings": {}
+      },
+      "11667715999621601152": {
+        "type": "shopify://apps/tiktok-ads-tiktok-pixels/blocks/turbo-tiktok/0f61e244-e2c9-43da-9523-9762c9f7e6bf",
         "disabled": false,
         "settings": {}
       }

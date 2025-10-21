@@ -963,11 +963,13 @@
                                                 </div>
                                             {% else %}
                                                 <div class="productView-price no-js-hidden clearfix" id="product-price-{{ product.id }}">
+                                                    {% unless product.tags contains 'coming-soon' %}
                                                     {%- render 'price',
                                                         product: product,
                                                         use_variant: true,
                                                         price_class: 'price--medium'
                                                     -%}
+                                                    {% endunless %}
                                                 </div>
                                                 {%- if product.quantity_price_breaks_configured? -%}
                                                     <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">

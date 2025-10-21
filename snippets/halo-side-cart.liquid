@@ -1,3 +1,21 @@
+<style>
+   .previewCartGroup .halo-sidebar-close {
+    position: unset;
+    margin-top: 1.5rem;
+    width:360px;
+    background: var(--btn-2-bg);
+    border-color: var(--btn-2-border);
+    color: var(--btn-2-color);
+    background-origin: border-box;
+    font-family: var(--btn-1-font-family);
+    font-size: var(--btn-1-font-size);
+    font-weight: var(--btn-1-font-weight);
+    text-transform: var(--btn-1-text-transform);
+    text-align: var(--btn-1-text-align);
+    letter-spacing: var(--btn-1-letter-spacing);
+    line-height: var(--btn-1-line-height);
+}
+    </style>
 {%- liquid
     assign product = all_products[settings.cart_product_gift]
     assign product_downcase = product | downcase
@@ -436,6 +454,7 @@
                 <a class="button button-2 button-view-cart" href="{{ routes.cart_url }}">
                     {{ 'sections.cart.view_cart' | t }}
                 </a>
+                <button type="button" class="halo-sidebar-close button-effect" data-close-cart-sidebar="" aria-label="Close">Continue Shopping</button>
             </div>
         </div>
     </div>

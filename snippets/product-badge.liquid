@@ -135,9 +135,15 @@
             </span>
         {%- endif -%}
         {%- if sold_out_badge -%}
+            {% if product.tags contains 'coming-soon' %}
+        <span  class="badge sold-out-badge" aria-hidden="true">
+      Coming Soon
+    </span>
+    {% else %}
             <span class="badge sold-out-badge" aria-hidden="true">
                 {{ 'products.product.sold_out' | t }}
             </span>
+            {% endif %}
         {%- endif -%}
         {%- if custom_badge -%}
             <span class="badge custom-badge" aria-hidden="true">

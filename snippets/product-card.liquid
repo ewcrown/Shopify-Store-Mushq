@@ -173,9 +173,12 @@
                 <div class="wrapper-price-swatch d-flex flex-jc-between flex-align-center">
                 {%- endif -%}
                     {%- if show_price -%}
-                        <div class="card-price">
+                        {% unless product.tags contains 'coming-soon' %}
+                          <div class="card-price">
                             {% render 'price', product: product_card_product, price_class: '', hasCountdown: hasCountdown %}
                         </div>
+                        {% endunless %}
+                        
                     {%- endif -%}
                     {%- if settings.enable_custom_position_swatch_layout_card_1 -%}
                         {%- if isColor -%}
