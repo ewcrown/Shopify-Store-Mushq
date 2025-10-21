@@ -827,9 +827,9 @@
         "mg_top_desktop": 50,
         "mg_top_tablet": 50,
         "mg_top_mobile": 60,
-        "mg_bottom_desktop": 0,
+        "mg_bottom_desktop": 50,
         "mg_bottom_tablet": 0,
-        "mg_bottom_mobile": 0
+        "mg_bottom_mobile": 50
       }
     },
     "collection_list_rT8C3h": {

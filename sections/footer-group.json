@@ -19,7 +19,7 @@
           "settings": {
             "custom_width": "15",
             "heading": "BRAND",
-            "menu": "brand",
+            "menu": "footer1",
             "mg_bottom": 11
           }
         },
@@ -37,7 +37,7 @@
           "settings": {
             "custom_width": "15",
             "heading": "INFORMATION",
-            "menu": "information-1",
+            "menu": "footer3",
             "mg_bottom": 10
           }
         },
@@ -46,7 +46,7 @@
           "settings": {
             "custom_width": "20",
             "heading": "CUSTOMER SERVICE",
-            "menu": "customer-service",
+            "menu": "footer4",
             "mg_bottom": 10
           }
         },

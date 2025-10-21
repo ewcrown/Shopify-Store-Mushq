@@ -871,6 +871,99 @@
         "type": "shopify://apps/tiktok-ads-tiktok-pixels/blocks/turbo-tiktok/0f61e244-e2c9-43da-9523-9762c9f7e6bf",
         "disabled": false,
         "settings": {}
+      },
+      "7147999719060634790": {
+        "type": "shopify://apps/gsc-countdown-timer/blocks/countdown-bar/58dc5b1b-43d2-4209-b1f3-52aff31643ed",
+        "disabled": false,
+        "settings": {}
+      },
+      "11684089936428683265": {
+        "type": "shopify://apps/mailbot/blocks/app-embed/eda5f4b8-b5e4-443e-ad4b-8f8191724383",
+        "disabled": false,
+        "settings": {}
+      },
+      "12393684417940924814": {
+        "type": "shopify://apps/pushbot/blocks/app-embed/14d8aa7e-a16e-43d4-a2a0-80fade091ca1",
+        "disabled": false,
+        "settings": {}
+      },
+      "9693171294570118353": {
+        "type": "shopify://apps/quoli-reviews-ugc/blocks/quoli-global-style/baf7b241-e443-4879-b3d4-360440b03895",
+        "disabled": false,
+        "settings": {
+          "show_product_link": true,
+          "show_helpful_button": true,
+          "attributes": true
+        }
+      },
+      "13608318707149203697": {
+        "type": "shopify://apps/quoli-reviews-ugc/blocks/quoli-sidebar-widget/baf7b241-e443-4879-b3d4-360440b03895",
+        "disabled": false,
+        "settings": {
+          "background_color": "#fff",
+          "default_sorting": "Most Recent",
+          "reviews_per_page": "20",
+          "show_filter": true
+        }
+      },
+      "887918853019456472": {
+        "type": "shopify://apps/viral-volt/blocks/video/6c033128-d975-4798-b945-af268442e5d4",
+        "disabled": false,
+        "settings": {}
+      },
+      "6610233760104865948": {
+        "type": "shopify://apps/pushowl-brevo/blocks/pushowl-app-embed-3d2ff2b5/fa20c3ba-38bf-43e0-ba5c-431f6ae07d95",
+        "disabled": false,
+        "settings": {}
+      },
+      "442549160356511856": {
+        "type": "shopify://apps/ck-whatsapp/blocks/app-embed-block/ce4c5d89-06d5-4502-b18d-35d424a3f693",
+        "disabled": false,
+        "settings": {}
+      },
+      "1173261918193615741": {
+        "type": "shopify://apps/geo-pro-geolocation/blocks/geopro/16fc5313-7aee-4e90-ac95-f50fc7c8b657",
+        "disabled": false,
+        "settings": {}
+      },
+      "6023461868751542726": {
+        "type": "shopify://apps/bsure-checkout-rules/blocks/embed/01dc9f18-0935-422b-a3f7-3d2458585368",
+        "disabled": false,
+        "settings": {}
+      },
+      "17985673643287205206": {
+        "type": "shopify://apps/c-edd-estimated-delivery-date/blocks/app_setting/4a0685bc-c234-45b2-8382-5ad6a8e3e3fd",
+        "disabled": false,
+        "settings": {}
+      },
+      "16936614187718193802": {
+        "type": "shopify://apps/multifeeds/blocks/app_embed/f3e7ca1d-2d5a-45a7-97dd-2fd45843acef",
+        "disabled": false,
+        "settings": {}
+      },
+      "1656567832380245646": {
+        "type": "shopify://apps/quoli-reviews-ugc/blocks/quoli-popup-widget/baf7b241-e443-4879-b3d4-360440b03895",
+        "disabled": true,
+        "settings": {
+          "popup_widget_position": "blc_popup",
+          "display_ratings": "4",
+          "initial_delay": 5,
+          "auto_timer": 5,
+          "display_time": 5,
+          "display_count": 20,
+          "mobile_enable": "true",
+          "homepage_checkbox": true,
+          "product_page": true,
+          "cart_page": true,
+          "other_pages": true,
+          "show_media": true,
+          "show_border": false,
+          "border_radius": 0,
+          "border_color": "#ffffff",
+          "background_color": "#ffffff",
+          "text_color": "#000000",
+          "star_color": "#fdcc0d"
+        }
       }
     }
   }

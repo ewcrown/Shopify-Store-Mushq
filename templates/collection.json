@@ -15,12 +15,12 @@
         "description_qFqHaf": {
           "type": "description",
           "settings": {
-            "show_collection_description": false,
+            "show_collection_description": true,
             "show_read_more_read_less": false,
-            "collection_description_position": "absolute",
+            "collection_description_position": "relative",
             "collection_description_align_tb": "center",
             "collection_description_align": "center",
-            "maxwidth_collection_description": 40,
+            "maxwidth_collection_description": 100,
             "collection_description_color": "#232323",
             "collection_description_bg": "#ffffff",
             "collection_description_bg_gradient": "",
@@ -59,7 +59,7 @@
       ],
       "custom_css": [],
       "settings": {
-        "container": "1170",
+        "container": "fullwidth",
         "padding_full_width": 0,
         "layout": "1",
         "show_breadcrumb": false,
@@ -70,7 +70,7 @@
         "breadcrumb_color_mb": "",
         "breadcrumb_bg_mb": "#ffffff",
         "breadcrumb_gradient_mb": "",
-        "show_page_title": false,
+        "show_page_title": true,
         "page_title_alignment": "center",
         "mg_top_desktop": 0,
         "mg_top_tablet": 0,

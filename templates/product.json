@@ -61,6 +61,18 @@
             "spacing_bottom": 17
           }
         },
+        "quoli_reviews_ugc_product_review_DpENKT": {
+          "type": "shopify://apps/quoli-reviews-ugc/blocks/product-review/baf7b241-e443-4879-b3d4-360440b03895",
+          "settings": {
+            "stylerating": "standard",
+            "text_reviews": "[count] Reviews",
+            "align_widget": "default",
+            "font_size": 14,
+            "text_color": "#000000",
+            "star_color": "#000000",
+            "show_review_title": false
+          }
+        },
         "custom_description_aGD9UB": {
           "type": "custom_description",
           "settings": {}
@@ -161,6 +173,15 @@
             "enable_btn_show_more": false,
             "maximum_des_to_show": 300
           }
+        },
+        "share_YwjzBD": {
+          "type": "share",
+          "settings": {
+            "show_share": true,
+            "share_layout": "2",
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
         }
       },
       "block_order": [
@@ -168,6 +189,7 @@
         "b0ea69b7-8a54-4a3c-9abd-0fcceeabaaa0",
         "4e59f24a-8859-4579-a80a-d70e6f1bf66b",
         "4f95b592-8369-4ab0-b30d-24e463fb6890",
+        "quoli_reviews_ugc_product_review_DpENKT",
         "custom_description_aGD9UB",
         "d98e243b-3682-495a-965a-1c7f7d460880",
         "faa2b3e6-c0a1-4269-baa6-d2605efe4c05",
@@ -176,7 +198,8 @@
         "custom_liquid_Y3enhU",
         "b9d6eb19-10f4-41f8-bfdc-ea10e8b3182a",
         "custom_nXgXb3",
-        "custom_Ry9QqW"
+        "custom_Ry9QqW",
+        "share_YwjzBD"
       ],
       "custom_css": [
         ".ew-estimated-delivery {text-align: center; font-weight: 500;}"
@@ -373,11 +396,39 @@
         "border_width_card": 5,
         "border_color_card": "#f0f1f4"
       }
+    },
+    "1761047183bf901136": {
+      "type": "apps",
+      "blocks": {
+        "quoli_reviews_ugc_quoli_pdp_dB6KVJ": {
+          "type": "shopify://apps/quoli-reviews-ugc/blocks/quoli-pdp/baf7b241-e443-4879-b3d4-360440b03895",
+          "settings": {
+            "categories_shown": "reviews,questions",
+            "reviews_per_page": "5",
+            "default_sorting": "Most Recent",
+            "show_ugc_slider": true,
+            "show_filter": true,
+            "show_review_cta": true,
+            "enable_question_cta": true,
+            "review_tab_title": "REVIEWS",
+            "question_tab_title": "QUESTIONS",
+            "heading_font_size": 20,
+            "cta_font_size": 20
+          }
+        }
+      },
+      "block_order": [
+        "quoli_reviews_ugc_quoli_pdp_dB6KVJ"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
     "main",
     "product-recommendations",
-    "product-recently-viewed"
+    "product-recently-viewed",
+    "1761047183bf901136"
   ]
 }
