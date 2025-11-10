@@ -33,6 +33,7 @@
   border: none;
   font-size: 22px;
   cursor: pointer;
+  color:#000 !important;
 }
 
 /* Quickview open-button (external trigger inside card) */

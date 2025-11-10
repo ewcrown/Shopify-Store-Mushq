@@ -296,6 +296,7 @@
 
 .card-price {
   justify-content: flex-start !important;
+  flex-wrap:wrap;
 }
 
 .luis-collection-slider-right .card-eye-button {
@@ -730,7 +731,7 @@
   -webkit-backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(9.903714179992676px);
-  max-width: 200px;
+  max-width: max-content;
 }
 
 .luis-collection-slider-left-content a {
@@ -815,7 +816,7 @@
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  z-index: 9999;
+  z-index: 99999999;
 }
 
 .ew-size-option-disabled {
@@ -949,6 +950,13 @@
   .megamenu_style_2 .site-nav-list {
     margin-bottom: 0 !important;
   }
+
+  .previewCartGroup .button {
+    font-size:14px !important;
+  }
+  footer .list-social {
+    display:none !important;
+  }
 }
 
 .site-nav-banner--title {
@@ -1065,7 +1073,7 @@
 
 .social_caller {
     position: fixed;
-    bottom: 15%;
+    bottom: 5%;
     right: 10px;
     z-index: 999;
 }
@@ -1074,4 +1082,50 @@ div#quoli-pdp-widget {
     max-width: 90%;
     margin: auto;
     padding: 0 15px;
+}
+
+.facets-layout{
+  margin-top:20px;
+}
+.sidebarBlock-slide.Size .facets-layout {
+    display: flex;
+    flex-direction: row !important;
+}
+
+.site-nav-mobile.nav-account ul {
+    padding: 20px;
+    display: block;
+    margin-top: 40px;
+}
+
+.site-nav-mobile.nav-account .list-social__link .icon {
+    width: 11px;
+    height: 11px;
+}
+
+
+.share-button__button span{
+  display:none !important;
+}
+
+  .collection-header .collection-sub-list .item a {
+    padding:0 !important;
+  }
+
+  .previewCartGroup .button {
+    color:#000;
+  }
+
+  #infiniteoptions-container input[type="checkbox"],
+#infiniteoptions-container input[type="radio"] {
+  margin-right: 5px;
+  min-height: initial !important;
+  display: inline-block !important;
+  border: inherit;
+  clip: inherit;
+  height: max-content;
+  overflow: hidden;
+  padding: 0;
+  position: static;
+  width: max-content;
 }

@@ -550,7 +550,7 @@
       "product_count": "{{ count }} products"
     },
     "sidebar": {
-      "title": "Sidebar"
+      "title": "Filters"
     },
     "quick_order_list": {
       "product_total": "Product subtotal",

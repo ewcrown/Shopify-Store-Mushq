@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="{{ 'component-list-social.css' | asset_url }}" media="all" onload="this.media='all'">
+<noscript>{{ 'component-list-social.css' | asset_url | stylesheet_tag }}</noscript>
+
 <div class="halo-sidebar halo-sidebar-left halo-sidebar_menu {% if settings.mobile_menu == 'custom' %}custom-mobile-menu{% endif %}" id="navigation-mobile">
     <div class="halo-sidebar-wrapper custom-scrollbar">
       {%- if settings.mobile_menu == 'default' -%}
@@ -26,7 +29,8 @@
       
       {%- if settings.mobile_menu == 'default' -%}
         <div class="site-nav-mobile nav-account">
-          {%- if shop.customer_accounts_enabled -%}
+          {% render 'halo-social-media-icons' %}
+          {% comment %} {%- if shop.customer_accounts_enabled -%}
               <div class="customer-links {% if customer %}customer-login{% endif %} {%- unless settings.show_wishlist -%}last-link{% endunless %}">
                 {%- if customer -%}
                   <span class="icon-wrapper">{% render 'icon-account' %}</span>
@@ -41,7 +45,7 @@
           {%- endif -%}
           {%- if settings.show_wishlist -%}
               <a href="{% if settings.link_wishlist != blank %}{{ settings.link_wishlist }}{% else %}{{ pages['wish-list'].url }}{% endif %}" class="header__icon header__icon--wishlist link link--text focus-inset last-link"><span class="icon-wrapper">{% render 'icon-wishlist' %}</span><span class="title">{{ 'wishlist.general.title' | t }}</span>{% if settings.show_wishlist_number_sidebar %}(<span class="text" aria-hidden="true" data-wishlist-count></span>){% endif %}</a>
-          {%- endif -%}
+          {%- endif -%} {% endcomment %}
           <div class="wrapper-links"></div>
         </div>
       {%- endif -%}

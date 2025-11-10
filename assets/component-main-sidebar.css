@@ -690,6 +690,7 @@
             display: flex;
             align-items: center;
             column-gap: 10px;
+            color:#000 !important;
         }
 
         .sidebarBlock .sidebarBlock-slide__content-close svg {

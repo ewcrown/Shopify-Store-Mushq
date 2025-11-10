@@ -172,13 +172,12 @@
     padding:0;
 }
 .book-list li {
-    width: 22%;
+    width: 22.9%;
     margin: 0 1% 2rem;
     border: 1px solid #ddd;
     display: inline-block;
     vertical-align: top;
     text-align: center;
-    /* height: 420px; */
     overflow: hidden;
 }
 .book-page .owl-prev {
@@ -751,6 +750,9 @@ margin: 0 0 15px;
 }
 
 @media only screen and (max-width:767px) {
+  .book-list li {
+    width: 47.9%;
+}
 .single-logo {
   /*background-image: url('https://cdn.shopify.com/s/files/1/0539/7318/8776/t/24/assets/mbl.jpg?v=1689944636') !important;*/
   min-height: 200px;

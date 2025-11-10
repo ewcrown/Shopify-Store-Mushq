@@ -107,6 +107,9 @@ option.soldout {
 /* END: CSS */
 
 /* START: Container */
+button.previewCartItem-remove {
+    display: none;
+}
     .container{
         display: block;
         width: 100%;

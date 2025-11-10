@@ -134,6 +134,11 @@
                 {%- endif -%}
             </span>
         {%- endif -%}
+         {% if product.tags contains 'restock' %}
+        <span  class="badge sold-out-badge" aria-hidden="true">
+      Forward Delivery
+    </span>
+    {% endif %}
         {%- if sold_out_badge -%}
             {% if product.tags contains 'coming-soon' %}
         <span  class="badge sold-out-badge" aria-hidden="true">

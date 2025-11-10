@@ -89,6 +89,10 @@
             "spacing_bottom": 0
           }
         },
+        "infinite_options_app_block_dKmNwa": {
+          "type": "shopify://apps/infinite-options/blocks/app-block/7e73b6f9-82b0-45f5-9b9b-04f446ba1a9b",
+          "settings": {}
+        },
         "faa2b3e6-c0a1-4269-baa6-d2605efe4c05": {
           "type": "quantity_selector",
           "settings": {
@@ -105,7 +109,7 @@
         "f1b31d90-1e43-4948-9fe3-97ba43f6fb34": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": false,
+            "show_dynamic_checkout": true,
             "show_gift_card_recipient": false,
             "atc_animation": "none",
             "atc_color": "#232323",
@@ -131,7 +135,7 @@
         "custom_liquid_Y3enhU": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{% for tag in product.tags %}\n        {% if tag contains 'TDT' %}\n          {% assign TDT = tag | split: '--' %}\n          {% assign TDT = TDT[1] | strip %}\n        {% endif %}\n      {% endfor %}\n        {% if TDT %}\n\n      <div class=\"ew-estimated-delivery\">\nAll Unstitched orders will be dispatched within 3 working days. <br>\nAll Stitched orders will be dispatched within 10 working days.\n</div>\n        {% endif %}"
+            "custom_liquid": "{% for tag in product.tags %}\n    {% if tag contains 'TDT' %}\n      {% assign TDT = tag | split: '--' %}\n      {% assign TDT = TDT[1] | strip %}\n    {% endif %}\n  {% endfor %}\n    {% if TDT %}\n\n      <div class=\"ew-estimated-delivery\">\n        {{ TDT }}\n      </div>\n    {% endif %}"
           }
         },
         "b9d6eb19-10f4-41f8-bfdc-ea10e8b3182a": {
@@ -192,6 +196,7 @@
         "quoli_reviews_ugc_product_review_DpENKT",
         "custom_description_aGD9UB",
         "d98e243b-3682-495a-965a-1c7f7d460880",
+        "infinite_options_app_block_dKmNwa",
         "faa2b3e6-c0a1-4269-baa6-d2605efe4c05",
         "custom_size_chart_GV637B",
         "f1b31d90-1e43-4948-9fe3-97ba43f6fb34",

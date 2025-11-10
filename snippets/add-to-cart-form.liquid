@@ -45,6 +45,7 @@
            {%- if settings.show_quick_shop -%}
                 {%- if product.options_with_values.size == 1 and product_swatch_option contains option_name and settings.quick_shop_type == '1' -%}
                     <input type="hidden" name="id" value="{{ product.variants[0].id }}" />
+                    
                     <input type="hidden" name="quantity" value="1" />
                     <button class="button button-ATC" type="submit" data-form-id="#{{ id }}-{{ product.id }}-{{ sectionId }}" data-btn-addToCart{% if settings.product_card_layout == '08' %} title="{{ 'products.product.add_to_cart' | t }}"{% endif %}>
                         {% if showIcon %}<span class="button-icon"></span>{% endif %}

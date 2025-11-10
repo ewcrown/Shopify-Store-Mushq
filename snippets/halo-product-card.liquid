@@ -79,6 +79,7 @@
                                 {%- if variantCount > 1 and product.variants.first.title != 'Default Title' -%}
                                     {%- if product.options_with_values.size == 1 and product_swatch_option contains option_name and settings.show_swatch and settings.quick_shop_type == '1' -%}
                                         <input type="hidden" name="id" value="{{ product.variants[0].id }}" />
+  
                                         <input type="hidden" name="quantity" value="1" />
                                         <button
                                             class="button button-ATC"
@@ -95,6 +96,7 @@
                                     {%- endif -%}
                                 {%- else -%}
                                     <input type="hidden" name="id" value="{{ product.variants[0].id }}" />
+                                    
                                     <input type="hidden" name="quantity" value="1" />
                                     {%- liquid
                                         assign current_variant_grid = product.selected_or_first_available_variant

@@ -216,13 +216,17 @@
                             
                             
                                 {% if product.tags contains 'callprice' %}
-      <a class="ew-view-details" title="whatsapp" href="https://api.whatsapp.com/send?phone=923266660230&amp;text=Hi! I have a question" data-title="WhatsApp Us!" target="_blank" style="background: #25d366;
+      <a class="ew-view-details" title="whatsapp" href="https://api.whatsapp.com/send?phone=923266660230&amp;text=Hi! I have a question" data-title="WhatsApp Us!" target="_blank" style="
+      background: #25d366;
     display: block;
     text-align: center;
     color: #fff;
     padding: 10px;
     margin: -5px 0 0;
-    max-width: 400px;">TALK TO US</a>
+    max-width: 400px;
+    font-weight: bold;
+    font-size: 16px !important;
+    ">TALK TO US</a>
     {% else %}
       {% unless product.tags contains 'coming-soon' %}
       <div class="product-form__buttons">
