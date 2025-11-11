@@ -303,6 +303,9 @@
         // Method 3: Global search as fallback
         console.log('Searching globally for size chart popup...');
         const allPopups = document.querySelectorAll('.ew-sizechart-popup');
+
+        console.log('allPopups==>', allPopups);
+
         if (allPopups.length > 0) {
           sizeChartPopup = allPopups[0];
           console.log('Using first available size chart popup');

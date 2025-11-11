@@ -1,9 +1,159 @@
-{%- if product.metafields.custom.size_guide_image != blank -%}
-<div class="ew-sizechart-popup" aria-hidden="true">
+{%- assign shirt_size_chart_image = product.metafields.custom.size_guide_image -%}
+{%- assign trouser_size_chart_image = product.metafields.custom.size_guide_image_trouser -%}
+
+{%- if shirt_size_chart_image != blank or trouser_size_chart_image != blank -%}
+<div class="ew-sizechart-popup" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Product size chart">
   <div class="ew-sizechart-popup__overlay"></div>
+
   <div class="ew-sizechart-popup__content">
     <button class="ew-sizechart-close" aria-label="Close">&times;</button>
-    <img src="{{ product.metafields.custom.size_guide_image | image_url: width: 800 }}" alt="Size guide">
+
+    <div class="ew-sizechart-popup__content-inner">
+      <h6>ITEM MEASUREMENTS</h6>
+
+      {%- if shirt_size_chart_image != blank and trouser_size_chart_image != blank -%}
+      <div class="ew-sizechart-tabs" role="tablist">
+        <button type="button" class="ew-sizechart-tab ew-sizechart-tab--shirt" data-role="tab" data-type="shirt" aria-controls="sizechart-image" aria-selected="true">Shirt</button>
+        <button type="button" class="ew-sizechart-tab ew-sizechart-tab--trouser" data-role="tab" data-type="trouser" aria-controls="sizechart-image" aria-selected="false">Trouser</button>
+      </div>
+      {%- endif -%}
+    </div>
+
+    <div class="ew-sizechart-popup__content-inner-image" id="sizechart-image" role="region" aria-live="polite">
+      {%- if shirt_size_chart_image != blank -%}
+      <img
+        src="{{ shirt_size_chart_image | image_url: width: 800 }}"
+        alt="Size guide - shirt"
+        width="{{ shirt_size_chart_image.width }}"
+        height="{{ shirt_size_chart_image.height }}"
+        data-type="shirt"
+        class="ew-sizechart-image"
+      >
+      {%- endif -%}
+
+      {%- if trouser_size_chart_image != blank -%}
+      <img
+        src="{{ trouser_size_chart_image | img_url: 'master' }}"
+        alt="Size guide - trouser"
+        data-type="trouser"
+        class="ew-sizechart-image"
+        style="display:none;"
+      >
+      {%- endif -%}
+    </div>
+
+    <p class="ew-sizechart-note">Note: All measurements are subject to slight tolerance.</p>
   </div>
 </div>
+
+<style>
+/* Base */
+.ew-sizechart-popup { display: none; position: fixed; inset: 0; z-index: 9999; font-family: Arial, sans-serif; }
+.ew-sizechart-popup.active { display: block; }
+.ew-sizechart-popup__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
+.ew-sizechart-popup__content { position: absolute; left:50%; top:50%; transform: translate(-50%,-50%); width:90%; max-width:820px; background:#fff; border:none; border-radius:0px; padding:20px; box-sizing:border-box; max-height:75vh; overflow:auto; }
+.ew-sizechart-close { position:absolute; top:8px; right:10px; background:none; border:none; font-size:26px; cursor:pointer; }
+
+/* Header/tabs */
+.ew-sizechart-popup__content-inner h6 { margin:0 0 8px 0; font-size:16px; font-weight:700; }
+.ew-sizechart-tabs { display:flex; gap:8px; margin-bottom:12px; }
+.ew-sizechart-tab {     background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 14px;
+  text-transform: uppercase; }
+.ew-sizechart-tab[aria-selected="true"], .ew-sizechart-tab.active { font-weight: bold; }
+
+/* Image area */
+.ew-sizechart-popup__content-inner-image { text-align:center; }
+.ew-sizechart-image { max-width:100%; height:auto; display:block; margin:0 auto; }
+
+/* Note */
+.ew-sizechart-note {
+  margin: 20px 0 0;
+  font-size: 14px;
+  color: #666;
+  text-align: left;
+}
+
+/* Responsive */
+@media (max-width:600px) {
+  .ew-sizechart-popup__content { width:96%; padding:16px; }
+}
+</style>
+
+<script>
+(function () {
+  var popup = document.querySelector('.ew-sizechart-popup');
+  if (!popup) return;
+
+  var overlay = popup.querySelector('.ew-sizechart-popup__overlay');
+  var closeBtn = popup.querySelector('.ew-sizechart-close');
+  var tabs = Array.prototype.slice.call(popup.querySelectorAll('[data-role="tab"]'));
+  var images = Array.prototype.slice.call(popup.querySelectorAll('.ew-sizechart-image'));
+
+  function showImage(type) {
+    images.forEach(function(img){
+      if (img.getAttribute('data-type') === type) {
+        img.style.display = '';
+        img.classList.add('active');
+      } else {
+        img.style.display = 'none';
+        img.classList.remove('active');
+      }
+    });
+
+    // update tabs if present
+    tabs.forEach(function(t){
+      var isSelected = (t.getAttribute('data-type') === type);
+      t.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+      if (isSelected) { t.classList.add('active'); } else { t.classList.remove('active'); }
+    });
+  }
+
+  // determine available types from rendered images
+  var available = images.map(function(i){ return i.getAttribute('data-type'); });
+
+  // default view preference: shirt if available, otherwise trouser
+  var defaultType = available.indexOf('shirt') !== -1 ? 'shirt' : (available.indexOf('trouser') !== -1 ? 'trouser' : null);
+
+  // open function (call this from your button)
+  window.openSizeChart = function() {
+    popup.classList.add('active');
+    popup.setAttribute('aria-hidden', 'false');
+    document.documentElement.style.overflow = 'hidden';
+    if (defaultType) showImage(defaultType);
+    // focus close for accessibility
+    closeBtn.focus();
+  };
+
+  function closePopup() {
+    popup.classList.remove('active');
+    popup.setAttribute('aria-hidden', 'true');
+    document.documentElement.style.overflow = '';
+  }
+
+  // overlay and close handlers
+  overlay.addEventListener('click', closePopup);
+  closeBtn.addEventListener('click', closePopup);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && popup.classList.contains('active')) closePopup();
+  });
+
+  // tab clicks — guard in case tabs not rendered
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function () {
+      var type = tab.getAttribute('data-type');
+      if (!type) return;
+      showImage(type);
+    });
+  });
+
+  // ensure at least the default image is present (in case popup is opened programmatically)
+  if (defaultType && popup.classList.contains('active')) showImage(defaultType);
+
+})();
+</script>
 {%- endif -%}
