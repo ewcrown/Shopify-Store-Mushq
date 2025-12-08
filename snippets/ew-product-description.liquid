@@ -1,21 +1,22 @@
 {% if description != blank %}
-    <div class="productView-moreItem productView-moreItem-description">
+<div class="productView-moreItem productView-moreItem-description">
   <div class="ew-product-description">
     <div class="description-text">
       {{ description }}
     </div>
+
     <button class="toggle-description-btn" type="button">Read more</button>
   </div>
 
   <style>
     .description-text {
-      max-height: 300px; /* Show only a part of the text initially */
+      max-height: 300px; /* collapsed state */
       overflow: hidden;
       transition: max-height 0.3s ease;
     }
 
     .description-text.expanded {
-      max-height: none; /* Show full text when expanded */
+      max-height: none; /* expanded state */
     }
 
     .toggle-description-btn {
@@ -33,24 +34,38 @@
     }
   </style>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const desc = document.querySelector(".ew-product-description .description-text");
-      const btn = document.querySelector(".ew-product-description .toggle-description-btn");
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const desc = document.querySelector(".ew-product-description .description-text");
+  const btn = document.querySelector(".ew-product-description .toggle-description-btn");
 
-      if (desc && btn) {
-        const initialHeight = desc.scrollHeight > 300; // only show button if content is longer than 150px
+  if (!desc || !btn) return;
 
-        if (!initialHeight) {
-          btn.style.display = "none"; // hide button if short description
-        }
+  // First: temporarily expand to measure full height
+  desc.classList.add("expanded");
+  const fullHeight = desc.scrollHeight;
 
-        btn.addEventListener("click", () => {
-          desc.classList.toggle("expanded");
-          btn.textContent = desc.classList.contains("expanded") ? "Read less" : "Read more";
-        });
-      }
-    });
-  </script>
-  </div>
+  // Collapse again to measure collapsed height
+  desc.classList.remove("expanded");
+  const collapsedHeight = desc.scrollHeight;
+
+  // If full height is NOT larger → hide button, keep expanded
+  if (fullHeight <= collapsedHeight + 5) {
+    desc.classList.add("expanded");
+    btn.style.display = "none";
+    return;
+  }
+
+  // Enable toggle behavior
+  btn.addEventListener("click", () => {
+    desc.classList.toggle("expanded");
+    btn.textContent = desc.classList.contains("expanded")
+      ? "Read less"
+      : "Read more";
+  });
+});
+</script>
+
+
+</div>
 {% endif %}

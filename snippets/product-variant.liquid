@@ -19,6 +19,22 @@
                             endif
                             assign swatch_type = settings.swatch_type
                             assign option_index = forloop.index0
+                            
+                            comment
+                                Load metaobjects color pattern once per option to avoid repeated lookups
+                                Try different access methods for metaobject collections
+                            endcomment
+                            assign meta_color_codes = blank
+                            if metaobjects['shopify--color-pattern'] != blank
+                                assign meta_color_obj = metaobjects['shopify--color-pattern']
+                                if meta_color_obj.values != blank
+                                    assign meta_color_codes = meta_color_obj.values
+                                elsif meta_color_obj.items != blank
+                                    assign meta_color_codes = meta_color_obj.items
+                                elsif meta_color_obj.records != blank
+                                    assign meta_color_codes = meta_color_obj.records
+                                endif
+                            endif
                         -%}
                         <fieldset class="js product-form__input{% if is_swatch %} product-form__swatch{% endif %} clearfix" data-product-attribute="set-rectangle" data-option-index="{{ forloop.index0 }}">
                             <legend class="form__label">
@@ -120,10 +136,116 @@
                                                     endif
                                             endcase
                                         -%}
+                                        {%- liquid
+                                            comment
+                                                Find matching color from metaobjects for this variant value
+                                                First try direct access, then try collection matching
+                                            endcomment
+                                            assign found_hex = blank
+                                            
+                                            comment
+                                                Try direct access to metaobject via value.swatch.color
+                                                This is the most reliable method when metaobjects are linked to option values
+                                                Handle both hex strings and RGB objects
+                                            endcomment
+                                            if value.swatch != blank and value.swatch.color != blank
+                                                if value.swatch.color.rgb != blank
+                                                    assign found_hex = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                                                else
+                                                    assign found_hex = value.swatch.color
+                                                endif
+                                            elsif meta_color_codes != blank and value != blank
+                                                comment
+                                                    Fallback: Try to match against metaobjects collection
+                                                    Use multiple comparison methods for better matching
+                                                endcomment
+                                                assign compare_value_handle = value | strip | downcase | handle
+                                                assign compare_value_direct = value | strip | downcase
+                                                assign compare_value_no_spaces = value | strip | downcase | replace: ' ', ''
+                                                assign compare_value_no_hyphens = value | strip | downcase | replace: '-', '' | replace: ' ', ''
+                                                
+                                                for color in meta_color_codes
+                                                    comment
+                                                        Try different label property names
+                                                        Metaobjects might use label, display_name, name, or title
+                                                    endcomment
+                                                    assign meta_label = blank
+                                                    if color.label != blank
+                                                        assign meta_label = color.label
+                                                    elsif color.display_name != blank
+                                                        assign meta_label = color.display_name
+                                                    elsif color.name != blank
+                                                        assign meta_label = color.name
+                                                    elsif color.title != blank
+                                                        assign meta_label = color.title
+                                                    endif
+                                                    
+                                                    if meta_label != blank
+                                                        assign meta_label_handle = meta_label | strip | downcase | handle
+                                                        assign meta_label_direct = meta_label | strip | downcase
+                                                        assign meta_label_no_spaces = meta_label | strip | downcase | replace: ' ', ''
+                                                        assign meta_label_no_hyphens = meta_label | strip | downcase | replace: '-', '' | replace: ' ', ''
+                                                        
+                                                        comment
+                                                            Try multiple matching strategies for better color matching
+                                                            Including handling for multi-word colors like "sea green"
+                                                        endcomment
+                                                        assign is_match = false
+                                                        if compare_value_direct == meta_label_direct
+                                                            assign is_match = true
+                                                        elsif compare_value_handle == meta_label_handle
+                                                            assign is_match = true
+                                                        elsif compare_value_no_spaces == meta_label_no_spaces
+                                                            assign is_match = true
+                                                        elsif compare_value_no_hyphens == meta_label_no_hyphens
+                                                            assign is_match = true
+                                                        elsif compare_value_direct contains meta_label_direct or meta_label_direct contains compare_value_direct
+                                                            assign is_match = true
+                                                        elsif compare_value_handle contains meta_label_handle or meta_label_handle contains compare_value_handle
+                                                            assign is_match = true
+                                                        endif
+                                                        
+                                                        if is_match
+                                                            comment
+                                                                Try different property names for color value
+                                                                Also check if the color has a swatch property
+                                                                Handle RGB objects and convert to hex if needed
+                                                            endcomment
+                                                            if color.swatch != blank and color.swatch.color != blank
+                                                                if color.swatch.color.rgb != blank
+                                                                    assign found_hex = 'rgb(' | append: color.swatch.color.rgb | append: ')'
+                                                                else
+                                                                    assign found_hex = color.swatch.color
+                                                                endif
+                                                            elsif color.swatch != blank and color.swatch.hex != blank
+                                                                assign found_hex = color.swatch.hex
+                                                            elsif color.color != blank
+                                                                if color.color.rgb != blank
+                                                                    assign found_hex = 'rgb(' | append: color.color.rgb | append: ')'
+                                                                else
+                                                                    assign found_hex = color.color
+                                                                endif
+                                                            elsif color.hex != blank
+                                                                assign found_hex = color.hex
+                                                            elsif color.value != blank
+                                                                assign found_hex = color.value
+                                                            elsif color.code != blank
+                                                                assign found_hex = color.code
+                                                            elsif color.rgb != blank
+                                                                assign found_hex = 'rgb(' | append: color.rgb | append: ')'
+                                                            endif
+                                                            if found_hex != blank
+                                                                break
+                                                            endif
+                                                        endif
+                                                    endif
+                                                endfor
+                                            endif
+                                        -%}
                                         <label class="product-form__label {{ option_stock }}" name="{{ option.name }}" for="option-{{ product.id }}-{{ option.name }}-{{ forloop.index0 }}" data-variant-id="{{ variant.id }}">
                                             <span
                                                 class="pattern"
-                                                style="background-color: {{ value | split: ' ' | last | handle }};{% if enable_variant_image %}{% if swatch_type == 'metafields' %}{% if color_codes %} background: {{ background_color }};{% else %} background: url({{ background_image }}); background-size: cover;{% endif %}{% elsif has_metaobject and swatch_type == 'metaobjects' %}{% if has_image %}background: url({{ background_image }}); background-size: cover;{% else %}background: {{ background_color }};{% endif %}{% else %} background-image: url({{ background_image }});{% endif %}{% endif %}"
+                                                style="{% if found_hex != blank %}background-color: {{ found_hex | strip }};{% elsif enable_variant_image %}{% if swatch_type == 'metafields' %}{% if color_codes %} background: {{ background_color }};{% else %} background: url({{ background_image }}); background-size: cover;{% endif %}{% elsif has_metaobject and swatch_type == 'metaobjects' %}{% if has_image %}background: url({{ background_image }}); background-size: cover;{% else %}background: {{ background_color }};{% endif %}{% else %} background-image: url({{ background_image }});{% endif %}{% endif %}"
                                             ></span>
                                             {% if swatch_type == 'variant_image' and variant.image %}
                                                 <span class="expand">

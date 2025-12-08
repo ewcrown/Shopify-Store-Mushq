@@ -29,6 +29,26 @@
 {% elsif product_page_layout == "step_by_step" %}
     {% render 'product-page-step-by-step' %}
 {% endif %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const cb = document.querySelector("#sleeve-lining");
+    if(cb){
+        const hiddenInput = document.querySelector(".sleve-id");
+      
+        if (!cb || !hiddenInput) return;
+      
+        function syncValue() {
+          console.log(hiddenInput.value,"test")
+          hiddenInput.value = cb.checked ? "Yes" : "No";
+        }
+      
+        cb.addEventListener("change", syncValue);
+      
+        // set initial state
+        syncValue();
+    }
+});
+</script>
 
 {% schema %}
 {

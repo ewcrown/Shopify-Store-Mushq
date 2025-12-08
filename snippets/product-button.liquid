@@ -214,7 +214,22 @@
                             {% endif %}
                             <input type="hidden" name="id" value="{{ current_variant.id }}">
                             
-                            
+                            <input 
+  type="hidden" 
+  name="properties[sleeve lining]" 
+  class="sleve-id" 
+  value="No"
+/>
+
+
+{% if product.tags contains 'embroidered-sleeves' %}
+ <input 
+  type="hidden" 
+  name="properties[Embroidered sleeves]" 
+  id="embroidered-sleeves" 
+  value="No"
+/>
+{% endif %}
                                 {% if product.tags contains 'callprice' %}
       <a class="ew-view-details" title="whatsapp" href="https://api.whatsapp.com/send?phone=923266660230&amp;text=Hi! I have a question" data-title="WhatsApp Us!" target="_blank" style="
       background: #25d366;

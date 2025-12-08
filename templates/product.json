@@ -89,10 +89,6 @@
             "spacing_bottom": 0
           }
         },
-        "infinite_options_app_block_dKmNwa": {
-          "type": "shopify://apps/infinite-options/blocks/app-block/7e73b6f9-82b0-45f5-9b9b-04f446ba1a9b",
-          "settings": {}
-        },
         "faa2b3e6-c0a1-4269-baa6-d2605efe4c05": {
           "type": "quantity_selector",
           "settings": {
@@ -106,10 +102,16 @@
           "type": "custom_size_chart",
           "settings": {}
         },
+        "custom_liquid_zrQ4nn": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% if product.tags contains 'ss-chiffon' or product.tags contains 'un-wed' or product.tags contains 'Inception' %}\n<div class=\"product-card-ai\">\n  <!-- Sleeve Lining Option -->\n  <div class=\"product-card-ai__option\">\n    <input \n      type=\"checkbox\" \n      id=\"sleeve-lining-checkbox\" \n      class=\"product-card-ai__input sleeve-lining-checkbox\" \n      value=\"false\"\n    />\n    <label for=\"sleeve-lining-checkbox\" class=\"product-card-ai__label\">\n      Add sleeve lining\n    </label>\n  </div>\n</div>\n{% endif %}\n\n{% if product.tags contains 'embroidered-sleeves' %}\n<div class=\"product-card-ai\">\n  <!-- Embroidered Sleeves Option -->\n  <div class=\"product-card-ai__option\">\n    <input \n      type=\"checkbox\" \n      id=\"embroidered-sleeves-checkbox\" \n      class=\"product-card-ai__input embroidered-sleeves-checkbox\" \n      value=\"false\"\n    />\n    <label for=\"embroidered-sleeves-checkbox\" class=\"product-card-ai__label\">\n      Add embroidered sleeves\n    </label>\n  </div>\n</div>\n{% endif %}\n\n<style>\n.product-card-ai { \n  font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial; \n  max-width:380px; \n  margin-bottom: 1rem;\n}\n.product-card-ai__title { \n  margin: 0 0 0.75rem; \n  font-size: 1.1rem; \n}\n.product-card-ai__option { \n  display:block; \n  border:1px solid #e0e0e0; \n  padding: 12px 16px;\n  border-radius:8px; \n  background: #f9f9f9;\n}\n.product-card-ai__input { \n  position: absolute; \n  left: -9999px; \n} /* visually hide native checkbox */\n.product-card-ai__label { \n  display:flex; \n  align-items:center; \n  gap:0.5rem; \n  cursor:pointer; \n  user-select:none; \n  position:relative; \n  padding-left:32px;\n  font-size: 0.95rem;\n  color: #333;\n}\n\n/* custom checkbox square */\n.product-card-ai__label::before{\n  content: \"\";\n  position: absolute;\n  left: 0;\n  width: 18px;\n  height: 18px;\n  border: 2px solid #777;\n  border-radius: 4px;\n  background: white;\n  box-sizing: border-box;\n  transition: all 0.2s ease;\n}\n\n/* checked state indicator */\n.product-card-ai__input:checked + .product-card-ai__label::before{\n  background: linear-gradient(135deg, #000, #333);\n  border-color: #000;\n  box-shadow: inset 0 0 0 2px white;\n}\n\n/* hover effect */\n.product-card-ai__label:hover::before {\n  border-color: #333;\n}\n</style>\n\n<script>\ndocument.addEventListener('DOMContentLoaded', function() {\n  // Handle sleeve lining checkbox\n  const sleeveLiningCheckbox = document.getElementById('sleeve-lining-checkbox');\n  const sleeveLiningHidden = document.querySelector('input[name=\"properties[sleeve lining]\"]');\n  \n  if (sleeveLiningCheckbox && sleeveLiningHidden) {\n    // Update hidden field on change\n    sleeveLiningCheckbox.addEventListener('change', function() {\n      sleeveLiningHidden.value = this.checked ? 'Yes' : 'No';\n      console.log('Sleeve lining:', sleeveLiningHidden.value);\n    });\n  }\n  \n  // Handle embroidered sleeves checkbox\n  const embroideredSleevesCheckbox = document.getElementById('embroidered-sleeves-checkbox');\n  const embroideredSleevesHidden = document.getElementById('embroidered-sleeves');\n  \n  if (embroideredSleevesCheckbox && embroideredSleevesHidden) {\n    // Update hidden field on change\n    embroideredSleevesCheckbox.addEventListener('change', function() {\n      embroideredSleevesHidden.value = this.checked ? 'Yes' : 'No';\n      console.log('Embroidered sleeves:', embroideredSleevesHidden.value);\n    });\n  }\n});\n</script>"
+          }
+        },
         "f1b31d90-1e43-4948-9fe3-97ba43f6fb34": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
+            "show_dynamic_checkout": false,
             "show_gift_card_recipient": false,
             "atc_animation": "none",
             "atc_color": "#232323",
@@ -130,6 +132,31 @@
             "bin_bg_color_hover_gradient": "",
             "spacing_top": 0,
             "spacing_bottom": 15
+          }
+        },
+        "product_text_bG3XqC": {
+          "type": "product_text",
+          "settings": {
+            "text": "All stitched articles required advance payment",
+            "text_icon": "",
+            "text_description": "",
+            "fontsize_text": 14,
+            "content_spacing": 25,
+            "custom_block_align": "center",
+            "color_title": "#232323",
+            "background_color_block": "#ffffff",
+            "background_gradient_color_block": "",
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "share_YwjzBD": {
+          "type": "share",
+          "settings": {
+            "show_share": true,
+            "share_layout": "3",
+            "spacing_top": 0,
+            "spacing_bottom": 0
           }
         },
         "custom_liquid_Y3enhU": {
@@ -177,15 +204,6 @@
             "enable_btn_show_more": false,
             "maximum_des_to_show": 300
           }
-        },
-        "share_YwjzBD": {
-          "type": "share",
-          "settings": {
-            "show_share": true,
-            "share_layout": "2",
-            "spacing_top": 0,
-            "spacing_bottom": 0
-          }
         }
       },
       "block_order": [
@@ -196,15 +214,16 @@
         "quoli_reviews_ugc_product_review_DpENKT",
         "custom_description_aGD9UB",
         "d98e243b-3682-495a-965a-1c7f7d460880",
-        "infinite_options_app_block_dKmNwa",
         "faa2b3e6-c0a1-4269-baa6-d2605efe4c05",
         "custom_size_chart_GV637B",
+        "custom_liquid_zrQ4nn",
         "f1b31d90-1e43-4948-9fe3-97ba43f6fb34",
+        "product_text_bG3XqC",
+        "share_YwjzBD",
         "custom_liquid_Y3enhU",
         "b9d6eb19-10f4-41f8-bfdc-ea10e8b3182a",
         "custom_nXgXb3",
-        "custom_Ry9QqW",
-        "share_YwjzBD"
+        "custom_Ry9QqW"
       ],
       "custom_css": [
         ".ew-estimated-delivery {text-align: center; font-weight: 500;}"

@@ -630,11 +630,13 @@
                                                                     sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
                                                                    {% if settings.enable_lazyload %} loading="lazy"{% endif %}
                                                                     data-sizes="auto"
-                                                                >
+                                                                />
                                                             </div>
-                                                            <div class="productView-video mp4" data-mp4 data-type="mp4" data-video-url="{{ media | video_tag: controls: true, image_size: 'master' }}">
+                                                            
+                                                            <div class="productView-video mp4" data-mp4 data-type="mp4" data-video-url="">
                                                                 {{ media | video_tag: controls: true, image_size: 'master' }}
                                                             </div>
+
                                                         </div>
                                                     </div>
                                                 {%- endif -%}

@@ -551,6 +551,7 @@ body.cart-sidebar-show .halo-cart-sidebar{
 
 .product-option .definitionList-key {
     float: none;
+    text-transform:capitalize;
 }
 
 .product-option .definitionList-value {

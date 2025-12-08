@@ -9,6 +9,14 @@
  */
 {
   "sections": {
+    "custom_liquid_WnE3XC": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "{% if collection.handle == 'darlings-wedding-unstitched' %}\n\n<div class=\"gta-block__root GSC-LARGE-GgZOdxFjtlls\"></div>\n{% endif %}"
+      }
+    },
     "banner": {
       "type": "main-collection-banner",
       "blocks": {
@@ -212,6 +220,7 @@
     }
   },
   "order": [
+    "custom_liquid_WnE3XC",
     "banner",
     "product-grid",
     "product-recently-viewed"
