@@ -75,12 +75,16 @@
       {% for block in section.blocks %}
         <div class="swiper-slide">
           <a href="{{ block.settings.link | default: '#' }}">
-            <img
-              src="{{ block.settings.image | img_url: 'master' }}"
-              alt="{{ block.settings.alt_text | escape }}"
-              width="auto"
-              height="auto"
-            >
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 1000 | image_tag: 
+                loading: 'lazy',
+                sizes: '(min-width: 768px) 33vw, 66vw',
+                widths: '375, 550, 750, 1100',
+                alt: block.settings.alt_text | escape
+              }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
           </a>
         </div>
       {% endfor %}

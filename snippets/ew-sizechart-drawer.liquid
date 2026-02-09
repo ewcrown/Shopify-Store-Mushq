@@ -1,5 +1,13 @@
 {%- assign shirt_size_chart_image = product.metafields.custom.size_guide_image -%}
-{%- assign trouser_size_chart_image = product.metafields.custom.size_guide_image_trouser -%}
+
+{%- assign trouser_size_chart_image = product.metafields.custom.size_guide_image_trouser  -%}
+
+{% if trouser_size_chart_image != blank  %}
+  {%- assign trouser_size_chart_image = product.metafields.custom.size_guide_image_trouser  -%}
+{% else %}
+  {%- assign trouser_size_chart_image = product.metafields.custom.size_guide2_image  -%}
+{% endif %}
+
 
 {%- if shirt_size_chart_image != blank or trouser_size_chart_image != blank -%}
 <div class="ew-sizechart-popup" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Product size chart">

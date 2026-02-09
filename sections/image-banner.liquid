@@ -506,6 +506,14 @@
                                 else
                                     assign lazy = ''
                                 endif
+
+                                assign loading = 'lazy'
+                                assign fetchpriority = 'auto'
+                                if forloop.first
+                                    assign lazy = ''
+                                    assign loading = 'eager'
+                                    assign fetchpriority = 'high'
+                                endif
                             -%}
                             {%- if block.type == 'largeImg' -%}  
                                 <div class="item item--largeImg image-banner-item-{{ block.id }} border--{{ border_title }}{% if border_title == 'border_s1' %} item--largeImg_border_s1{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--fade-in{% endif %}{% if enable_custom_image %} enable_custom_image{% endif %}">
@@ -514,7 +522,7 @@
                                             {%- if image != blank -%}
                                                 <a class="image image-adapt{% if block.settings.image_behavior != 'fixed' %} adaptive_height{% endif %}"{% if link == blank %} role="link" aria-disabled="true"{% else %} href="{{ link }}"{% endif %} style="padding-top: {% unless image.presentation.focal_point == '50.0% 50.0%' %}{{ 1 | divided_by: image.aspect_ratio | times: 110 | append: '%' }}{% else %}{{ 1 | divided_by: image.aspect_ratio | times: 100 | append: '%' }}{% endunless %}" title="{{ preview_img.alt | default: shop.name | escape }}">
                                                     {%- assign height_dsk = image.width | divided_by: image.aspect_ratio | round -%}
-                                                    {{ image | image_url: width: 3840 | image_tag: loading: 'lazy', class: lazy, height: height_dsk, sizes: "100vw", widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840' }}
+                                                    {{ image | image_url: width: 3840 | image_tag: loading: loading, fetchpriority: fetchpriority, class: lazy, height: height_dsk, sizes: "100vw", widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840' }}
                                                     {%- if settings.enable_lazyload -%}<span class="data-lazy-loading"></span>{%- endif -%}
                                                 </a>
                                             {%- else -%}
@@ -527,14 +535,14 @@
                                             {%- if mobile_image != blank -%}
                                                 <a class="image image-mobile image-adapt adaptive_height{% if enable_custom_image %} enable_custom_image{% endif %}"{% if link == blank %} role="link" aria-disabled="true"{% else %} href="{{ link }}"{% endif %} {% if link == blank %} role="link" aria-disabled="true"{% else %} href="{{ link }}"{% endif %} style="padding-top: {% unless mobile_image.presentation.focal_point == '50.0% 50.0%' %}{{ 1 | divided_by: mobile_image.aspect_ratio | times: 120 | append: '%' }}{% else %}{{ 1 | divided_by: mobile_image.aspect_ratio | times: 100 | append: '%' }}{% endunless %}" title="{{ mobile_image.alt | default: shop.name | escape }}">
                                                     {%- assign height_mb = mobile_image.width | divided_by: mobile_image.aspect_ratio | round -%}
-                                                    {{ mobile_image | image_url: width: 750 | image_tag: loading: 'lazy',class: lazy, height: height_mb, sizes: "100vw", widths: '375, 550, 750'}}
+                                                    {{ mobile_image | image_url: width: 750 | image_tag: loading: loading, fetchpriority: fetchpriority, class: lazy, height: height_mb, sizes: "100vw", widths: '375, 550, 750'}}
                                                     {%- if settings.enable_lazyload -%}<span class="data-lazy-loading"></span>{%- endif -%}
                                                 </a>
                                             {%- else -%}
                                                 {%- if image != blank -%}
                                                     <a class="image image-mobile image-adapt adaptive_height{% if enable_custom_image %} enable_custom_image{% endif %}"{% if link == blank %} role="link" aria-disabled="true"{% else %} href="{{ link }}"{% endif %} style="padding-top: {% unless image.presentation.focal_point == '50.0% 50.0%' %}{{ 1 | divided_by: image.aspect_ratio | times: 200 | append: '%' }}{% else %}{{ 1 | divided_by: image.aspect_ratio | times: 100 | append: '%' }}{% endunless %}" title="{{ image.alt | default: shop.name | escape }}">
                                                     {%- assign height_mb = image.width | divided_by: image.aspect_ratio | round -%}
-                                                    {{ image | image_url: width: 750 | image_tag: loading: 'lazy', class: lazy, height: height_mb, sizes: "100vw", widths: '375, 550, 750' }}
+                                                    {{ image | image_url: width: 750 | image_tag: loading: loading, fetchpriority: fetchpriority, class: lazy, height: height_mb, sizes: "100vw", widths: '375, 550, 750' }}
                                                     {%- if settings.enable_lazyload -%}<span class="data-lazy-loading"></span>{%- endif -%}
                                                     </a>
                                                 {%- else -%}
@@ -655,7 +663,7 @@
                                                 {%- if image != blank -%}
                                                     <a class="image image-adapt adaptive_height{% if block.settings.image_behavior != 'zoom-in' %} image-zoom{% endif %}"{% if link == blank %} role="link" aria-disabled="true"{% else %} href="{{ link }}"{% endif %} style="padding-top: {% unless image.presentation.focal_point == '50.0% 50.0%' %}{{ 1 | divided_by: image.aspect_ratio | times: 120 | append: '%' }}{% else %}{{ 1 | divided_by: image.aspect_ratio | times: 100 | append: '%' }}{% endunless %}" title="{{ preview_img.alt | default: shop.name | escape }}">
                                                         {%- assign height = image.width | divided_by: image.aspect_ratio | round -%}
-                                                        {{ image | image_url: width: 1920 | image_tag: loading: 'lazy', class: lazy, height: height, sizes: "100vw", widths: '375, 550, 750, 1100, 1500, 1780, 1920' }}
+                                                        {{ image | image_url: width: 1920 | image_tag: loading: loading, fetchpriority: fetchpriority, class: lazy, height: height, sizes: "100vw", widths: '375, 550, 750, 1100, 1500, 1780, 1920' }}
                                                         {%- if settings.enable_lazyload -%}<span class="data-lazy-loading"></span>{%- endif -%}
                                                     </a>
                                                 {%- else -%}
@@ -779,7 +787,7 @@
                                                     {%- if image != blank -%}
                                                         <a class="image image-adapt adaptive_height{% if block.settings.image_behavior != 'zoom-in' %} image-zoom{% endif %}" {% if link == blank %} role="link" aria-disabled="true"{% else %} href="{{ link }}"{% endif %} style="padding-top: {% unless image.presentation.focal_point == '50.0% 50.0%' %}{{ 1 | divided_by: image.aspect_ratio | times: 120 | append: '%' }}{% else %}{{ 1 | divided_by: image.aspect_ratio | times: 100 | append: '%' }}{% endunless %}" title="{{ preview_img.alt | default: shop.name | escape }}">
                                                             {%- assign height = image.width | divided_by: image.aspect_ratio | round -%}
-                                                            {{ image | image_url: width: 1920 | image_tag: loading: 'lazy', class: lazy, height: height, sizes: "100vw", widths: '375, 550, 750, 1100, 1500, 1780, 1920' }}
+                                                            {{ image | image_url: width: 1920 | image_tag: loading: loading, fetchpriority: fetchpriority, class: lazy, height: height, sizes: "100vw", widths: '375, 550, 750, 1100, 1500, 1780, 1920' }}
                                                             {%- if settings.enable_lazyload -%}<span class="data-lazy-loading"></span>{%- endif -%}
                                                         </a>
                                                     {%- else -%}

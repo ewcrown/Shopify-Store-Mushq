@@ -213,7 +213,7 @@
                               {%- if step_by_step_variant -%}<a role="link" aria-disabled="true" data-action="next" class="btn-next__variant product-form__submit button button--primary an-horizontal-shaking button-text-change">{{ 'products.product.step_by_step.next' | t }}</a>{%- endif -%}
                             {% endif %}
                             <input type="hidden" name="id" value="{{ current_variant.id }}">
-                            
+ {% if product.tags contains 'ss-chiffon' or product.tags contains 'un-wed' or product.tags contains 'Inception' or product.tags contains 'add-lining' %}                           
                             <input 
   type="hidden" 
   name="properties[sleeve lining]" 
@@ -221,7 +221,7 @@
   value="No"
 />
 
-
+{% endif %}
 {% if product.tags contains 'embroidered-sleeves' %}
  <input 
   type="hidden" 

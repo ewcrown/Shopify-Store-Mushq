@@ -384,7 +384,7 @@
 }
 
 .spotlight-item.only-desktop .content {
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
   gap: 24px;
@@ -735,7 +735,7 @@
 }
 
 .luis-collection-slider-left-content a {
-  color: #FFF;
+  color: #fff;
   font-size: 18px;
   font-weight: 300;
   line-height: 18px;
@@ -748,7 +748,7 @@
 }
 
 .luis-collection-slider-left-content h2 {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-size: 24px;
   font-weight: 500;
@@ -966,22 +966,32 @@ z-index: 999;
     text-transform: uppercase;
 }
 .site-nav-banner--text-content {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    -webkit-backdrop-filter: blur(10px);
-    background: #ffffff0d;
-    backdrop-filter: blur(9.903714179992676px);
-    width: 90%;
-    margin: auto;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 1));
+  /* Glass / blur effect */
+  /* background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); */
+
+  /* Shadow visible on all backgrounds */
+  
+
+  border-radius: 12px;
 }
+
 
 .site-nav-banner--button svg {
     width: 12px;
@@ -1117,4 +1127,21 @@ div#quoli-pdp-widget {
   padding: 0;
   position: static;
   width: max-content;
+}
+
+@media(min-width:1101px){
+  .luis-collection-slider-splide .card-media {
+    padding-bottom: 120% !important;
+}
+/* .luis-collection-slider-splide .card-media img {
+    height: 800px;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+} */
+}
+
+.collections-list .collection-list-slider.style_2 .collection-card-wrapper .media .image:after {
+    opacity: 1 !important;
+    visibility: visible !important;
 }

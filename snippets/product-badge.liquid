@@ -134,7 +134,12 @@
                 {%- endif -%}
             </span>
         {%- endif -%}
-         {% if product.tags contains 'restock' %}
+       {% if product.tags contains 'new-in-ai' %}
+        <span  class="badge sold-out-badge" aria-hidden="true">
+      NEW IN
+    </span>
+    {% endif %}
+     {% if product.tags contains 'restock' %}
         <span  class="badge sold-out-badge" aria-hidden="true">
       Forward Delivery
     </span>

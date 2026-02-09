@@ -422,6 +422,7 @@
                     {{ cart.total_price | money }}
                 </div>
             </li>
+            {% render 'baadmay-drawer' %}
             {% if settings.show_shipping_note %}
                 <li class="previewCartTotals shipTotal clearfix">
                     <div class="previewCartTotals-value">

@@ -18,6 +18,7 @@
 
   <h3 id="ew-quickview-title-{{ product.id }}">{{ product.title }}</h3>
 
+  {% unless product.tags contains 'Bridals' %}
   <div class="ew-quickview-price" aria-live="polite">
     <span class="ew-price-current">
       {%- if product.price_varies -%}
@@ -33,6 +34,7 @@
       <span class="ew-price-compare" style="display:none;"></span>
     {%- endif -%}
   </div>
+  {% endunless %}
 
   <div class="ew-quickview-variants">
     {%- comment -%} find size option index if exists {%- endcomment -%}
@@ -97,21 +99,14 @@
     {%- endif -%}
   </div>
 
-  {%- if product.metafields.custom.size_guide_image != blank -%}
-    <div class="ew-quickview-size-chart">
-      <button type="button" class="ew-open-sizechart" aria-haspopup="dialog" aria-controls="ew-sizechart-{{ product.id }}">
-        {% render 'ew-size-chart-icon' %}
-        <span>Size Chart</span>
-      </button>
-    </div>
-  {%- endif -%}
+ 
 
   <div class="ew-quickview-actions">
     {% if product.tags contains 'callprice' %}
       <a class="ew-view-details" title="whatsapp" href="https://api.whatsapp.com/send?phone=923266660230&amp;text=Hi! I have a question" data-title="WhatsApp Us!" target="_blank" rel="noopener">TALK TO US</a>
     {% else %}
       <button type="button" class="button ew-add-to-cart" data-btn-addToCart>Add to cart</button>
-      <button type="button" class="button ew-buy-now">Buy now</button>
+      <button  type="button" class="button ew-buy-now">Buy now</button>
     {% endif %}
     <a href="{{ product.url }}" class="ew-view-details">VIEW MORE DETAILS</a>
   </div>

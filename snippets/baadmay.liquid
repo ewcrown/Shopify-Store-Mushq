@@ -1,0 +1,280 @@
+ {% assign is_bridal = false %}
+
+{% for collection in product.collections %}
+  {% if collection.handle == 'bridals' %}
+    {% assign is_bridal = true %}
+  {% endif %}
+{% endfor %}
+{% if is_bridal == false %}
+<style>
+  
+  .baadmay-product-wrapper{
+    margin-bottom: 5px;
+    margin-top: -10px;
+  }
+  .baadmay-price-split{
+    padding-left: 0px;
+  }
+    .baadmay-product-wrapper .baadmay-para {
+      display: flex;
+      gap: 5px;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .baadmay-product-wrapper .baadmay-para .baadmay-price p{
+      margin: 0;
+      line-height: 1;
+      font-size: 18px;
+      color: #000;
+      font-weight: 400;
+    }
+    .baadmay-product-wrapper .baadmay-para .baadmay-price .baadmay-price-split .price-divide{
+      padding-left: 2px;
+    }
+    .baadmay-product-wrapper .baadmay-price{
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .baadmay-product-wrapper .baadmay-price .baadmay-modal {
+      display: flex;
+      align-items: center;
+    }
+    .baadmay-gateway-wrapper .baadmay-para .baadmay-modal p,  .baadmay-gateway-wrapper .baadmay-para .baadmay-modal p span{
+      font-weight: 600;
+      color: #6016eb;
+    }
+    .side-panel.product-drawer .side-panel-content {
+        padding: 0 10px 25px;
+    }
+    @media  (max-width: 750px) {
+    .baadmay-product-wrapper{
+      margin-bottom: 5px;
+      margin-top: -5px;
+    }
+  }
+    @media  (max-width: 500px) {
+    .side-panel-content .baadmay-product-wrapper .baadmay-para .baadmay-price p{
+      font-size: 16px;
+    }
+    .side-panel-content .baadmay-product-wrapper .baadmay-para .logo-wrapper .baadmay-modal img{
+      width: 90px;
+    }
+  }
+   @media  (max-width: 440px) {
+   .baadmay-product-wrapper .baadmay-para .baadmay-price p{
+      font-size: 16px;
+    }
+    .baadmay-product-wrapper .baadmay-para .logo-wrapper .baadmay-modal img{
+      width: 90px;
+    }
+    .side-panel-content .baadmay-product-wrapper .baadmay-para .baadmay-price p{
+      font-size: 16px;
+    }
+    .side-panel-content .baadmay-product-wrapper .baadmay-para .logo-wrapper .baadmay-modal img{
+      width: 80px;
+    }
+  }
+</style>
+
+<div class="baadmay-gateway-wrapper baadmay baadmay-product-wrapper  {% if class %}{{ class }}{% endif %}">
+  <div class="baadmay-para">
+    <div class="logo-wrapper">
+      <a
+        class="baadmay-modal"
+        data-vbtype="inline"
+        data-overlayclose="false"
+        data-maxwidth="620px"
+        href="#baadmay-content"
+      >
+        <img src="{{ 'baadmay-logo-icon.svg' | asset_url }}" alt="BaadMay Logo" width="95" height="auto" loading="lazy">
+      </a>
+    </div>
+   <div class="baadmay-price" data-product-id="{{ product.id }}">
+      <p>Pay in 3 Installments of</p>
+      <a
+        class="baadmay-modal"
+        data-vbtype="inline"
+        data-overlayclose="false"
+        data-maxwidth="620px"
+        href="#baadmay-content"
+      >
+        <p class="baadmay-currency">
+          {% for currency in shop.enabled_currencies %}
+            {% if currency.iso_code == shop.currency -%}
+              Rs.{% break %}
+            {% endif %}
+          {% endfor %}
+        </p> 
+        <p class="baadmay-price-split">
+          <span
+            class="price-divide"
+            total-prod-price="{{ current_variant.price }}"
+            id="baadmay-installment"
+          >
+            {{ product.selected_or_first_available_variant.price | times: 1.15 | divided_by: 3 | divided_by: 100 | floor }}
+
+          </span>
+        </p>
+      </a>
+    </div>
+    <div id="baadmay-content" style="display:none;">
+      <a href="#" class="baadmay-popup-close">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.99915 1L1 8.99914" stroke="white" stroke-width="2" stroke-linecap="round" />
+          <path d="M8.99915 9L1 1.00085" stroke="white" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </a>
+      <div class="baadmay-popup-head">
+        <h3>Pay for your purchase, thora abhi, baqi?</h3>
+        <img
+          src="https://baadmay.com/assets/baadmay-logo-white.svg"
+          alt="baadmay logo"
+          width="184"
+          height="42"
+          loading="lazy"
+        >
+        <div class="baadmay-info-box">
+          <div class="baadmay-info-item">
+            <img
+              src="https://baadmay.com/assets/icon-calendar.svg"
+              alt="Calendar Icon"
+              width="80"
+              height="80"
+              loading="lazy"
+            >
+            <p>Pay in 3 Easy Installments</p>
+          </div>
+        </div>
+      </div>
+      <div class="baadmay-popup-content">
+        <h3 class="baadmay-color-dark text-center mt-40 mb-24">Added items to your cart?</h3>
+        <div class="baadmay-info-box compact-box">
+          <div class="baadmay-info-item">
+            <img
+              src="https://baadmay.com/assets/icon-checkout.svg"
+              alt="Checkout Icon"
+              width="48"
+              height="48"
+              loading="lazy"
+            >
+            <p>Select BaadMay at Checkout</p>
+          </div>
+          <div class="baadmay-info-item">
+            <img
+              src="https://baadmay.com/assets/icon-account-details.svg"
+              alt="Account Icon"
+              width="48"
+              height="48"
+              loading="lazy"
+            >
+            <p>Verify your account details</p>
+          </div>
+          <div class="baadmay-info-item">
+            <img
+              src="https://baadmay.com/assets/icon-pay-first-installment.svg"
+              alt="Installment Icon"
+              width="48"
+              height="48"
+              loading="lazy"
+            >
+            <p>Pay only your first installment now</p>
+          </div>
+        </div>
+        <h3 class="baadmay-color-primary text-center mt-32 mt-sm-24 mb-0">Let’s shop and pay BaadMay !</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    function getPriceElement() {
+        return document.querySelector('[data-product-price] .price-item .money');
+    }
+
+    function getProductId() {
+        const wrapper = document.querySelector('[data-product-price]');
+        return wrapper ? wrapper.getAttribute('data-product-id') : null;
+    }
+    
+    function parsePrice(priceText) {
+        let cleaned = priceText
+            .replace("Rs.", "")
+            .replace("PKR", "")
+            .replace(".00", "")
+            .replace(",", "")
+            .trim();       
+
+        let price = parseFloat(cleaned);
+
+        return price;
+    }
+
+    function toggleBaadmayWrapper(price) {
+        const wrapper = document.querySelector('.baadmay-product-wrapper');
+        if (!wrapper) return;
+
+        if (price > 50000) {
+            wrapper.style.display = 'none';
+        } else {
+            wrapper.style.display = '';
+        }
+    }
+
+    function updateInstallmentPrice() {
+        const priceElement = getPriceElement();
+        const productId = getProductId();
+
+        if (!priceElement || !productId) return;
+
+        const priceText = priceElement.textContent.trim();
+        const priceInRupees = parsePrice(priceText);
+
+        if (isNaN(priceInRupees) || priceInRupees <= 0) return;
+
+        // 👇 Hide / show wrapper based on price
+        toggleBaadmayWrapper(priceInRupees);
+
+        const installmentElement = document.querySelector(
+            '.baadmay-price[data-product-id="' + productId + '"] .price-divide'
+        );
+
+        if (!installmentElement) return;
+
+        const installmentPrice = Math.floor((priceInRupees * 1.15) / 3);
+        installmentElement.textContent = installmentPrice.toLocaleString();
+    }
+
+    setTimeout(updateInstallmentPrice, 1000);
+
+    function observePriceChanges() {
+        const priceNode = getPriceElement();
+        if (!priceNode) return;
+
+        const observer = new MutationObserver(() => {
+            setTimeout(updateInstallmentPrice, 1000);
+        });
+
+        observer.observe(priceNode, {
+            characterData: true,
+            childList: true,
+            subtree: true
+        });
+    }
+
+    observePriceChanges();
+
+    const variantInput = document.querySelector(
+        'form[action="/cart/add"] input[name="id"]'
+    );
+
+    if (variantInput) {
+        variantInput.addEventListener("change", function () {
+            setTimeout(updateInstallmentPrice, 1000);
+        });
+    }
+});
+</script>
+{% endif %}
