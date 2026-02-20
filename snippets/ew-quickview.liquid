@@ -1,17 +1,10 @@
 {%- comment -%}
  Quickview markup (Liquid)
  - Expose variant data safely via individual data-* attributes
- - Select the first available variant as default (first_available_id)
+ - Select the first variant as default (regardless of availability)
  - Deduplicate size options
  - Accessibility: role="dialog", aria-live, labelledby
 {%- endcomment -%}
-
-{%- assign first_available_id = nil -%}
-{%- for v in product.variants -%}
-  {%- if v.available and first_available_id == nil -%}
-    {%- assign first_available_id = v.id -%}
-  {%- endif -%}
-{%- endfor -%}
 
 <div class="ew-quickview" role="dialog" aria-modal="true" aria-labelledby="ew-quickview-title-{{ product.id }}" tabindex="-1">
   <button type="button" class="ew-quickview-close" aria-label="Close">&times;</button>
@@ -65,15 +58,11 @@
             {%- assign unique_sizes = unique_sizes | append: size_key | append: '|' -%}
 
             {%- comment -%}
-              Determine whether this variant should be the default checked radio:
-              - prefer a currently available variant
-              - if multiple sizes map to multiple variants, we check the first available one
+              Always select the first variant (first unique size), regardless of availability
             {%- endcomment -%}
             {%- assign is_available = variant.available -%}
             {%- assign checked_attr = '' -%}
-            {%- if is_available and first_available_id == variant.id -%}
-              {%- assign checked_attr = 'checked' -%}
-            {%- elsif first_available_id == nil and forloop.first -%}
+            {%- if forloop.first -%}
               {%- assign checked_attr = 'checked' -%}
             {%- endif -%}
 
