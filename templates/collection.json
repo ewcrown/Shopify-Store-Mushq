@@ -14,7 +14,7 @@
       "disabled": true,
       "name": "t:sections.custom-liquid.presets.name",
       "settings": {
-        "custom_liquid": "{% if collection.handle == 'amoi-luxury-lawn' %}\n\n<div class=\"gta-block__root GSC-LARGE-GgZOdxFjtlls\"></div>\n{% endif %}"
+        "custom_liquid": "{% if collection.handle == 'astoria-festive-lawn-26' %}\n\n<div class=\"gta-block__root GSC-LARGE-GgZOdxFjtlls\"></div>\n{% endif %}"
       }
     },
     "banner": {

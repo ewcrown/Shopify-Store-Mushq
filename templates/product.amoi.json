@@ -1,0 +1,480 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "2e8c7c14-a0ad-4930-a1d8-3def05310426": {
+          "type": "breadcrumb",
+          "settings": {
+            "breadcrumb_layout": "full",
+            "breadcrumb_alignment": "left",
+            "breadcrumb_bg": "rgba(0,0,0,0)",
+            "breadcrumb_gradient": "",
+            "breadcrumb_bg_mb": "#f6f6f6",
+            "breadcrumb_gradient_mb": "",
+            "breadcrumb_mg_top_desktop": 10,
+            "breadcrumb_mg_top_mobile": 0,
+            "breadcrumb_mg_bottom_desktop": 20,
+            "breadcrumb_mg_bottom_mobile": 10
+          }
+        },
+        "b0ea69b7-8a54-4a3c-9abd-0fcceeabaaa0": {
+          "type": "title",
+          "settings": {
+            "fontsize_text": 20,
+            "fontsize_text_mb": 18,
+            "color_title": "#232323",
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "4e59f24a-8859-4579-a80a-d70e6f1bf66b": {
+          "type": "info",
+          "settings": {
+            "show_vendor": false,
+            "show_sku": true,
+            "show_barcode": false,
+            "show_availability": false,
+            "show_product_type": false,
+            "stock_level_display": "none",
+            "enable_border_top": false,
+            "enable_border_bottom": false,
+            "color_border": "#e6e6e6",
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "4f95b592-8369-4ab0-b30d-24e463fb6890": {
+          "type": "price",
+          "settings": {
+            "fontsize_text": 18,
+            "spacing_top": 0,
+            "spacing_bottom": 17
+          }
+        },
+        "quoli_reviews_ugc_product_review_DpENKT": {
+          "type": "shopify://apps/quoli-reviews-ugc/blocks/product-review/baf7b241-e443-4879-b3d4-360440b03895",
+          "settings": {
+            "stylerating": "standard",
+            "text_reviews": "[count] Reviews",
+            "align_widget": "default",
+            "font_size": 14,
+            "text_color": "#000000",
+            "star_color": "#000000",
+            "show_review_title": false
+          }
+        },
+        "custom_description_aGD9UB": {
+          "type": "custom_description",
+          "settings": {}
+        },
+        "d98e243b-3682-495a-965a-1c7f7d460880": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "show_variant_image_group": false,
+            "enable_border_top": false,
+            "enable_border_bottom": false,
+            "color_border": "#e6e6e6",
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "custom_liquid_Y3enhU": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% assign TDT = blank %}\n{% for tag in product.tags %}\n  {% if tag contains 'TDT' %}\n    {% assign TDT = tag | split: '--' %}\n    {% assign TDT = TDT[1] | strip %}\n  {% endif %}\n{% endfor %}\n\n{% if TDT %}\n  <span style=\"display:inline\">Note: </span><div class=\"ew-estimated-delivery\">\n    {{ TDT }}\n  </div>\n{% endif %}\n\n<script>\n(function () {\n  const DEBUG = true;\n  const log = (...a) => DEBUG && console.log('[ew-br]', ...a);\n\n  // Cache for performance\n  let cachedParts = null;\n  let sourceElement = null;\n\n  function getSourceElement() {\n    if (!sourceElement) {\n      sourceElement = document.querySelector('.ew-estimated-delivery');\n    }\n    return sourceElement;\n  }\n\n  function getSelectedSize() {\n    const checked = document.querySelector('input[name=\"Size\"]:checked');\n    return checked ? checked.value.trim() : '';\n  }\n\n  function parseBrContent(html) {\n    if (cachedParts) return cachedParts;\n    \n    // Split by <br> and clean HTML tags\n    const parts = html\n      .split(/<br\\s*\\/?>/gi)\n      .map(part => {\n        // Remove any HTML tags but keep the text\n        const tempDiv = document.createElement('div');\n        tempDiv.innerHTML = part;\n        return tempDiv.textContent || tempDiv.innerText || '';\n      })\n      .map(text => text.trim())\n      .filter(Boolean);\n    \n    cachedParts = parts;\n    log('Parsed parts:', parts);\n    return parts;\n  }\n\n  function updateMessage(reason = 'unknown') {\n    const source = getSourceElement();\n    if (!source) {\n      log('Source element not found');\n      return;\n    }\n\n    // Store original HTML on first access\n    if (!source.dataset.originalHtml) {\n      source.dataset.originalHtml = source.innerHTML;\n      log('Original HTML stored:', source.dataset.originalHtml);\n    }\n\n    const parts = parseBrContent(source.dataset.originalHtml);\n    if (parts.length === 0) return;\n\n    const size = getSelectedSize();\n    const isUnstitched = size === 'Unstitched';\n    \n    // Use index 0 for unstitched, index 1 for stitched\n    // If only one part exists, use it for both\n    let message = '';\n    if (isUnstitched && parts.length > 0) {\n      message = parts[0]; // First part before <br>\n    } else if (parts.length > 1) {\n      message = parts[1]; // Second part after <br>\n    } else {\n      message = parts[0]; // Fallback to first part\n    }\n\n    // Update the element's text content\n    source.textContent = message;\n    \n    log('Updated:', { reason, size, isUnstitched, messageLength: message.length });\n  }\n\n  // Debounce function for performance\n  let updateTimeout;\n  function debouncedUpdate(reason) {\n    clearTimeout(updateTimeout);\n    updateTimeout = setTimeout(() => updateMessage(reason), 50);\n  }\n\n  // Event handler for size changes\n  function handleSizeChange(e) {\n    if (e.target.name === 'Size') {\n      debouncedUpdate('change');\n    }\n  }\n\n  // Event handler for label clicks\n  function handleLabelClick(e) {\n    const label = e.target.closest('.product-form__label');\n    if (!label) return;\n\n    const radioId = label.getAttribute('for');\n    if (!radioId) return;\n\n    const radio = document.getElementById(radioId);\n    if (radio && radio.name === 'Size') {\n      // Small delay to ensure radio is checked\n      setTimeout(() => debouncedUpdate('click'), 10);\n    }\n  }\n\n  // Initialize\n  function init() {\n    log('Initializing...');\n    \n    // Initial update on DOM ready\n    if (document.readyState === 'loading') {\n      document.addEventListener('DOMContentLoaded', () => debouncedUpdate('DOMContentLoaded'));\n    } else {\n      debouncedUpdate('DOMContentLoaded');\n    }\n\n    // Set up event listeners\n    document.addEventListener('change', handleSizeChange);\n    document.addEventListener('click', handleLabelClick);\n\n    // Optional: MutationObserver for dynamic content changes\n    if (typeof MutationObserver !== 'undefined' && getSourceElement()) {\n      const observer = new MutationObserver(() => {\n        // Clear cache if source HTML changes\n        cachedParts = null;\n        log('Source mutated, cleared cache');\n      });\n      \n      observer.observe(getSourceElement(), {\n        childList: true,\n        subtree: true,\n        characterData: true\n      });\n    }\n  }\n\n  // Start the script\n  init();\n\n})();\n</script>"
+          }
+        },
+        "faa2b3e6-c0a1-4269-baa6-d2605efe4c05": {
+          "type": "quantity_selector",
+          "settings": {
+            "qty_style": "1",
+            "qty_layout": "1",
+            "spacing_top": 0,
+            "spacing_bottom": 15
+          }
+        },
+        "custom_size_chart_GV637B": {
+          "type": "custom_size_chart",
+          "settings": {}
+        },
+        "custom_liquid_zrQ4nn": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% if product.tags contains 'ss-chiffon' or product.tags contains 'un-wed' or product.tags contains 'Inception' or product.tags contains 'add-lining' %}\n<div class=\"product-card-ai\">\n  <!-- Sleeve Lining Option -->\n  <div class=\"product-card-ai__option\">\n    <input \n      type=\"checkbox\" \n      id=\"sleeve-lining-checkbox\" \n      class=\"product-card-ai__input sleeve-lining-checkbox\" \n      value=\"false\"\n    />\n    <label for=\"sleeve-lining-checkbox\" class=\"product-card-ai__label\">\n      Add sleeve lining\n    </label>\n  </div>\n</div>\n{% endif %}\n\n{% if product.tags contains 'embroidered-sleeves' %}\n<div class=\"product-card-ai\">\n  <!-- Embroidered Sleeves Option -->\n  <div class=\"product-card-ai__option\">\n    <input \n      type=\"checkbox\" \n      id=\"embroidered-sleeves-checkbox\" \n      class=\"product-card-ai__input embroidered-sleeves-checkbox\" \n      value=\"false\"\n    />\n    <label for=\"embroidered-sleeves-checkbox\" class=\"product-card-ai__label\">\n      Add embroidered sleeves\n    </label>\n  </div>\n</div>\n{% endif %}\n\n<style>\n.product-card-ai { \n  font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial; \n  max-width:380px; \n  margin-bottom: 1rem;\n}\n.product-card-ai__title { \n  margin: 0 0 0.75rem; \n  font-size: 1.1rem; \n}\n.product-card-ai__option { \n  display:block; \n  border:1px solid #e0e0e0; \n  padding: 12px 16px;\n  border-radius:8px; \n  background: #f9f9f9;\n}\n.product-card-ai__input { \n  position: absolute; \n  left: -9999px; \n} /* visually hide native checkbox */\n.product-card-ai__label { \n  display:flex; \n  align-items:center; \n  gap:0.5rem; \n  cursor:pointer; \n  user-select:none; \n  position:relative; \n  padding-left:32px;\n  font-size: 0.95rem;\n  color: #333;\n}\n\n/* custom checkbox square */\n.product-card-ai__label::before{\n  content: \"\";\n  position: absolute;\n  left: 0;\n  width: 18px;\n  height: 18px;\n  border: 2px solid #777;\n  border-radius: 4px;\n  background: white;\n  box-sizing: border-box;\n  transition: all 0.2s ease;\n}\n\n/* checked state indicator */\n.product-card-ai__input:checked + .product-card-ai__label::before{\n  background: linear-gradient(135deg, #000, #333);\n  border-color: #000;\n  box-shadow: inset 0 0 0 2px white;\n}\n\n/* hover effect */\n.product-card-ai__label:hover::before {\n  border-color: #333;\n}\n</style>\n\n<script>\ndocument.addEventListener('DOMContentLoaded', function() {\n  // Handle sleeve lining checkbox\n  const sleeveLiningCheckbox = document.getElementById('sleeve-lining-checkbox');\n  const sleeveLiningHidden = document.querySelector('input[name=\"properties[sleeve lining]\"]');\n  \n  if (sleeveLiningCheckbox && sleeveLiningHidden) {\n    // Update hidden field on change\n    sleeveLiningCheckbox.addEventListener('change', function() {\n      sleeveLiningHidden.value = this.checked ? 'Yes' : 'No';\n      console.log('Sleeve lining:', sleeveLiningHidden.value);\n    });\n  }\n  \n  // Handle embroidered sleeves checkbox\n  const embroideredSleevesCheckbox = document.getElementById('embroidered-sleeves-checkbox');\n  const embroideredSleevesHidden = document.getElementById('embroidered-sleeves');\n  \n  if (embroideredSleevesCheckbox && embroideredSleevesHidden) {\n    // Update hidden field on change\n    embroideredSleevesCheckbox.addEventListener('change', function() {\n      embroideredSleevesHidden.value = this.checked ? 'Yes' : 'No';\n      console.log('Embroidered sleeves:', embroideredSleevesHidden.value);\n    });\n  }\n});\n</script>"
+          }
+        },
+        "f1b31d90-1e43-4948-9fe3-97ba43f6fb34": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false,
+            "atc_animation": "none",
+            "atc_color": "#232323",
+            "atc_border_color": "#febe98",
+            "atc_bg_color": "#febe98",
+            "atc_bg_color_gradient": "",
+            "atc_color_hover": "#ffffff",
+            "atc_border_color_hover": "#232323",
+            "atc_bg_color_hover": "#000000",
+            "atc_bg_color_gradient_hover": "",
+            "bin_color": "#232323",
+            "bin_border_color": "#acacac",
+            "bin_bg_color": "#ffffff",
+            "bin_bg_color_gradient": "",
+            "bin_color_hover": "#ffffff",
+            "bin_border_color_hover": "#232323",
+            "bin_bg_color_hover": "#232323",
+            "bin_bg_color_hover_gradient": "",
+            "spacing_top": 0,
+            "spacing_bottom": 15
+          }
+        },
+        "product_text_bG3XqC": {
+          "type": "product_text",
+          "settings": {
+            "text": "All stitched articles required advance payment",
+            "text_icon": "",
+            "text_description": "",
+            "fontsize_text": 14,
+            "content_spacing": 25,
+            "custom_block_align": "center",
+            "color_title": "#232323",
+            "background_color_block": "#ffffff",
+            "background_gradient_color_block": "",
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "share_YwjzBD": {
+          "type": "share",
+          "settings": {
+            "show_share": true,
+            "share_layout": "3",
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "custom_liquid_6Pxyy7": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "{% if product.metafields.custom.product_description != blank %}\n  <div class=\"toggleLink popup-mobile\">\n    <details>\n      <summary class=\"accordion__summary\">\n        <h2 class=\"accordion__title h4\">\n          PRODUCT DESCRIPTION\n        </h2>\n      </summary>\n      <div class=\"accordion__content rte\">\n        {{ product.metafields.custom.product_description | metafield_tag }}\n      </div>\n    </details>\n  </div>\n{% endif %}"
+          }
+        },
+        "custom_gHhdBj": {
+          "type": "custom",
+          "settings": {
+            "open_tab_mobile": false,
+            "title": "Product Description",
+            "type": "all",
+            "content": "{% if product.metafields.custom.product_description != blank %}\n  {{ product.metafields.custom.product_description | metafield_tag }}\n{% endif %}",
+            "product_custom_source": "dynamic",
+            "product_tab_key_metafield": "",
+            "enable_btn_show_more": false,
+            "maximum_des_to_show": 300
+          }
+        },
+        "b9d6eb19-10f4-41f8-bfdc-ea10e8b3182a": {
+          "type": "custom",
+          "settings": {
+            "open_tab_mobile": false,
+            "title": "Care Instructions",
+            "type": "all",
+            "content": "<p>-Do not use any kind of bleach or stain removing chemicals<br>\n          -Do not over expose damp fabric to strong sunlight<br>\n          -Iron at moderate temperature<br>\n          -Do not wash at home</p>",
+            "product_custom_source": "dynamic",
+            "product_tab_key_metafield": "",
+            "enable_btn_show_more": false,
+            "maximum_des_to_show": 300
+          }
+        },
+        "custom_nXgXb3": {
+          "type": "custom",
+          "settings": {
+            "open_tab_mobile": false,
+            "title": "Disclaimers",
+            "type": "all",
+            "content": "{% for tag in product.tags %}\n      {% if tag contains 'DIS' %}\n      {% assign DIS = tag | split: '--' %}\n      {% assign DIS = DIS[1] | strip %}\n      {% endif %}\n      {% endfor %}\n      {% if DIS %}\n      <div class=\"dinfo\"> {{ DIS }}</div>\n      {% else %}\n      <div class=\"dinfo\">\n        <p>The fabric pattern/laces, patchwork, and handmade details may vary.<br>\n          Actual colors of the outfit may also vary from the colors being displayed on your device.</p>\n        <p>All laces used for finishing of the stitched outfit especially the dupatta or trousers may vary from the shoot.&nbsp;</p>\n      </div>\n      {% endif %}",
+            "product_custom_source": "dynamic",
+            "product_tab_key_metafield": "",
+            "enable_btn_show_more": false,
+            "maximum_des_to_show": 300
+          }
+        },
+        "custom_Ry9QqW": {
+          "type": "custom",
+          "disabled": true,
+          "settings": {
+            "open_tab_mobile": false,
+            "title": "DELIVERY & RETURNS",
+            "type": "all",
+            "content": "{% for tag in product.tags %}\n      {% if tag contains 'TDT' %}\n      {% assign TDT = tag | split: '--' %}\n      {% assign TDT = TDT[1] | strip %}\n      {% endif %}\n      {% endfor %}\n      {% if TDT %}\n      <div class=\"dinfo\"> {{ TDT }}</div>\n      {% endif %}",
+            "product_custom_source": "dynamic",
+            "product_tab_key_metafield": "",
+            "enable_btn_show_more": false,
+            "maximum_des_to_show": 300
+          }
+        }
+      },
+      "block_order": [
+        "2e8c7c14-a0ad-4930-a1d8-3def05310426",
+        "b0ea69b7-8a54-4a3c-9abd-0fcceeabaaa0",
+        "4e59f24a-8859-4579-a80a-d70e6f1bf66b",
+        "4f95b592-8369-4ab0-b30d-24e463fb6890",
+        "quoli_reviews_ugc_product_review_DpENKT",
+        "custom_description_aGD9UB",
+        "d98e243b-3682-495a-965a-1c7f7d460880",
+        "custom_liquid_Y3enhU",
+        "faa2b3e6-c0a1-4269-baa6-d2605efe4c05",
+        "custom_size_chart_GV637B",
+        "custom_liquid_zrQ4nn",
+        "f1b31d90-1e43-4948-9fe3-97ba43f6fb34",
+        "product_text_bG3XqC",
+        "share_YwjzBD",
+        "custom_liquid_6Pxyy7",
+        "custom_gHhdBj",
+        "b9d6eb19-10f4-41f8-bfdc-ea10e8b3182a",
+        "custom_nXgXb3",
+        "custom_Ry9QqW"
+      ],
+      "custom_css": [
+        ".ew-estimated-delivery {text-align: left; font-weight: 500; display: inline;}"
+      ],
+      "settings": {
+        "container": "1770",
+        "padding_full_width": 0,
+        "show_sticky_info": false,
+        "media_fit": "cover",
+        "product_image_ratio": "portrait",
+        "portrait_aspect_ratio": 148,
+        "video_layout": "thumbnail",
+        "zoomed_image": true,
+        "product_image_popup": "fancybox",
+        "main_image_show_custom_cursor": true,
+        "icon_color": "#000000",
+        "main_image_position": "left",
+        "main_image_layout": "1",
+        "main_image_arrows_desktop": false,
+        "main_image_arrows_mobile": false,
+        "main_image_counter_mobile": false,
+        "main_image_enable_parallax_mb": false,
+        "main_image_show_zoom_icon_mb": true,
+        "show_thumbnail_mobile": true,
+        "thumnail_layout": "1",
+        "thumbnail_to_show": 6,
+        "enable_sticky": false,
+        "sidebar_layout": "layout_1",
+        "sidebar_collapse": "collapse",
+        "sidebar_collapse_default": "expand",
+        "sidebar_position": "left",
+        "sidebar_heading_font": "font_1",
+        "sidebar_heading_font_size": 14,
+        "sidebar_heading_font_weight": "700",
+        "sidebar_heading_text_transform": "uppercase",
+        "show_badge": true,
+        "show_subtotal": false,
+        "subtotal_style": "1",
+        "show_sticky_add_to_cart": false,
+        "sticky_atc_layout": "1",
+        "enable_sticky_add_to_cart_always_mobile": false,
+        "show_sticky_vendor": false,
+        "show_quick_order_list": false,
+        "show_image": false,
+        "show_sku": false,
+        "show_tab": true,
+        "tab_layout": "vertical",
+        "tab_layout_mobile": "popup",
+        "icon_style_layout": "style_1",
+        "title_font_size": 18,
+        "title_font_size_mb": 16,
+        "font_weight_title": "600",
+        "title_text_transform": "none",
+        "title_padding_top_bottom": 10,
+        "tab_border_color": "#000000",
+        "tab_border_color_rgb": "",
+        "show_product_bundle": false,
+        "background_color": "#f8f8f8",
+        "block_title": "Frequenly Bought Together",
+        "block_title_align": "left",
+        "product_style": "2",
+        "block_image_ratio": "adapt",
+        "bundle_discount": false,
+        "bundle_discount_text": "Get a [discount]% discount buying these products together",
+        "bundle_discount_text_color": "#232323",
+        "total_btn_color": "#ffffff",
+        "total_btn_border": "#232323",
+        "total_btn_bg": "#232323",
+        "total_btn_bg_gradient": "",
+        "total_btn_color_hover": "#232323",
+        "total_btn_border_hover": "#232323",
+        "total_btn_bg_hover": "#ffffff",
+        "total_btn_bg_gradient_hover": "",
+        "block_dots": false,
+        "block_arrows": true,
+        "padding_top": 30,
+        "padding_top_tablet": 30,
+        "padding_top_mobile": 30,
+        "padding_bottom": 70,
+        "padding_bottom_tablet": 40,
+        "padding_bottom_mobile": 30,
+        "mg_top_desktop": 50,
+        "mg_top_tablet": 0,
+        "mg_top_mobile": 0,
+        "mg_bottom_desktop": 0,
+        "mg_bottom_tablet": 0,
+        "mg_bottom_mobile": 0
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "display_product_block": true,
+        "product_block_container": "container",
+        "padding_full_width": 0,
+        "enable_border_top": true,
+        "enable_border_bottom": false,
+        "color_border_bottom": "#e8e8e8",
+        "border_style": "container",
+        "mg_top_desktop": 40,
+        "mg_top_tablet": 35,
+        "mg_top_mobile": 35,
+        "mg_bottom_desktop": 0,
+        "mg_bottom_tablet": 0,
+        "mg_bottom_mobile": 0,
+        "product_block_layout": "slider",
+        "product_bg": "#ffffff",
+        "style_block_header": "style1",
+        "product_block_title": "Related Products",
+        "enable_border_title": false,
+        "mg_top_title": 27,
+        "mg_bottom_title": 3,
+        "fontsize_title": 18,
+        "fontsize_title_mb": 18,
+        "color_title": "#232323",
+        "border_color_title": "#232323",
+        "product_block_title_align": "center",
+        "product_block_limit": 10,
+        "grid_gap": 30,
+        "product_block_per_row": "4",
+        "product_block_swipe_on_mobile": true,
+        "product_block_dots": false,
+        "product_block_dots_mb": true,
+        "product_block_arrows": true,
+        "product_block_arrows_mb": false,
+        "product_block_show": "4",
+        "product_block_per_view": "4",
+        "show_half": true,
+        "scroll_height": 4,
+        "scroll_track_bg": "#f1f1f1",
+        "scroll_thumb_color": "#000000",
+        "scroll_thumb_hover_color": "#444444",
+        "enable_layout_special": false,
+        "bg_card": "#ffffff",
+        "padding_card": 15,
+        "border_radius_card": 5,
+        "border_layout_card": "full",
+        "border_width_card": 5,
+        "border_color_card": "#f0f1f4"
+      }
+    },
+    "product-recently-viewed": {
+      "type": "product-recently-viewed",
+      "disabled": true,
+      "settings": {
+        "display_product_recently_viewed": true,
+        "product_recently_viewed_container": "container",
+        "padding_full_width": 0,
+        "enable_border_top": true,
+        "enable_border_bottom": false,
+        "color_border_bottom": "#e8e8e8",
+        "border_style": "container",
+        "mg_top_desktop": 80,
+        "mg_top_tablet": 50,
+        "mg_top_mobile": 30,
+        "mg_bottom_desktop": 0,
+        "mg_bottom_tablet": 0,
+        "mg_bottom_mobile": 0,
+        "product_recently_viewed_layout": "slider",
+        "product_bg": "#ffffff",
+        "product_bg_gradient": "",
+        "style_block_header": "style1",
+        "product_recently_viewed_title": "Recently Viewed Products",
+        "enable_border_title": false,
+        "mg_top_title": 27,
+        "mg_bottom_title": 3,
+        "fontsize_title": 18,
+        "fontsize_title_mb": 18,
+        "border_color_title": "#232323",
+        "color_title": "#232323",
+        "product_recently_viewed_title_align": "center",
+        "product_recently_viewed_limit": 10,
+        "product_recently_viewed_image_ratio": "adapt",
+        "grid_gap": 30,
+        "product_recently_viewed_per_row": "4",
+        "product_recently_viewed_swipe_on_mobile": true,
+        "product_recently_viewed_dots": false,
+        "product_recently_viewed_dots_mb": true,
+        "product_recently_viewed_arrows": true,
+        "product_recently_viewed_arrows_mb": false,
+        "product_recently_viewed_show": "4",
+        "product_block_per_view": "4",
+        "show_half": true,
+        "scroll_height": 4,
+        "scroll_track_bg": "#f1f1f1",
+        "scroll_thumb_color": "#000000",
+        "scroll_thumb_hover_color": "#444444",
+        "enable_layout_special": false,
+        "bg_card": "#ffffff",
+        "padding_card": 15,
+        "border_radius_card": 5,
+        "border_layout_card": "full",
+        "border_width_card": 5,
+        "border_color_card": "#f0f1f4"
+      }
+    },
+    "1761047183bf901136": {
+      "type": "apps",
+      "blocks": {
+        "quoli_reviews_ugc_quoli_pdp_dB6KVJ": {
+          "type": "shopify://apps/quoli-reviews-ugc/blocks/quoli-pdp/baf7b241-e443-4879-b3d4-360440b03895",
+          "settings": {
+            "categories_shown": "reviews,questions",
+            "reviews_per_page": "5",
+            "default_sorting": "Most Recent",
+            "show_ugc_slider": true,
+            "show_filter": true,
+            "show_review_cta": true,
+            "enable_question_cta": true,
+            "review_tab_title": "REVIEWS",
+            "question_tab_title": "QUESTIONS",
+            "heading_font_size": 20,
+            "cta_font_size": 20
+          }
+        }
+      },
+      "block_order": [
+        "quoli_reviews_ugc_quoli_pdp_dB6KVJ"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product-recommendations",
+    "product-recently-viewed",
+    "1761047183bf901136"
+  ]
+}
