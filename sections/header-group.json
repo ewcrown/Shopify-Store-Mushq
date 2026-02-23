@@ -161,7 +161,7 @@
         "main_menu_JWKV8N": {
           "type": "main_menu",
           "settings": {
-            "menu": "astoria-17-feb",
+            "menu": "r-latest",
             "menu_top_spacing": 11,
             "menu_bottom_spacing": 12,
             "grid_gap_menu_item": 20,
@@ -337,11 +337,26 @@
         "transparent_color_hover": "#000000",
         "border_color": "rgba(0,0,0,0)"
       }
+    },
+    "two_buttons_XQqYJc": {
+      "type": "two-buttons",
+      "name": "Two Buttons",
+      "settings": {
+        "button_1_label": "Mushq",
+        "button_1_link": "/",
+        "button_2_label": "No Rules",
+        "button_2_link": "shopify://pages/no-rules",
+        "layout": "row",
+        "alignment": "center",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
     }
   },
   "order": [
     "header_basic_XdVmNT",
     "header-mobile",
-    "9c03747e-b054-4db8-8194-5a35c71f82ca"
+    "9c03747e-b054-4db8-8194-5a35c71f82ca",
+    "two_buttons_XQqYJc"
   ]
 }

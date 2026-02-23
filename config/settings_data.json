@@ -855,6 +855,16 @@
           "footer_top_color_link": "#ffffff",
           "footer_top_color_link_hover": "#ffffff"
         }
+      },
+      "no-rules-header": {
+        "type": "no-rules-header",
+        "settings": {
+          "promo_text": "Save up to 15% with Packs",
+          "logo": "shopify://shop_images/no-rules-logo-black_6149f2ee-1bcd-42bb-8632-e50bde41b2ab.png",
+          "menu": "no-rules",
+          "show_login": true,
+          "show_login_text": true
+        }
       }
     },
     "content_for_index": [],

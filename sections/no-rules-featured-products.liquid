@@ -1,0 +1,73 @@
+{% comment %}
+  NO RULES – Featured products (collection grid, landing)
+  Shows collection with title + Shop All / Shop best seller buttons
+{% endcomment %}
+{% assign collection = collections[section.settings.collection] %}
+<section class="no-rules-products" id="no-rules-products-{{ section.id }}" aria-labelledby="no-rules-products-title-{{ section.id }}">
+  <div class="no-rules-products__inner">
+    <div class="no-rules-products__header">
+      <h2 id="no-rules-products-title-{{ section.id }}" class="no-rules-products__title">{{ section.settings.title | default: collection.title | default: 'Products' }}</h2>
+      <div class="no-rules-products__actions">
+        {% if section.settings.shop_all_url != blank %}
+          <a href="{{ section.settings.shop_all_url }}" class="no-rules-products__btn no-rules-products__btn--primary">{{ section.settings.shop_all_text | default: 'Shop All' }}</a>
+        {% endif %}
+        {% if section.settings.best_seller_url != blank %}
+          <a href="{{ section.settings.best_seller_url }}" class="no-rules-products__btn no-rules-products__btn--secondary">{{ section.settings.best_seller_text | default: 'Shop best seller' }}</a>
+        {% endif %}
+      </div>
+    </div>
+    <ul class="no-rules-products__grid">
+      {% for product in collection.products limit: section.settings.limit %}
+        <li class="no-rules-products__card">
+          <a href="{{ product.url }}">
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.featured_image.alt | default: product.title }}" width="335" height="503" loading="lazy" style="width:100%;aspect-ratio:335/503;object-fit:cover;border-radius:8px;" />
+            {% else %}
+              <div class="no-rules-products__placeholder" style="aspect-ratio:335/503;background:#f0f0f0;border-radius:8px;"></div>
+            {% endif %}
+            <span class="no-rules-products__card-title">{{ product.title }}</span>
+            <span class="no-rules-products__card-price">{{ product.price | money }}</span>
+          </a>
+          <form action="{{ routes.cart_add_url }}" method="post">
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <button type="submit" class="no-rules-products__btn no-rules-products__btn--primary" style="width:100%;margin-top:12px;padding:10px;">Add to cart</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <style>
+    .no-rules-products { padding-bottom: 48px; }
+    .no-rules-products__inner { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
+    .no-rules-products__header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-bottom: 20px; }
+    .no-rules-products__title { font-size: 1.5rem; font-weight: 700; margin: 0; }
+    .no-rules-products__actions { display: flex; gap: 12px; }
+    .no-rules-products__btn { display: inline-block; padding: 12px 24px; font-size: 0.875rem; font-weight: 600; border-radius: 6px; text-decoration: none; border: 2px solid transparent; }
+    .no-rules-products__btn--primary { background: #1a1a1a; color: #fff; }
+    .no-rules-products__btn--secondary { background: transparent; color: #1a1a1a; border-color: #1a1a1a; }
+    .no-rules-products__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .no-rules-products__card a { display: block; text-decoration: none; color: inherit; }
+    .no-rules-products__card-title { display: block; font-size: 0.9375rem; margin-top: 12px; margin-bottom: 4px; }
+    .no-rules-products__card-price { font-size: 0.9375rem; font-weight: 600; }
+    @media (max-width: 900px) { .no-rules-products__grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .no-rules-products__grid { grid-template-columns: 1fr; } }
+  </style>
+</section>
+
+{% schema %}
+{
+  "name": "NO RULES Featured",
+  "tag": "section",
+  "class": "section-no-rules-products",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Section title" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "limit", "label": "Products to show", "min": 2, "max": 12, "step": 1, "default": 4 },
+    { "type": "url", "id": "shop_all_url", "label": "Shop All link" },
+    { "type": "text", "id": "shop_all_text", "label": "Shop All button text", "default": "Shop All" },
+    { "type": "url", "id": "best_seller_url", "label": "Shop best seller link" },
+    { "type": "text", "id": "best_seller_text", "label": "Shop best seller button text", "default": "Shop best seller" }
+  ],
+  "presets": [{ "name": "NO RULES Featured" }]
+}
+{% endschema %}

@@ -1,0 +1,315 @@
+{% comment %}
+  NO RULES – Newsletter signup: CTA, email form, consent, social icons.
+  Color and font options in schema.
+{% endcomment %}
+{%- style -%}
+  #no-rules-newsletter-{{ section.id }} {
+    --nr-section-bg: {{ section.settings.section_bg | default: '#D9D092' }};
+    --nr-section-padding-top: {{ section.settings.section_padding_top | default: 48 }}px;
+    --nr-section-padding-bottom: {{ section.settings.section_padding_bottom | default: 48 }}px;
+    --nr-headline-color: {{ section.settings.headline_color | default: '#4A4A4A' }};
+    --nr-headline-size: {{ section.settings.headline_font_size | default: 18 }}px;
+    --nr-headline-weight: {{ section.settings.headline_font_weight | default: '600' }};
+    --nr-input-bg: {{ section.settings.input_bg | default: '#ffffff' }};
+    --nr-input-border: {{ section.settings.input_border | default: '#e0e0e0' }};
+    --nr-input-color: {{ section.settings.input_color | default: '#1a1a1a' }};
+    --nr-input-placeholder: {{ section.settings.input_placeholder_color | default: '#CCCCCC' }};
+    --nr-btn-bg: {{ section.settings.button_bg | default: '#8DC79B' }};
+    --nr-btn-color: {{ section.settings.button_color | default: '#ffffff' }};
+    --nr-btn-radius: {{ section.settings.button_border_radius | default: 8 }}px;
+    --nr-consent-color: {{ section.settings.consent_color | default: '#888888' }};
+    --nr-consent-size: {{ section.settings.consent_font_size | default: 13 }}px;
+    --nr-link-color: {{ section.settings.link_color | default: '#888888' }};
+    --nr-social-color: {{ section.settings.social_icon_color | default: '#1a1a1a' }};
+  }
+{%- endstyle -%}
+<section class="no-rules-newsletter" id="no-rules-newsletter-{{ section.id }}" style="background-color: var(--nr-section-bg); padding-top: var(--nr-section-padding-top); padding-bottom: var(--nr-section-padding-bottom);" aria-labelledby="no-rules-newsletter-heading-{{ section.id }}">
+  <div class="no-rules-newsletter__inner">
+    <h2 id="no-rules-newsletter-heading-{{ section.id }}" class="no-rules-newsletter__visually-hidden">Newsletter</h2>
+    {% if section.settings.headline != blank %}
+      <p class="no-rules-newsletter__headline">{{ section.settings.headline }}</p>
+    {% endif %}
+    {% form 'customer', class: 'no-rules-newsletter__form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <label for="no-rules-email-{{ section.id }}" class="no-rules-newsletter__visually-hidden">Email</label>
+      <input
+        type="email"
+        id="no-rules-email-{{ section.id }}"
+        name="contact[email]"
+        placeholder="{{ section.settings.input_placeholder | default: 'Email' }}"
+        required
+        class="no-rules-newsletter__input"
+      />
+      <button type="submit" class="no-rules-newsletter__btn">{{ section.settings.button_text | default: 'Sign Up' }}</button>
+    {% endform %}
+    {% if section.settings.consent != blank %}
+      <div class="no-rules-newsletter__consent">
+        {{ section.settings.consent }}
+      </div>
+    {% endif %}
+    {% assign has_social_link = false %}
+    {% if section.settings.social_instagram != blank or section.settings.social_facebook != blank or section.settings.social_twitter != blank or section.settings.social_pinterest != blank %}
+      {% assign has_social_link = true %}
+    {% endif %}
+    {% if section.settings.show_social and has_social_link %}
+      <div class="no-rules-newsletter__social" aria-label="Social media">
+        {% if section.settings.social_instagram != blank %}
+          <a href="{{ section.settings.social_instagram }}" class="no-rules-newsletter__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">{% render 'icon-instagram' %}</a>
+        {% endif %}
+        {% if section.settings.social_facebook != blank %}
+          <a href="{{ section.settings.social_facebook }}" class="no-rules-newsletter__social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">{% render 'icon-facebook' %}</a>
+        {% endif %}
+        {% if section.settings.social_twitter != blank %}
+          <a href="{{ section.settings.social_twitter }}" class="no-rules-newsletter__social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter">{% render 'icon-twitter' %}</a>
+        {% endif %}
+        {% if section.settings.social_pinterest != blank %}
+          <a href="{{ section.settings.social_pinterest }}" class="no-rules-newsletter__social-link" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">{% render 'icon-pinterest' %}</a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+  <style>
+    .no-rules-newsletter { color: var(--nr-headline-color); text-align: center; }
+    .no-rules-newsletter__inner { max-width: 560px; margin: 0 auto; }
+    .no-rules-newsletter__visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); }
+    .no-rules-newsletter__headline { font-size: var(--nr-headline-size, 18px); font-weight: var(--nr-headline-weight, 600); color: var(--nr-headline-color); margin: 0 auto 24px; line-height: 1.4; }
+    .no-rules-newsletter__form { display: flex; gap: 0; flex-wrap: wrap; justify-content: center; margin-bottom: 16px; border-radius: var(--nr-btn-radius, 8px); overflow: hidden; box-shadow: 0 0 0 1px var(--nr-input-border); background: var(--nr-input-bg); max-width: 100%; }
+    .no-rules-newsletter__input { flex: 1; min-width: 180px; padding: 14px 18px; font-size: 1rem; border: none; border-radius: var(--nr-btn-radius, 8px) 0 0 var(--nr-btn-radius, 8px); background: var(--nr-input-bg); color: var(--nr-input-color); }
+    .no-rules-newsletter__input::placeholder { color: var(--nr-input-placeholder); }
+    .no-rules-newsletter__btn { padding: 14px 28px; font-size: 1rem; font-weight: 600; border-radius: 0 var(--nr-btn-radius, 8px) var(--nr-btn-radius, 8px) 0; background: var(--nr-btn-bg); color: var(--nr-btn-color); border: none; cursor: pointer; white-space: nowrap; transition: opacity 0.2s, filter 0.2s; }
+    .no-rules-newsletter__btn:hover { opacity: 0.92; filter: brightness(0.98); }
+    .no-rules-newsletter__consent { font-size: var(--nr-consent-size, 13px); color: var(--nr-consent-color); margin: 0 0 20px; line-height: 1.5; }
+    .no-rules-newsletter__consent a { color: var(--nr-link-color); text-decoration: underline; }
+    .no-rules-newsletter__consent a:hover { text-decoration: none; }
+    .no-rules-newsletter__social { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+    .no-rules-newsletter__social-link { display: inline-flex; align-items: center; justify-content: center; color: var(--nr-social-color); transition: opacity 0.2s; }
+    .no-rules-newsletter__social-link:hover { opacity: 0.7; }
+    .no-rules-newsletter__social-link svg { width: 24px; height: 24px; fill: currentColor; }
+    @media (max-width: 480px) {
+      .no-rules-newsletter__form { flex-direction: column; }
+      .no-rules-newsletter__input { border-radius: var(--nr-btn-radius, 8px); min-width: 100%; }
+      .no-rules-newsletter__btn { border-radius: var(--nr-btn-radius, 8px); width: 100%; }
+    }
+  </style>
+</section>
+
+{% schema %}
+{
+  "name": "NO RULES Newsletter",
+  "tag": "section",
+  "class": "section-no-rules-newsletter",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "textarea",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Enter your email for 20% off your order, plus the latest NO RULES news."
+    },
+    {
+      "type": "text",
+      "id": "input_placeholder",
+      "label": "Email placeholder",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Sign Up"
+    },
+    {
+      "type": "richtext",
+      "id": "consent",
+      "label": "Consent / disclaimer",
+      "default": "<p>By providing my email, I am consenting to receive NO RULES emails and Email-Based Advertising. For additional information, please see our <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Social links"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show social icons",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "social_twitter",
+      "label": "Twitter / X URL"
+    },
+    {
+      "type": "url",
+      "id": "social_pinterest",
+      "label": "Pinterest URL"
+    },
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section background",
+      "default": "#D9D092"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Padding top",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Padding bottom",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Headline font"
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline color",
+      "default": "#4A4A4A"
+    },
+    {
+      "type": "range",
+      "id": "headline_font_size",
+      "label": "Headline font size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "headline_font_weight",
+      "label": "Headline font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "header",
+      "content": "Email input"
+    },
+    {
+      "type": "color",
+      "id": "input_bg",
+      "label": "Input background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "input_border",
+      "label": "Input border",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "input_color",
+      "label": "Input text color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "input_placeholder_color",
+      "label": "Placeholder color",
+      "default": "#CCCCCC"
+    },
+    {
+      "type": "header",
+      "content": "Sign Up button"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#8DC79B"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button / form corner radius",
+      "min": 0,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Consent text"
+    },
+    {
+      "type": "color",
+      "id": "consent_color",
+      "label": "Consent text color",
+      "default": "#888888"
+    },
+    {
+      "type": "range",
+      "id": "consent_font_size",
+      "label": "Consent font size",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color (e.g. Privacy Policy)",
+      "default": "#888888"
+    },
+    {
+      "type": "header",
+      "content": "Social icons"
+    },
+    {
+      "type": "color",
+      "id": "social_icon_color",
+      "label": "Social icon color",
+      "default": "#1a1a1a"
+    }
+  ],
+  "presets": [{ "name": "NO RULES Newsletter" }]
+}
+{% endschema %}

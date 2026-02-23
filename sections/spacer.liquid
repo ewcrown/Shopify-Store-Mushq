@@ -1,0 +1,61 @@
+<section style="padding:2rem;">
+ <div  class="spacer-ai" 
+  style="
+    --desktop-height-ai: {{ section.settings.desktop_height }}px;
+    --mobile-height-ai: {{ section.settings.mobile_height }}px;
+    --bg-color-ai: {{ section.settings.bg_color }};
+  ">
+ 
+</div>
+</section>
+
+<style>
+.spacer-ai {
+  width: 100%;
+  height: var(--desktop-height-ai);
+  background: var(--bg-color-ai, transparent);
+}
+
+@media (max-width: 749px) {
+  .spacer-ai {
+    height: var(--mobile-height-ai);
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Spacer (AI)",
+  "settings": [
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Desktop height (px)",
+      "min": 0,
+      "max": 300,
+      "step": 5,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "Mobile height (px)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "transparent"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Spacer (AI)"
+    }
+  ]
+}
+{% endschema %}

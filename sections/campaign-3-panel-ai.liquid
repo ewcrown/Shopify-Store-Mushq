@@ -1,0 +1,144 @@
+<section class="campaign-3-panel-ai">
+  <div class="campaign-3-panel-ai__grid-ai">
+    {% for block in section.blocks %}
+      <div class="campaign-3-panel-ai__item-ai" {{ block.shopify_attributes }}>
+        {% if block.settings.link != blank %}
+          <a href="{{ block.settings.link }}" class="campaign-3-panel-ai__link-ai">
+        {% endif %}
+
+        <div class="campaign-3-panel-ai__media-ai">
+          {% if block.settings.image != blank %}
+            {{
+              block.settings.image
+              | image_url: width: 2000
+              | image_tag:
+                loading: 'lazy',
+                class: 'campaign-3-panel-ai__img-ai'
+            }}
+          {% else %}
+            {{ 'image' | placeholder_svg_tag }}
+          {% endif %}
+        </div>
+
+        {% if block.settings.link != blank %}
+          </a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+.campaign-3-panel-ai {
+  width: 100%;
+  overflow: hidden;
+}
+
+.campaign-3-panel-ai__grid-ai {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: {{ section.settings.gap }}px;
+}
+
+.campaign-3-panel-ai__item-ai {
+  position: relative;
+  overflow: hidden;
+}
+
+.campaign-3-panel-ai__media-ai {
+  width: 100%;
+  aspect-ratio: {{ section.settings.aspect_ratio }};
+  overflow: hidden;
+}
+
+.campaign-3-panel-ai__img-ai {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.campaign-3-panel-ai__item-ai:hover .campaign-3-panel-ai__img-ai {
+  transform: scale(1.07);
+}
+
+/* Tablet + Mobile Slide Mode */
+@media (max-width: 990px) {
+  .editorial-strip-ai__wrapper-ai {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .editorial-strip-ai__wrapper-ai::-webkit-scrollbar {
+    display: none;
+  }
+
+  .editorial-strip-ai__item-ai {
+    flex: 0 0 80%;
+    scroll-snap-align: start;
+  }
+}
+
+/* Smaller Mobile */
+@media (max-width: 600px) {
+  .editorial-strip-ai__item-ai {
+    flex: 0 0 88%;
+  }
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "Campaign 3 Panel",
+  "settings": [
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between panels (px)",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "text",
+      "id": "aspect_ratio",
+      "label": "Aspect ratio (example: 3 / 4)",
+      "default": "3 / 4"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "panel",
+      "name": "Panel",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Optional link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Campaign 3 Panel",
+      "blocks": [
+        { "type": "panel" },
+        { "type": "panel" },
+        { "type": "panel" }
+      ]
+    }
+  ]
+}
+{% endschema %}
