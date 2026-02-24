@@ -1,0 +1,453 @@
+<footer class="footer-happiness section-{{ section.id }}-padding" style="--fh-bg: {{ section.settings.background_color }}; --fh-text: {{ section.settings.text_color }};">
+  <div class="container container-1770">
+    {% comment %} Top Section: Happiness Guarantee + Nav Columns {% endcomment %}
+    <div class="footer-happiness__top">
+      {% comment %} Left: Customer Service / Happiness Guarantee {% endcomment %}
+      <div class="footer-happiness__guarantee">
+        <h2 class="footer-happiness__heading">
+          <span class="footer-happiness__heading-accent">{{ section.settings.heading_accent }}</span>
+          <span class="footer-happiness__heading-main">{{ section.settings.heading_main }}</span>
+        </h2>
+        {% if section.settings.paragraph != blank %}
+          <p class="footer-happiness__paragraph">{{ section.settings.paragraph }}</p>
+        {% endif %}
+        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+          <a href="{{ section.settings.button_link }}" class="footer-happiness__button">
+            {{ section.settings.button_label }}
+          </a>
+        {% endif %}
+      </div>
+
+      {% comment %} Right: Navigation Columns (blocks) {% endcomment %}
+      <div class="footer-happiness__nav-columns">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'nav_menu' %}
+              <div class="footer-happiness__nav-column" {{ block.shopify_attributes }}>
+                {% if block.settings.heading != blank %}
+                  <h3 class="footer-happiness__nav-heading">{{ block.settings.heading }}</h3>
+                {% endif %}
+                {% if block.settings.menu != blank %}
+                  <ul class="footer-happiness__nav-links list-unstyled">
+                    {% for link in block.settings.menu.links %}
+                      <li>
+                        <a href="{{ link.url }}" class="footer-happiness__nav-link{% if link.active %} footer-happiness__nav-link--active{% endif %}">
+                          {{ link.title | escape }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% comment %} Middle Section: Logo {% endcomment %}
+    {% if section.settings.logo != blank %}
+      <div class="footer-happiness__logo">
+        <img
+          src="{{ section.settings.logo | image_url: width: 400 }}"
+          srcset="{{ section.settings.logo | image_url: width: 200 }} 200w,
+                  {{ section.settings.logo | image_url: width: 300 }} 300w,
+                  {{ section.settings.logo | image_url: width: 400 }} 400w"
+          sizes="(max-width: 768px) 200px, 300px"
+          alt="{{ section.settings.logo.alt | default: shop.name }}"
+          loading="lazy"
+          width="{{ section.settings.logo.width }}"
+          height="{{ section.settings.logo.height }}"
+        >
+      </div>
+    {% endif %}
+
+    {% comment %} Bottom Section: Legal Links {% endcomment %}
+    <div class="footer-happiness__bottom">
+      <div class="footer-happiness__legal">
+        {% if section.settings.show_policies %}
+          {% for policy in shop.policies %}
+            {% if policy != blank %}
+              <a href="{{ policy.url }}" class="footer-happiness__legal-link">{{ policy.title | escape }}</a>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          {% assign legal_menu = linklists[section.settings.legal_menu] %}
+          {% if legal_menu != blank and legal_menu.links.size > 0 %}
+            {% for link in legal_menu.links %}
+              <a href="{{ link.url }}" class="footer-happiness__legal-link">{{ link.title | escape }}</a>
+              {% unless forloop.last %} · {% endunless %}
+            {% endfor %}
+          {% else %}
+            <a href="{{ routes.privacy_policy_url }}" class="footer-happiness__legal-link">Privacy Policy</a> ·
+            <a href="{{ routes.terms_of_service_url }}" class="footer-happiness__legal-link">Terms and Conditions</a> ·
+            <a href="#cookie-settings" class="footer-happiness__legal-link">Cookie Settings</a>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "NO RULES Footer",
+  "class": "footer-happiness-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Happiness Guarantee"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Heading accent (e.g. 100%)",
+      "default": "100%"
+    },
+    {
+      "type": "text",
+      "id": "heading_main",
+      "label": "Heading main text",
+      "default": "HAPPINESS\nGUARANTEED"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph",
+      "label": "Description",
+      "default": "The NO RULES Customers Happiness Team is your go-to when you need a recommendation, a return, or just a reason to smile. Seriously, reach out. Even just to say hi."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Get Help"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "header",
+      "content": "Legal links"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policies",
+      "label": "Use shop policies (Privacy, Terms)",
+      "default": true,
+      "info": "Uncheck to use a menu instead"
+    },
+    {
+      "type": "text",
+      "id": "legal_menu",
+      "label": "Legal menu handle",
+      "default": "footer",
+      "info": "Menu handle from Online Store > Navigation. Used when 'Use shop policies' is off."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_menu",
+      "name": "Navigation menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Column heading",
+          "default": "More Info"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "default": "footer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "NO RULES Footer",
+      "blocks": [
+        {
+          "type": "nav_menu",
+          "settings": {
+            "heading": "More Info",
+            "menu": "footer"
+          }
+        },
+        {
+          "type": "nav_menu",
+          "settings": {
+            "heading": "Shopping",
+            "menu": "main-menu"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  /* Section padding */
+  .footer-happiness-section.section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .footer-happiness-section.section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* Footer base */
+ .footer-happiness {
+    background: var(--fh-bg, #f8f8f8);
+    color: var(--fh-text, #1a1a1a);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 80px 0 40px;
+}
+
+  .footer-happiness__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Top section */
+  .footer-happiness__top {
+    display: grid;
+    gap: 40px;
+    padding-bottom: 48px;
+    border-bottom: none;
+  }
+  @media screen and (min-width: 750px) {
+    .footer-happiness__top {
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      padding-bottom:0 !important; 
+    }
+  }
+
+  /* Happiness guarantee block */
+  .footer-happiness__guarantee {
+    max-width: 420px;
+  }
+
+.footer-happiness__heading {
+    margin: 0 0 16px 0;
+    font-weight: 700;
+    color: var(--fh-text);
+    line-height: 1.1;
+    white-space: pre-line;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+  .footer-happiness__heading-accent {
+    display: block;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+.footer-happiness__heading-main {
+    display: block;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    letter-spacing: 0.02em;
+    max-width: 150px;
+}
+
+ .footer-happiness__paragraph {
+    margin: 0 0 20px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--fh-text);
+    /* opacity: 0.9; */
+    font-weight: bold;
+}
+
+ .footer-happiness__button {
+    display: inline-block;
+    padding: 8px 24px;
+    background: #f8f8f8;
+    color: var(--fh-text);
+    border: 1px solid #acacac;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: normal;
+    text-decoration: none;
+    font-weight: bold;
+}
+  .footer-happiness__button:hover {
+    background: var(--fh-text);
+    color: var(--fh-bg);
+  }
+
+  /* Nav columns */
+.footer-happiness__nav-columns {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    border-left: 1px solid #000;
+}
+
+.footer-happiness__nav-heading {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--fh-text);
+    text-transform: none;
+}
+
+  .footer-happiness__nav-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .footer-happiness__nav-links li {
+    margin-bottom: 8px;
+  }
+
+ .footer-happiness__nav-link {
+    color: var(--fh-text);
+    text-decoration: none;
+    font-size: 14px;
+    transition: opacity 0.2s;
+}
+  .footer-happiness__nav-link:hover {
+    opacity: 0.7;
+  }
+  .footer-happiness__nav-link--active {
+    font-weight: 600;
+  }
+
+  .list-unstyled {
+    list-style: none;
+  }
+
+  /* Logo */
+.footer-happiness__logo {
+    padding: 40px 0;
+    display: none;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 800px;
+    margin: auto;
+}
+  .footer-happiness__logo img {
+    max-width: 200px;
+    height: auto;
+    display: block;
+  }
+
+  /* Bottom legal */
+.footer-happiness__bottom {
+     display:none;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+.footer-happiness__legal {
+    font-size: 11px;
+    text-align: left;
+    color: var(--fh-text);
+    opacity: 1;
+    display: flex;
+    gap: 20px;
+}
+
+  .footer-happiness__legal-link {
+    color: var(--fh-text);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .footer-happiness__legal-link:hover {
+    opacity: 0.7;
+  }
+
+  @media(max-width:767px){
+        .footer-happiness {
+            padding: 30px 0 30px;
+        }
+        .footer-happiness__nav-columns {
+    justify-content: space-between;
+    gap: 30px;
+    border-bottom: 1px solid #000;
+    border-left: none;
+    padding-bottom: 20px;
+        }
+        .footer-happiness__top {
+    gap: 30px;
+    padding-bottom: 0;
+}
+.footer-happiness__logo {
+    padding: 20px 0;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+}
+.footer-happiness__legal {
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.footer-happiness__paragraph {
+    font-size: 12px;
+}
+    }
+</style>

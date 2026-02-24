@@ -1,0 +1,56 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "footer-no-rules-group",
+  "type": "header",
+  "sections": {
+    "no_rules_footer_PWjM87": {
+      "type": "no-rules-footer",
+      "blocks": {
+        "nav_menu_pTrFmG": {
+          "type": "nav_menu",
+          "settings": {
+            "heading": "Information",
+            "menu": "footer3"
+          }
+        },
+        "nav_menu_p39WnU": {
+          "type": "nav_menu",
+          "settings": {
+            "heading": "Customer Service",
+            "menu": "footer4"
+          }
+        }
+      },
+      "block_order": [
+        "nav_menu_pTrFmG",
+        "nav_menu_p39WnU"
+      ],
+      "name": "NO RULES Footer",
+      "settings": {
+        "heading_accent": "100%",
+        "heading_main": "HAPPINESS GUARANTEED",
+        "paragraph": "The NO RULES Customers Happiness Team is your go-to when you need a recommendation, a return, or just a reason to smile. Seriously, reach out. Even just to say hi.",
+        "button_label": "Get Help",
+        "button_link": "#",
+        "logo": "shopify://shop_images/Screenshot_2026-02-19_at_1.53.56_PM.png",
+        "show_policies": true,
+        "legal_menu": "footer",
+        "background_color": "#f8f8f8",
+        "text_color": "#1a1a1a",
+        "padding_top": 48,
+        "padding_bottom": 32
+      }
+    }
+  },
+  "order": [
+    "no_rules_footer_PWjM87"
+  ]
+}

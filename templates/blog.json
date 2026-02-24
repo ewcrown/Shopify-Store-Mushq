@@ -29,6 +29,7 @@
         },
         "6543713f-63f0-4882-ad34-5a2cdf3308dd": {
           "type": "product_block",
+          "disabled": true,
           "settings": {
             "heading": "Featured Products",
             "product_block_collection": "collection-home-1-2",
@@ -40,6 +41,7 @@
         },
         "5ad48b09-ec51-476a-b52c-e12ce0707c61": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "heading": "",
             "link": ""
@@ -47,6 +49,7 @@
         },
         "74038a9b-b77e-4134-88bb-bcd7f06fdda1": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "heading": "",
             "link": ""
@@ -54,6 +57,7 @@
         },
         "9bcdee17-7ee7-4353-b16c-f7b04bdf5b84": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "heading": "Custom Block",
             "text": "<p>Custom CMS block displayed at the left sidebar on the Catalog Page. Put your own content here: text, html, images, media... or whatever you like.</p>\n<p>There are many similar sample content placeholders across the store. All editable from Theme Editor.</p>"
@@ -102,9 +106,9 @@
         "limit": 7,
         "item_per_row": "1",
         "show_placeholder": false,
-        "show_date": true,
-        "show_author": true,
-        "show_comment": true,
+        "show_date": false,
+        "show_author": false,
+        "show_comment": false,
         "show_summary": true,
         "show_read_more": false,
         "blog_text_align": "left",

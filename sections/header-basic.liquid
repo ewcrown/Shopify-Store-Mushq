@@ -6,6 +6,13 @@
                 <div class="header-basic__item header-basic__item--{{ block.type }}">
                     {%- case block.type -%}
                         {%-  when 'conversion_group' -%}
+                            {% if page.template_suffix != 'no-rules-landing' %}
+                            <div class="two-buttons__wrapper" data-two-buttons-wrapper="" data-brand="default_brand"><a href="/" class="two-buttons__btn two-buttons__btn--1" data-two-buttons-btn="">
+                                Mushq
+                            </a><a href="/pages/no-rules" class="two-buttons__btn two-buttons__btn--2" data-two-buttons-btn="">
+                                No Rules
+                            </a></div>
+                        {% endif %}
                             <div class="header-top--left header__language_currency clearfix" style="--la-cu-color: {{ block.settings.language_currency_color }}; --text-color: {{ block.settings.text_color }}">
                                 <div class="header-top-right-group header-language_currency">
                                     {%- if block.settings.show_language_currency -%}

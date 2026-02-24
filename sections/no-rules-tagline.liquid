@@ -1,0 +1,144 @@
+{% comment %}
+  NO RULES – Tagline section. Color and font options in schema.
+{% endcomment %}
+{%- style -%}
+  #no-rules-tagline-{{ section.id }} {
+    --nr-tagline-bg: {{ section.settings.section_bg | default: '#ffffff' }};
+    --nr-tagline-padding-top: {{ section.settings.section_padding_top | default: 24 }}px;
+    --nr-tagline-padding-bottom: {{ section.settings.section_padding_bottom | default: 32 }}px;
+    --nr-tagline-color: {{ section.settings.text_color | default: '#1a1a1a' }};
+    --nr-tagline-size: {{ section.settings.font_size | default: 20 }}px;
+    --nr-tagline-weight: {{ section.settings.font_weight | default: '600' }};
+    --nr-tagline-align: {{ section.settings.text_alignment | default: 'center' }};
+  }
+{%- endstyle -%}
+<section class="no-rules-tagline" id="no-rules-tagline-{{ section.id }}" style="background-color: var(--nr-tagline-bg); padding-top: var(--nr-tagline-padding-top); padding-bottom: var(--nr-tagline-padding-bottom);">
+  <div class="no-rules-tagline__inner">
+    {% if section.settings.text != blank %}
+      <p class="no-rules-tagline__text">{{ section.settings.text }}</p>
+    {% endif %}
+  </div>
+  <style>
+    .no-rules-tagline { padding-left: 24px; padding-right: 24px; box-sizing: border-box; width: 100%; overflow-x: hidden; }
+    .no-rules-tagline__inner { max-width: 1440px; margin: 0 auto; text-align: var(--nr-tagline-align, center); width: 100%; }
+    .no-rules-tagline__text {
+      font-family: AntonRegular, sans-serif;
+      text-transform: uppercase;
+      font-size: var(--nr-tagline-size);
+      font-weight: var(--nr-tagline-weight);
+      color: var(--nr-tagline-color);
+      margin: 0;
+      line-height: 1.4;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      max-width: 100%;
+    }
+    @media (max-width: 767px) {
+      .no-rules-tagline { padding-left: 20px; padding-right: 20px; }
+      .no-rules-tagline__text { font-size: 20px; }
+    }
+    @media (max-width: 600px) {
+      .no-rules-tagline { padding-left: 16px; padding-right: 16px; }
+      .no-rules-tagline__text { font-size: 18px; line-height: 1.35; }
+    }
+    @media (max-width: 380px) {
+      .no-rules-tagline { padding-left: 12px; padding-right: 12px; }
+      .no-rules-tagline__text { font-size: 16px; }
+    }
+  </style>
+</section>
+
+{% schema %}
+{
+  "name": "NO RULES Tagline",
+  "tag": "section",
+  "class": "section-no-rules-tagline",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Tagline",
+      "default": "For the fearless, the bold and The Poised"
+    },
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Text style"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    }
+  ],
+  "presets": [{ "name": "NO RULES Tagline" }]
+}
+{% endschema %}

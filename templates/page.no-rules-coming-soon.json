@@ -11,38 +11,13 @@
   "sections": {
     "main": {
       "type": "main-page",
-      "disabled": true,
       "custom_css": [
-        "h1.main-page-title.page-header {text-align: center;}"
+        "h1.main-page-title.page-header {text-align: center}"
       ],
       "settings": {}
-    },
-    "coming_soon_video_Diq8km": {
-      "type": "coming-soon-video",
-      "name": "Coming soon video",
-      "settings": {
-        "desktop_video": "shopify://files/videos/Horizontal 1920x1080.mp4",
-        "desktop_video_url": "",
-        "mobile_video": "shopify://files/videos/Vertical 1080x1920.mp4",
-        "mobile_video_url": "",
-        "autoplay": true,
-        "loop": true,
-        "muted": true,
-        "controls": false,
-        "show_notify_button": true,
-        "notify_button_label": "Notify Me",
-        "notify_email_placeholder": "Enter your email",
-        "notify_submit_label": "Subscribe",
-        "notify_success_message": "Thanks for subscribing!",
-        "notify_button_bg": "#1a1a1a",
-        "notify_button_text": "#ffffff",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
     }
   },
   "order": [
-    "main",
-    "coming_soon_video_Diq8km"
+    "main"
   ]
 }

@@ -11,42 +11,6 @@
   "type": "header",
   "name": "Header Group",
   "sections": {
-    "17716371294156ab7a": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_95824e1_7jTpAi": {
-          "type": "ai_gen_block_95824e1",
-          "settings": {
-            "item_1": "Any PRET and unstitched-to-stitched orders placed after 22ⁿᵈ February will be processed after Eid.",
-            "item_2": "Any PRET and unstitched-to-stitched orders placed after 22ⁿᵈ February will be processed after Eid.",
-            "item_3": "Any PRET and unstitched-to-stitched orders placed after 22ⁿᵈ February will be processed after Eid.",
-            "item_4": "Any PRET and unstitched-to-stitched orders placed after 22ⁿᵈ February will be processed after Eid.",
-            "item_5": "Any PRET and unstitched-to-stitched orders placed after 22ⁿᵈ February will be processed after Eid.",
-            "show_separator": true,
-            "separator_symbol": "•",
-            "separator_size": 16,
-            "separator_spacing": 20,
-            "separator_color": "#000000",
-            "animation_speed": 90,
-            "pause_on_hover": true,
-            "background_color": "#000000",
-            "text_color": "#ffffff",
-            "font_size": 14,
-            "font_weight": "400",
-            "text_transform": "uppercase",
-            "letter_spacing": "0.05em",
-            "padding_vertical": 10,
-            "item_spacing": 30
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_95824e1_7jTpAi"
-      ],
-      "name": "Ticker",
-      "settings": {}
-    },
     "header_basic_XdVmNT": {
       "type": "header-basic",
       "blocks": {
@@ -197,7 +161,7 @@
         "main_menu_JWKV8N": {
           "type": "main_menu",
           "settings": {
-            "menu": "astoria-17-feb",
+            "menu": "r-latest-no-rules",
             "menu_top_spacing": 11,
             "menu_bottom_spacing": 12,
             "grid_gap_menu_item": 20,
@@ -376,7 +340,6 @@
     }
   },
   "order": [
-    "17716371294156ab7a",
     "header_basic_XdVmNT",
     "header-mobile",
     "9c03747e-b054-4db8-8194-5a35c71f82ca"
