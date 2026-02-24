@@ -67,7 +67,6 @@
             {%- assign product_form_id = 'product-form-edit-' | append: product.id -%}
             {% form 'product', product, id: product_form_id, novalidate: 'novalidate' %}
                 <input type="hidden" name="id" value="{{ current_variant.id }}">
-                 
             {% endform %}
             <div class="product-edit-options halo-productOptions" id="product-edit-options-{{ product.id }}">
                 {%- if variantCount > 0  and product.has_only_default_variant != true  -%}

@@ -11,38 +11,39 @@
   "type": "header",
   "name": "Header Group",
   "sections": {
-    "17716371294156ab7a": {
+    "177163757255949a50": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_95824e1_7jTpAi": {
-          "type": "ai_gen_block_95824e1",
+        "ai_gen_block_f959495_eyYMXw": {
+          "type": "ai_gen_block_f959495",
           "settings": {
-            "item_1": "Any PRET and unstitched-to-stitched orders placed after 22ⁿᵈ February will be processed after Eid.",
-            "item_2": "Any PRET and unstitched-to-stitched orders placed after 22ⁿᵈ February will be processed after Eid.",
-            "item_3": "Any PRET and unstitched-to-stitched orders placed after 22ⁿᵈ February will be processed after Eid.",
-            "item_4": "Any PRET and unstitched-to-stitched orders placed after 22ⁿᵈ February will be processed after Eid.",
-            "item_5": "Any PRET and unstitched-to-stitched orders placed after 22ⁿᵈ February will be processed after Eid.",
-            "show_separator": true,
-            "separator_symbol": "•",
-            "separator_size": 16,
-            "separator_spacing": 20,
-            "separator_color": "#000000",
-            "animation_speed": 90,
+            "item_1_text": "Any PRET and unstitched-to-stitched orders placed after 22ⁿᵈ February will be processed after Eid.",
+            "item_2_text": "Any PRET and unstitched-to-stitched orders placed after 22ⁿᵈ February will be processed after Eid.",
+            "item_3_text": "Any PRET and unstitched-to-stitched orders placed after 22ⁿᵈ February will be processed after Eid.",
+            "item_4_text": "Any PRET and unstitched-to-stitched orders placed after 22ⁿᵈ February will be processed after Eid.",
+            "item_5_text": "Any PRET and unstitched-to-stitched orders placed after 22ⁿᵈ February will be processed after Eid.",
+            "animation_speed": 100,
             "pause_on_hover": true,
-            "background_color": "#000000",
-            "text_color": "#ffffff",
+            "repeat_count": 3,
             "font_size": 14,
             "font_weight": "400",
             "text_transform": "uppercase",
             "letter_spacing": "0.05em",
+            "show_icon": false,
+            "icon_type": "star",
+            "icon_size": 16,
+            "icon_color": "#000000",
+            "icon_spacing": 8,
+            "item_spacing": 50,
             "padding_vertical": 10,
-            "item_spacing": 30
+            "background_color": "#000000",
+            "text_color": "#ffffff"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_95824e1_7jTpAi"
+        "ai_gen_block_f959495_eyYMXw"
       ],
       "name": "Ticker",
       "settings": {}
@@ -131,7 +132,7 @@
         "550fbd21-75fb-4051-9dee-77d91b5239f0": {
           "type": "logo",
           "settings": {
-            "logo_mobile": "shopify://shop_images/Mushq_International.png",
+            "logo_mobile": "shopify://shop_images/Website_logo.png",
             "logo_width_mobile": 119,
             "logo_text": "",
             "logo_font_size": 20,
@@ -186,7 +187,7 @@
             "logo_position": "sticky_menu",
             "logo": "shopify://shop_images/Mushq_International.png",
             "logo_width": 220,
-            "logo_width_fixed": 100,
+            "logo_width_fixed": 80,
             "logo_text": "",
             "logo_font_size": 20,
             "logo_font_weight": "900",
@@ -197,7 +198,7 @@
         "main_menu_JWKV8N": {
           "type": "main_menu",
           "settings": {
-            "menu": "r-latest-no-rules",
+            "menu": "astoria-17-feb",
             "menu_top_spacing": 11,
             "menu_bottom_spacing": 12,
             "grid_gap_menu_item": 20,
@@ -249,12 +250,12 @@
             "banner_url_1": "shopify://collections/astoria-festive-lawn-26",
             "banner_text_1": "Astoria | festive lawn",
             "show_banner_2": true,
-            "banner_2": "shopify://shop_images/Amoi-newin_b8c2c223-28e1-4fde-a271-9944fbfc17ea.jpg",
+            "banner_2": "shopify://shop_images/Amoi-newin_533dff22-eade-4213-8472-9bd9642bda09.jpg",
             "banner_url_2": "shopify://collections/amoi-luxury-lawn",
             "banner_text_2": "Á moi  | luxury lawn",
             "show_banner_3": true,
             "banner_3": "shopify://shop_images/secret_garden_newin.webp",
-            "banner_url_3": "https://mushq.com/collections/the-secret-garden-1",
+            "banner_url_3": "https://us.mushq.com/collections/the-secret-garden-1",
             "banner_text_3": "The Secret Garden | Lawn",
             "show_banner_4": false,
             "banner_url_4": "",
@@ -275,9 +276,9 @@
             "item": "Unstitched",
             "column": 2,
             "show_banner_1": true,
-            "banner_1": "shopify://shop_images/unstitched-section_b6702fbb-c34a-4c26-8955-16f82cca148e.jpg",
-            "banner_url_1": "https://mushq.com/collections/unstitched",
-            "banner_text_1": "Unstitched",
+            "banner_1": "shopify://shop_images/unstitched-section_736b3336-6656-45f2-999b-e6948db56994.jpg",
+            "banner_url_1": "shopify://collections/unstitched",
+            "banner_text_1": "UNSTITCHED",
             "show_banner_2": false,
             "banner_url_2": "https://mushq.com/collections/unstitched-1",
             "banner_text_2": "",
@@ -314,7 +315,7 @@
             "column": 2,
             "show_banner_1": true,
             "banner_1": "shopify://shop_images/hemline-section.jpg",
-            "banner_url_1": "https://mushq.com/collections/hemline-1",
+            "banner_url_1": "shopify://collections/hemline-view-all",
             "banner_text_1": "Hemline",
             "show_banner_2": false,
             "banner_url_2": "",
@@ -322,33 +323,6 @@
             "show_banner_3": false,
             "banner_url_3": "",
             "banner_text_3": ""
-          }
-        },
-        "header_icons_dDdrLr": {
-          "type": "header_icons",
-          "settings": {
-            "show_language_currency": false,
-            "show_search": false,
-            "show_customer": false,
-            "show_wishlist": false,
-            "show_wishlist_number": false,
-            "show_cart": false,
-            "text_font_size": 14,
-            "show_language_currency_sticky": false,
-            "show_search_sticky": true,
-            "show_customer_sticky": false,
-            "show_wishlist_sticky": false,
-            "show_cart_sticky": true,
-            "cart_icon": "2",
-            "header_icons_color": "#232323",
-            "header_icons_color_hover": "#ffffff",
-            "header_icons_border_color": "rgba(0,0,0,0)",
-            "header_icons_border_sticky_color": "#ffffff",
-            "cart_count_bubble_color": "#ffffff",
-            "cart_count_bubble_bg": "#232323",
-            "cart_count_bubble_bg_gradient": "",
-            "wishlist_color_item": "#ffffff",
-            "wishlist_bg_item": "#232323"
           }
         }
       },
@@ -358,8 +332,7 @@
         "megamenu_style_3_QNKGtC",
         "megamenu_style_2_Cy3gNe",
         "megamenu_style_2_LfAxQT",
-        "megamenu_style_2_Pnwdrn",
-        "header_icons_dDdrLr"
+        "megamenu_style_2_Pnwdrn"
       ],
       "settings": {
         "container": "full",
@@ -376,7 +349,7 @@
     }
   },
   "order": [
-    "17716371294156ab7a",
+    "177163757255949a50",
     "header_basic_XdVmNT",
     "header-mobile",
     "9c03747e-b054-4db8-8194-5a35c71f82ca"

@@ -498,45 +498,30 @@
     }
   });
 
- document.addEventListener('click', async function (e) {
+  document.addEventListener('click', async function (e) {
     const cartBtn = e.target.closest('.ew-add-to-cart');
-    const checkBtn = e.target.closest('.ew-buy-now');
-
-    // Proceed if either button is clicked
-    if (cartBtn || checkBtn) {
+    if (cartBtn) {
       e.preventDefault();
-      
-      const actionBtn = checkBtn || cartBtn;
-      const card = actionBtn.closest('.product-item');
+      const card = cartBtn.closest('.product-item');
       const selected = card.querySelector('.ew-size-option.checked input');
-      
       if (!selected) return alert('Please select a size.');
       const variantId = selected.dataset.variantId || selected.value;
 
-      actionBtn.disabled = true;
-      $(actionBtn).addClass('is-loading');
+      cartBtn.disabled = true;
+      $(cartBtn).addClass('is-loading');
 
       try {
-        // DIRECT CHECKOUT LOGIC FOR BUTTONS
-        if (checkBtn) {
-          // Redirects the button click to the Shopify checkout permalink
-          window.location.href = `/cart/${variantId}:1`;
-          return; 
-        }
-
-        // STANDARD ADD TO CART LOGIC
         await addToCart(variantId, 1);
         const cart = await $.getJSON(`${window.routes.root}/cart.js`);
         updateSidebarCart(cart);
-      } catch (err) {
-        alert('Could not process request.');
+      } catch {
+        alert('Could not add to cart.');
       } finally {
-        actionBtn.disabled = false;
-        $(actionBtn).removeClass('is-loading');
+        cartBtn.disabled = false;
+        $(cartBtn).removeClass('is-loading');
       }
     }
-});
-
+  });
 
   // DEBUG: Enhanced Size Chart handler with logging
   document.addEventListener('click', function (e) {

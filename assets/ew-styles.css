@@ -1,17 +1,3 @@
-@media(min-width:749px){
-  .two-buttons__btn {
-    display:none !important;
-  }
-}
-.no-mushq-logo {
-    height: 25px;
-}
-.no-rules-logo {
-    height: 20px !important;
-}
-.header-basic__item:first-child {
-    visibility: hidden;
-}
 .img-responsive {
   max-width: 100%;
   height: auto;
@@ -1143,23 +1129,6 @@ div#quoli-pdp-widget {
   width: max-content;
 }
 
-.customImageBanner-item .content {
-    padding: 0 !important;
-    position: relative !important;
-    margin-top: 30px;
-}
-.customImageBanner-inner .spotlight-button.custom-button-style {
-    border-radius: 30px !important;
-    text-transform: capitalize !important;
-}
-a.footer-happiness__nav-link {
-    text-transform: capitalize !important;
-}
-@media(max-width:767px){
-  .customImageBanner-item .content {
-    text-align:center;
-  }
-}
 @media(min-width:1101px){
   .luis-collection-slider-splide .card-media {
     padding-bottom: 120% !important;
@@ -1175,13 +1144,4 @@ a.footer-happiness__nav-link {
 .collections-list .collection-list-slider.style_2 .collection-card-wrapper .media .image:after {
     opacity: 1 !important;
     visibility: visible !important;
-}
-
-.halo-productBadges .badge + .badge {
-  line-height:normal !important;
-}
-
-.restock-rocket-button {
-    min-height: auto !important;
-    line-height: normal !important;
 }

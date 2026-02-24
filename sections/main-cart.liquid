@@ -547,7 +547,6 @@
                                     <li class="cart-total cart-total-grandtotal">
                                         <div class="cart-total-label"><span class="text">{{ 'general.cart.total' | t }}</span></div>  
                                         <div class="cart-total-value" data-cart-total-value="{{ cart.total_price }}"><span class="text">{{ cart.total_price | money }}</span></div>  
-                                       {% render 'baadmay-cart' %}
                                     </li>
                                     {%- if settings.show_shipping_note -%}
                                         <li class="shipTotal"><p class="cart-total-value form-text">{{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}</p></li>  
@@ -571,7 +570,6 @@
                                         <li class="cart-total cart-total-grandtotal">
                                             <div class="cart-total-label"><span class="text">{{ 'general.cart.total' | t }}</span></div>  
                                             <div class="cart-total-value" data-cart-total-value="{{ cart.total_price }}"><span class="text">{{ cart.total_price | money }}</span></div>  
-                                        {% render 'baadmay-cart' %}
                                         </li>
                                     {%- endif -%}
                                     {%- if settings.show_global_checkbox -%}

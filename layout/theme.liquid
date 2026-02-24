@@ -103,16 +103,10 @@
             endif
         -%}
 
-        <style>
-            @font-face {
-                font-family: AntonRegular;
-                src: url('https://cdn.shopify.com/s/files/1/0539/7318/8776/files/Anton-Regular.ttf?v=1771493871');
-            }
-        </style>
         {% comment %} Splide {% endcomment %}
 
         {{ 'splide.min.css' | asset_url | stylesheet_tag }}
-
+        {{ 'splide.min.js' | asset_url | script_tag }}
 
         {% comment %} Preload {% endcomment %}
         <link rel="preload" href="{{ 'lookbook.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -126,59 +120,18 @@
 
         {% comment %} Swiper {% endcomment %}
         {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
-        {% # BaadMay CSS/JS Start %}
-            <link rel="stylesheet" href="{{ 'baadmay-styles.css' | asset_url }}">
-            <script src="{{ 'baadmay-scripts.js' | asset_url }}" async></script>
-        {% # BaadMay CSS/JS End %}
     </head>
 
     <body class="template-{{ request.page_type }} {{layout_body}} {{style_dots}} {{style_text_size_varriant}} {{style_arrows}} {{product_card_layout}} {% if settings.enable_button_disable_arrows %} enable_button_disable_arrows{% endif %}{% if settings.display_text_color_title %} enable_text_color_title{% if settings.style_text_color_varriant == '02' %} style_2_text_color_varriant{% endif %}{% endif %}{% if settings.hide_compare_homepage %} hide_compare_homepage{% endif %} {{ quick_shop_type }}{% if settings.show_image_loading %} show_image_loading{% endif %}{% if settings.show_effect_close %} show_effect_close{% endif %}{% if settings.enable_layout_rtl and enable_iso_rtl %} layout_rtl{% endif %}{% if request.design_mode %} shopify-design-mode{% endif %}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}{% if settings.enable_following_cursor and settings.following_cursor_style == 'default' %} cursor-fixed__show{% endif %}{% unless settings.enable_currencies %} disable_currencies{% endunless %}{% if settings.enable_button_1_border_outside %} btn_1_br_outside{% endif %}{% if settings.enable_button_2_border_outside %} btn_2_br_outside{% endif %}{% if settings.enable_button_3_border_outside %} btn_3_br_outside{% endif %}{% if settings.show_price_percent %} show_price_percent{% endif %}{% if settings.show_wishlist_full_icon %} icon_wishlist_full{% endif %}{% if settings.discount_calculator_free_shipping == 'setup_shipping_delivery' %} setup_shipping_delivery{% endif %}{% if settings.badge_style == 'leaf' %} badge-leaf{% endif %}" allow-transparency>
         <div class="body-content-wrapper">
             <a class="skip-to-content-link button visually-hidden" href="#MainContent">{{ "accessibility.skip_to_text" | t }}</a>
             {% render 'preload-screen' %}
-            
-          {% if page.template_suffix == 'no-rules-landing' %}
-  {% sections 'header-no-rules-group' %}
-
-{% elsif collection and collection.metafields.custom.no_rule_header_footer == true %}
-  {% sections 'header-no-rules-group' %}
-   <style>
-     .halo-productBadges .badge.sold-out-badge{background:#7fbe8d  !important;}
-    is-loading, .pagination-page-infinite .button,.restock-rocket-button, .productView-action .button{background:#dcb8ba !important;}
-     .halo-productBadges .badge.sold-out-badge {
-        font-weight:500px;
-        padding: 0.8rem;
-        font-size:1.3rem;
-}
-     </style>
-
-{% elsif product and product.metafields.custom.no_rule_header_footer == true %}
-    {% comment %}
-    style block
-    {% endcomment %}
-     <style>
-        .halo-productBadges .badge.sold-out-badge{background:#7fbe8d  !important;}
-     .restock-rocket-button,.productView-action .button{background:#dcb8ba !important;}
-     .halo-productBadges .badge.sold-out-badge {
-        font-weight:500px;
-        padding: 1rem;
-        font-size:1.5rem;
-}
-     </style>
-  {% sections 'header-no-rules-group' %}
-
-{% elsif page.metafields.custom.no_rule_header_footer == true %}
-  {% sections 'header-no-rules-group' %}
-
-{% else %}
-  {% sections 'header-group' %}
-  {% render 'wrapper-header' %}
-{% endif %}
+            {% sections 'header-group' %}
+            {% render 'wrapper-header' %}
 
             {%- if settings.layout_body == 'boxed' -%}
                 <div class="wrapper-hasbanner-adv">
             {%- endif -%}
-
                 {% render 'halo-banner-adv-left' %}
                 {% render 'halo-banner-adv-right' %}
                 <main id="MainContent" class="wrapper-body content-for-layout focus-none" role="main" tabindex="-1">
@@ -188,23 +141,7 @@
                 </div>
             {%- endif -%}
 
-
-                 {% if page.template_suffix == 'no-rules-landing' %}
-  {% sections 'footer-no-rules-group' %}
-
-{% elsif collection and collection.metafields.custom.no_rule_header_footer == true %}
-  {% sections 'footer-no-rules-group' %}
-
-{% elsif product and product.metafields.custom.no_rule_header_footer == true %}
-  {% sections 'footer-no-rules-group' %}
-
-{% elsif page.metafields.custom.no_rule_header_footer == true %}
-  {% sections 'footer-no-rules-group' %}
-
-{% else %}
-  <div class="wrapper-footer">{% sections 'footer-group' %}</div>
-{% endif %}
-            
+            <div class="wrapper-footer">{% sections 'footer-group' %}</div>
 
             {% section 'halo-toolbar-mobile' %}
 
@@ -232,11 +169,12 @@
             {%- endif -%}
         </div>
 
-        <div class="social_caller">
+                <div class="social_caller">
         <a class="icon-whatsapp" title="whatsapp" href="https://api.whatsapp.com/send?phone=923028510587&amp;text=Hi! I have a question" data-title="WhatsApp Us!" aria-describedby="a11y-external-message">
                 <img class="lazypreload lazyloaded" alt="" src="https://cdn.shopify.com/s/files/1/0539/7318/8776/files/whatsapp2.png?v=1752843165" width="20" height="20" src="//cdn.shopify.com/s/files/1/0539/7318/8776/t/6/assets/icon2.jpeg?v=91216062781172133001662368510">
             </a>
         </div>
+        
         {% render 'halo-sidebar' %}
 
         
@@ -250,8 +188,6 @@
         {% endif %}
 
         {{ 'ew-custom.js' | asset_url | script_tag }}
-        {{ 'splide.min.js' | asset_url | script_tag }}
         {{ 'swiper-bundle.min.js' | asset_url | script_tag }}
-        {% render 'baadmay-script' %}
     </body>
 </html>

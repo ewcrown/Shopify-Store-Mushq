@@ -1,4 +1,5 @@
 {% unless product.tags contains 'Bridals' %}
+
 {%- comment -%}
     Renders a list of product's price (regular, sale)
 
@@ -38,7 +39,7 @@
     {%- if available == false %} price--sold-out {% endif -%}
     {%- if compare_at_price > price %} price--on-sale {% endif -%}
     {%- if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}
-    {% if price_style == '2' %} price-style-2{% endif %}" data-product-price data-product-id="{{ product.id }}">
+    {% if price_style == '2' %} price-style-2{% endif %}">
     <dl>
         {%- comment -%}
           Explanation of description list:

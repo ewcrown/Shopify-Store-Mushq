@@ -9,14 +9,14 @@
  */
 {
   "sections": {
-    "main": {
+    "spotlight_block_En9bYd": {
       "type": "spotlight-block",
       "blocks": {
         "image_QD44P6": {
           "type": "image",
           "settings": {
             "enable_image": true,
-            "image": "shopify://shop_images/gulberg_2.jpg",
+            "image": "shopify://shop_images/aaa_470x_bf051bd1-50ab-482d-a0dc-46759441fa1b.jpg",
             "title_align": "center",
             "enable_absolute": false,
             "enable_absolute_mobile": false,
@@ -72,7 +72,7 @@
           "type": "image",
           "settings": {
             "enable_image": true,
-            "image": "shopify://shop_images/aaa.jpg",
+            "image": "shopify://shop_images/gulberg_2_470x_69b93df3-a1da-4548-8402-509952e1b7a7.jpg",
             "title_align": "center",
             "enable_absolute": false,
             "enable_absolute_mobile": false,
@@ -128,7 +128,7 @@
           "type": "image",
           "settings": {
             "enable_image": true,
-            "image": "shopify://shop_images/3_b9f23b45-8bf0-4585-a778-87d8345dc774.jpg",
+            "image": "shopify://shop_images/3_470x_5d8c9065-8175-4c78-981e-a063660442be.jpg",
             "title_align": "center",
             "enable_absolute": false,
             "enable_absolute_mobile": false,
@@ -255,7 +255,7 @@
         "column": "4",
         "column_mb": "1",
         "center_mode": false,
-        "item_distance": 15,
+        "item_distance": 5,
         "item_radius": 0,
         "enable_arrows": true,
         "enable_arrows_mb": false,
@@ -278,10 +278,10 @@
         "color_title_mb": "",
         "fontsize_title": 24,
         "fontsize_title_mb": 22,
-        "margin_bottom_title": 45,
+        "margin_bottom_title": 0,
         "spotlight_block_des": "",
         "color_des": "#3c3c3c",
-        "margin_bottom_des": 30,
+        "margin_bottom_des": 0,
         "fontsize_des": 16,
         "title_align": "center",
         "view_all_style": "style_1",
@@ -329,6 +329,6 @@
     }
   },
   "order": [
-    "main"
+    "spotlight_block_En9bYd"
   ]
 }

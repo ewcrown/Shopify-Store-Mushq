@@ -3,34 +3,16 @@
         {%- if settings.quick_shop_type == '2' -%}
             {%- assign width = product_card_product.featured_media.width -%}
             {%- assign height = product_card_product.featured_media.width | divided_by: product_card_product.featured_media.aspect_ratio | round -%}
-            {{ product_card_product.featured_media | image_url: width: 1000 | image_tag: 
-                loading: 'lazy',
-                class: 'lazyload motion-reduce',
-                sizes: "(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)",
-                widths: '165, 360, 535, 750, 1070',
-                alt: product_card_product.featured_media.alt | escape
-            }}
+            <img {% render 'lazyload',preview_img: product_card_product.featured_media, class: true, width: width, height: height, enable_rtl: settings.enable_layout_rtl %} />
         {%- else -%}
             {%- assign width = variant_img.width -%}
             {%- assign height = variant_img.width | divided_by: variant_img.aspect_ratio | round -%}
-            {{ variant_img | image_url: width: 1000 | image_tag: 
-                loading: 'lazy',
-                class: 'lazyload motion-reduce',
-                sizes: "(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)",
-                widths: '165, 360, 535, 750, 1070',
-                alt: variant_img.alt | escape
-            }}
+            <img {% render 'lazyload',preview_img: variant_img, class: true, enable_rtl: settings.enable_layout_rtl  %} />
         {%- endif -%}
     {%- else -%}
         {%- assign width = product_card_product.featured_media.width -%}
         {%- assign height = product_card_product.featured_media.width | divided_by: product_card_product.featured_media.aspect_ratio | round -%}
-        {{ product_card_product.featured_media | image_url: width: 1000 | image_tag: 
-            loading: 'lazy',
-            class: 'lazyload motion-reduce',
-            sizes: "(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)",
-            widths: '165, 360, 535, 750, 1070',
-            alt: product_card_product.featured_media.alt | escape
-        }}
+        <img {% render 'lazyload',preview_img: product_card_product.featured_media, class: true, enable_rtl: settings.enable_layout_rtl  %} />
     {%- endif -%}
     {%- if product_card_product.media[1] != nil and settings.show_image_swap -%}
         {%- if has_video != blank and settings.enable_hover_video_product_items -%}
@@ -38,13 +20,7 @@
         {%- else -%}
             {%- assign width = product_card_product.media[1].width -%}
             {%- assign height = product_card_product.media[1].width | divided_by: product_card_product.media[1].aspect_ratio | round -%}
-            {{ product_card_product.media[1] | image_url: width: 1000 | image_tag: 
-                loading: 'lazy',
-                class: 'lazyload motion-reduce',
-                sizes: "(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)",
-                widths: '165, 360, 535, 750, 1070',
-                alt: product_card_product.media[1].alt | escape
-            }}
+            <img {% render 'lazyload',preview_img: product_card_product.media[1], class: true, width: width, height: height, enable_rtl: settings.enable_layout_rtl %} />
         {%- endif -%}
     {%- endif -%}
     {%- if settings.enable_lazyload -%}<span class="data-lazy-loading"></span>{%- endif -%}

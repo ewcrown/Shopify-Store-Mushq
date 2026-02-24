@@ -1,102 +1,87 @@
 Shopify.SearchByAllTypes = (function() {
-    var config = {
-        sectionId: 'main-search',
+	var config = {
+		sectionId: 'main-search',
         onComplete: null
-    };
+	};
+	return {
+		renderResultTable: function(params){
+			var params = params || {};
 
-    return {
-        renderResultTable: function(params) {
-            var params = params || {};
-            $.extend(config, params);
+    		$.extend(config, params);
 
-            this.section = document.getElementById(config.sectionId);
-            if (!this.section) return;
+    		this.section = document.getElementById(config.sectionId);
 
-            this.url = this.section.getAttribute('data-url');
-            this.id = this.section.getAttribute('data-id');
+    		if(!this.section) return;
 
-            fetch(this.url)
-                .then(r => r.text())
-                .then(html => {
-                    const parsed = new DOMParser().parseFromString(html, 'text/html');
+    		this.url = this.section.getAttribute('data-url');
+    		this.id = this.section.getAttribute('data-id');
 
-                    const resultTemplate = parsed
-                        .querySelector(`div[id="${config.sectionId}"]`)
-                        ?.querySelector('template')
-                        ?.content.firstElementChild;
+    		fetch(this.url)
+            .then(response => response.text())
+            .then(responseText => {
+                const html = responseText;
+                const parsedHTML = new DOMParser().parseFromString(html, 'text/html');
+                const resultElements = parsedHTML.querySelector(`div[id="${config.sectionId}"]`)?.querySelector('template').content.firstElementChild.cloneNode(true)
 
-                    if (!resultTemplate || !resultTemplate.innerHTML.trim().length) {
-                        this.section.remove();
-                        return;
-                    }
-
-                    // Render results into section
-                    this.section.innerHTML = resultTemplate.innerHTML;
-
-                    // PRODUCT SHOW MORE LOGIC
+                if(resultElements && resultElements.innerHTML.trim().length) {
+                    this.section.innerHTML = resultElements.innerHTML;
                     const collectionProduct = document.querySelector('.collection');
-                    if (collectionProduct) {
-                        const products = collectionProduct.querySelectorAll('.product');
-                        if (products.length > 0) {
-                            collectionProduct.classList.add('productShowMore');
-                        } else {
-                            collectionProduct.classList.remove('productShowMore');
-                        }
+                    const products = collectionProduct.querySelectorAll('.product');
+                    if (products.length > 0) {
+                        collectionProduct.classList.add('productShowMore');
+                    } else {
+                        collectionProduct.classList.remove('productShowMore');
                     }
+                } else {
+                    this.section.remove();
+                }
 
-                    // LOAD MORE ARTICLES / PAGES LOGIC
-                    const loadMoreBtn = document.getElementById('article-page-load-btn');
-                    if (!loadMoreBtn) return;
+                const loadMoreArticleBtn = document.getElementById('article-page-load-btn')
+                const articlesPerLoad = parseInt(loadMoreArticleBtn.dataset.itemsPerPage)
+                const totalArticles = parseInt(loadMoreArticleBtn.dataset.total)
+                const totalPages = Math.ceil(totalArticles / articlesPerLoad)
+                let currentPageNum = 1
 
-                    const perLoad = parseInt(loadMoreBtn.dataset.itemsPerPage);
-                    const total = parseInt(loadMoreBtn.dataset.total);
-                    const totalPages = Math.ceil(total / perLoad);
+                if (totalArticles <= articlesPerLoad) {
+                    loadMoreArticleBtn.style.display = 'none'
+                } 
 
-                    if (total <= perLoad) {
-                        loadMoreBtn.style.display = 'none';
-                        return;
+                if (totalPages <= 1) {
+                    loadMoreArticleBtn.classList.add('disabled')
+                }
+
+                const articleAndPageElements = [...document.querySelectorAll('[data-listed-article-or-page]')]
+                articleAndPageElements.forEach((element, index) => {
+                    if (index < articlesPerLoad) {
+                        element.classList.add('visible')
+                    } else {
+                        element.classList.remove('visible')
                     }
-
-                    if (totalPages <= 1) {
-                        loadMoreBtn.classList.add('disabled');
-                    }
-
-                    let currentPage = 1;
-                    const items = [...document.querySelectorAll('[data-listed-article-or-page]')];
-
-                    // SHOW FIRST PAGE
-                    items.forEach((el, i) => el.classList.toggle('visible', i < perLoad));
-
-                    // LOAD MORE CLICK
-                    loadMoreBtn.addEventListener('click', () => {
-                        if (currentPage >= totalPages) return;
-
-                        currentPage++;
-                        loadMoreBtn.classList.add('is-loading');
-
-                        const timeout = Math.random() * 500 + 500;
-
-                        setTimeout(() => {
-                            const limit = perLoad * currentPage;
-
-                            // SHOW ONLY THE NEW ITEMS
-                            items.forEach((el, i) => {
-                                if (i < limit) {
-                                    el.classList.add('visible');
-                                }
-                            });
-
-                            // Hide button on last page
-                            if (currentPage === totalPages) {
-                                loadMoreBtn.style.display = 'none';
-                            }
-
-                            loadMoreBtn.classList.remove('is-loading');
-                        }, timeout);
-                    });
-
                 })
-                .catch(err => console.error(err));
-        }
-    }
+
+                loadMoreArticleBtn.addEventListener('click', () => {
+                    if (currentPageNum === totalPages) return 
+                    currentPageNum++
+                    loadMoreArticleBtn.classList.add('is-loading')
+                    const randomTime = Math.random() * 500 + 500
+                    setTimeout(() => {
+                        articleAndPageElements.forEach((element, index) => {
+                            if (index < articlesPerLoad * currentPageNum) {
+                                element.classList.add('visible')
+                            } else {
+                                element.classList.remove('visible')
+                            }
+                        })
+                        if (currentPageNum === totalPages) loadMoreArticleBtn.style.display = 'none'
+                        loadMoreArticleBtn.classList.remove('is-loading')
+                    }, randomTime)
+                    
+                })
+            })
+            .catch(e => {
+                console.error(e);
+            });
+		}
+	}
 })();
+
