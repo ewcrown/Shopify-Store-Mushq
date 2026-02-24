@@ -59,12 +59,7 @@
         {%- endfor -%}
     </ul>
 {%- else -%}
-    <a {% if link.url == blank %} role="link" aria-disabled="true"{% else %} href="{{ link.url }}"{% endif %} class="menu-lv-1__action header__menu-item list-menu__item link link--text focus-inset link-effect"{% if link.current %} aria-current="page"{% endif %}>
-        {% if link.title == "no-rules" %}
-            <img src="/cdn/shop/files/no-rules-logo-black_6149f2ee-1bcd-42bb-8632-e50bde41b2ab.png?v=1771423987&width=312" class="no-rules-logo" height="20">
-        {% else %}
-            <span class="text{%- if link.current %} header__active-menu-item{% endif %} p-relative">{{ link.title | escape }}</span>
-        {% endif %}
+    <a {% if link.url == blank %} role="link" aria-disabled="true"{% else %} href="{{ link.url }}"{% endif %} class="menu-lv-1__action header__menu-item list-menu__item link link--text focus-inset link-effect"{% if link.current %} aria-current="page"{% endif %}><span class="text{%- if link.current %} header__active-menu-item{% endif %} p-relative">{{ link.title | escape }}</span>
         {%- if new_label_1 contains title -%}
             <span class="label new-label">{{ 'general.navigation.new_label' | t }}</span>
         {%- elsif sale_label_1 contains title -%}

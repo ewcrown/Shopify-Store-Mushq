@@ -8,16 +8,5 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {
-    "main": {
-      "type": "main-page",
-      "custom_css": [
-        "h1.main-page-title.page-header {text-align: center}"
-      ],
-      "settings": {}
-    }
-  },
-  "order": [
-    "main"
-  ]
+  "markets": {}
 }

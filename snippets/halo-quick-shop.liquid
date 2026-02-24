@@ -613,7 +613,6 @@
               type="hidden"
               name="id"
               value="{{ current_variant.id }}">
-  
             {{ form | payment_terms }}
           {%- endform -%}
           <div class="productView-variants halo-productOptions" id="product-quick-view-option-{{ product.id }}">
@@ -823,7 +822,6 @@
                       type="hidden"
                       name="id"
                       value="{{ current_variant.id }}">
-                      
                     <div class="product-form__buttons">
                       {%- if current_variant.available -%}
                         {%- if current_variant.inventory_management -%}

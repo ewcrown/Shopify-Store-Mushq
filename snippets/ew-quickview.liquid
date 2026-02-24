@@ -19,21 +19,21 @@
   <h3 id="ew-quickview-title-{{ product.id }}">{{ product.title }}</h3>
 
   {% unless product.tags contains 'Bridals' %}
-  <div class="ew-quickview-price" aria-live="polite">
-    <span class="ew-price-current">
-      {%- if product.price_varies -%}
-        {{ product.price_min | money }}
-      {%- else -%}
-        {{ product.price | money }}
-      {%- endif -%}
-    </span>
+    <div class="ew-quickview-price" aria-live="polite">
+      <span class="ew-price-current">
+        {%- if product.price_varies -%}
+          {{ product.price_min | money }}
+        {%- else -%}
+          {{ product.price | money }}
+        {%- endif -%}
+      </span>
 
-    {%- if product.compare_at_price_min and product.compare_at_price_min > product.price_min -%}
-      <span class="ew-price-compare">{{ product.compare_at_price_min | money }}</span>
-    {%- else -%}
-      <span class="ew-price-compare" style="display:none;"></span>
-    {%- endif -%}
-  </div>
+      {%- if product.compare_at_price_min and product.compare_at_price_min > product.price_min -%}
+        <span class="ew-price-compare">{{ product.compare_at_price_min | money }}</span>
+      {%- else -%}
+        <span class="ew-price-compare" style="display:none;"></span>
+      {%- endif -%}
+    </div>
   {% endunless %}
 
   <div class="ew-quickview-variants">
@@ -106,7 +106,7 @@
       <a class="ew-view-details" title="whatsapp" href="https://api.whatsapp.com/send?phone=923266660230&amp;text=Hi! I have a question" data-title="WhatsApp Us!" target="_blank" rel="noopener">TALK TO US</a>
     {% else %}
       <button type="button" class="button ew-add-to-cart" data-btn-addToCart>Add to cart</button>
-      <button  type="button" class="button ew-buy-now">Buy now</button>
+      <button type="button" class="button ew-buy-now">Buy now</button>
     {% endif %}
     <a href="{{ product.url }}" class="ew-view-details">VIEW MORE DETAILS</a>
   </div>
