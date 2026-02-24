@@ -18,23 +18,26 @@
 
   <h3 id="ew-quickview-title-{{ product.id }}">{{ product.title }}</h3>
 
-  {% unless product.tags contains 'Bridals' %}
+ {% unless product.tags contains 'Bridals' %}
+
+  {% assign first_available_variant = product.selected_or_first_available_variant %}
+
   <div class="ew-quickview-price" aria-live="polite">
     <span class="ew-price-current">
-      {%- if product.price_varies -%}
-        {{ product.price_min | money }}
-      {%- else -%}
-        {{ product.price | money }}
-      {%- endif -%}
+      {{ first_available_variant.price | money }}
     </span>
 
-    {%- if product.compare_at_price_min and product.compare_at_price_min > product.price_min -%}
-      <span class="ew-price-compare">{{ product.compare_at_price_min | money }}</span>
-    {%- else -%}
+    {% if first_available_variant.compare_at_price 
+          and first_available_variant.compare_at_price > first_available_variant.price %}
+      <span class="ew-price-compare">
+        {{ first_available_variant.compare_at_price | money }}
+      </span>
+    {% else %}
       <span class="ew-price-compare" style="display:none;"></span>
-    {%- endif -%}
+    {% endif %}
   </div>
-  {% endunless %}
+
+{% endunless %}
 
   <div class="ew-quickview-variants">
     {%- comment -%} find size option index if exists {%- endcomment -%}

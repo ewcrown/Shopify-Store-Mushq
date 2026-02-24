@@ -15,8 +15,8 @@
         "image_dkV8ne": {
           "type": "image",
           "settings": {
-            "image_slide": "shopify://shop_images/web-banners-_jpg_6a5f9c2d-16a4-44a5-bf4c-52fcc36b3e90.jpg",
-            "image_slide_mb": "shopify://shop_images/mob-banner-_jpg_a6ea89ea-db88-41fe-8364-cbd9180673ce.jpg",
+            "image_slide": "shopify://shop_images/web-banners_jpg_64170c7e-13e5-4847-81c6-c6f82dee664e.jpg",
+            "image_slide_mb": "shopify://shop_images/mob-banner-_jpg_4efc4c04-197a-4be8-961c-559e3ca89957.jpg",
             "alignment": "left",
             "enable_custom_position": false,
             "custom_horizontal": "40",
