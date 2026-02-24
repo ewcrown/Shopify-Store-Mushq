@@ -40,6 +40,7 @@
     --na-arrow-hover-bg: {{ section.settings.arrow_hover_bg | default: '#e8d5d8' }};
     --na-card-radius: {{ section.settings.card_border_radius | default: 0 }}px;
     --na-card-media-bg: {{ section.settings.card_media_bg | default: '#fafafa' }};
+    --na-coming-soon-bg: {{ section.settings.coming_soon_bg | default: '#2d5016' }};
   }
 {%- endstyle -%}
 <section class="new-arrivals new-arrivals--{{ section.settings.layout | default: 'slider' }} section-{{ section.id }}" id="new-arrivals-{{ section.id }}" style="background-color: var(--na-section-bg); padding-top: var(--na-section-padding-top); padding-bottom: var(--na-section-padding-bottom);">
@@ -77,9 +78,16 @@
         {%- if color_option and color_option.values.size > 0 -%}
           {%- assign has_color = true -%}
         {%- endif -%}
+        {%- assign is_coming_soon = false -%}
+        {%- if product.tags contains 'coming-soon' -%}
+          {%- assign is_coming_soon = true -%}
+        {%- endif -%}
 
-        <div class="new-arrivals__card" data-product-handle="{{ product.handle }}">
+        <div class="new-arrivals__card" data-product-handle="{{ product.handle }}" {% if is_coming_soon %}data-coming-soon="true"{% endif %}>
           <div class="new-arrivals__card-media">
+            {% if is_coming_soon %}
+              <span class="new-arrivals__badge new-arrivals__badge--coming-soon">Coming Soon</span>
+            {% endif %}
             <a href="{{ product.url }}" class="new-arrivals__card-link" aria-label="{{ product.title }}">
               <img
                 class="new-arrivals__card-image"
@@ -96,16 +104,20 @@
             </a>
             {% if section.settings.enable_hover_add_to_cart %}
               <div class="new-arrivals__card-overlay">
-                <button
-                  type="button"
-                  class="new-arrivals__add-to-cart ew-add-to-cart"
-                  data-variant-id="{{ first_variant.id }}"
-                  data-product-title="{{ product.title | escape }}"
-                  data-btn-addToCart
-                  aria-label="Add {{ product.title }} to cart"
-                >
-                  {{ section.settings.add_to_cart_text | default: 'Add to Cart' }}
-                </button>
+                {% if is_coming_soon %}
+                  <a href="{{ product.url }}" class="new-arrivals__view-details" aria-label="View {{ product.title }} details">View Details</a>
+                {% else %}
+                  <button
+                    type="button"
+                    class="new-arrivals__add-to-cart ew-add-to-cart"
+                    data-variant-id="{{ first_variant.id }}"
+                    data-product-title="{{ product.title | escape }}"
+                    data-btn-addToCart
+                    aria-label="Add {{ product.title }} to cart"
+                  >
+                    {{ section.settings.add_to_cart_text | default: 'Add to Cart' }}
+                  </button>
+                {% endif %}
               </div>
             {% endif %}
           </div>
@@ -146,12 +158,16 @@
           </div>
 
           {% unless section.settings.enable_hover_add_to_cart %}
-            <form action="{{ routes.cart_add_url }}" method="post" class="new-arrivals__card-form" data-new-arrivals-atc-form>
-              <input type="hidden" name="id" value="{{ first_variant.id }}">
-              <button type="submit" class="new-arrivals__btn new-arrivals__btn--primary new-arrivals__add-to-cart-below ew-add-to-cart" data-btn-addToCart>
-                {{ section.settings.add_to_cart_text | default: 'Add to Cart' }}
-              </button>
-            </form>
+            {% if is_coming_soon %}
+              <a href="{{ product.url }}" class="new-arrivals__btn new-arrivals__btn--primary new-arrivals__view-details-below">View Details</a>
+            {% else %}
+              <form action="{{ routes.cart_add_url }}" method="post" class="new-arrivals__card-form" data-new-arrivals-atc-form>
+                <input type="hidden" name="id" value="{{ first_variant.id }}">
+                <button type="submit" class="new-arrivals__btn new-arrivals__btn--primary new-arrivals__add-to-cart-below ew-add-to-cart" data-btn-addToCart>
+                  {{ section.settings.add_to_cart_text | default: 'Add to Cart' }}
+                </button>
+              </form>
+            {% endif %}
           {% endunless %}
         </div>
         {% endfor %}
@@ -181,6 +197,21 @@
   .new-arrivals__slider::-webkit-scrollbar { display: none; }
   .new-arrivals__card { flex: 0 0 calc((100% - 60px) / 4); min-width: 0; scroll-snap-align: start; display: flex; flex-direction: column; }
   .new-arrivals__card-media { position: relative; overflow: hidden; border-radius: var(--na-card-radius, 0); background: var(--na-card-media-bg, #fafafa); }
+  .new-arrivals__badge {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    z-index: 2;
+    padding: 0.8rem;
+    font-size: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #fff;
+    background: #2d5016;
+    line-height: normal;
+}
+  .new-arrivals__badge--coming-soon {     background: #7fbe8d !important; }
   .new-arrivals__card-link { display: block; }
   .new-arrivals__card-image { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: var(--na-card-radius, 0); transition: transform 0.35s ease, box-shadow 0.35s ease; }
   .new-arrivals__card:hover .new-arrivals__card-image { transform: scale(1.03); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
@@ -189,6 +220,9 @@
   .new-arrivals__add-to-cart { padding: 14px 28px; font-size: 0.9375rem; font-weight: 600; border-radius: 8px; border: none; background: var(--na-addtocart-bg, #e8d5d8); color: var(--na-addtocart-color, #5c4a4d); cursor: pointer; transition: opacity 0.2s, transform 0.2s; }
   .new-arrivals__add-to-cart:hover { opacity: 0.95; transform: scale(1.02); }
   .new-arrivals__add-to-cart:disabled { opacity: 0.7; cursor: not-allowed; }
+  .new-arrivals__view-details { display: inline-block; padding: 14px 28px; font-size: 0.9375rem; font-weight: 600; border-radius: 8px; text-decoration: none; background: var(--na-addtocart-bg, #e8d5d8); color: var(--na-addtocart-color, #5c4a4d); cursor: pointer; transition: opacity 0.2s, transform 0.2s; }
+  .new-arrivals__view-details:hover { opacity: 0.95; transform: scale(1.02); color: var(--na-addtocart-color, #5c4a4d); }
+  .new-arrivals__view-details-below { width: 100%; text-align: center; margin-top: 12px; box-sizing: border-box; }
   .new-arrivals__swatches { display: none; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
   .new-arrivals__swatch { width: 24px; height: 24px; border-radius: 50%; border: 2px solid transparent; padding: 0; cursor: pointer; background-color: var(--na-swatch-default-bg, #e8e8e8); transition: border-color 0.2s, box-shadow 0.2s; }
   .new-arrivals__swatch:hover { box-shadow: 0 0 0 1px rgba(0,0,0,0.15); }
@@ -638,6 +672,12 @@
     {
       "type": "header",
       "content": "Product card"
+    },
+    {
+      "type": "color",
+      "id": "coming_soon_bg",
+      "label": "Coming Soon badge background",
+      "default": "#2d5016"
     },
     {
       "type": "color",

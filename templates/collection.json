@@ -221,7 +221,7 @@
       "type": "custom-liquid",
       "name": "t:sections.custom-liquid.presets.name",
       "settings": {
-        "custom_liquid": "<style> \n@media (max-width: 767px) {\n    .halo-productBadges .badge + .badge {\n        margin-top: 1px;\n    padding:4px 5px;\n    font-size: 12px;\n    }\n}\n</style>"
+        "custom_liquid": "<style> \n@media (max-width: 767px) {\n    .halo-productBadges .badge + .badge {\n        margin-top: 1px;\n    padding:4px 5px;\n    font-size: 9px;\n    }\n}\n</style>"
       }
     }
   },
