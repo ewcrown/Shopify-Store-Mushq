@@ -297,6 +297,7 @@
         "secondary_btn_hover_bg": "#f5eeef",
         "addtocart_btn_bg": "#e8d5d8",
         "addtocart_btn_color": "#5c4a4d",
+        "coming_soon_bg": "#2d5016",
         "card_title_color": "#1a1a1a",
         "card_price_color": "#1a1a1a",
         "card_media_bg": "#fafafa",
@@ -317,42 +318,36 @@
         "image_T4QRQk": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-02-18_at_11.16.22_AM.png",
             "link": ""
           }
         },
         "image_WxHYcF": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-02-18_at_11.11.28_AM.png",
             "link": ""
           }
         },
         "image_MQmTfU": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-02-18_at_11.11.56_AM.png",
             "link": ""
           }
         },
         "image_brCBKB": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-02-18_at_11.11.56_AM.png",
             "link": ""
           }
         },
         "image_JpEaUY": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-02-18_at_11.16.33_AM.png",
             "link": ""
           }
         },
         "image_yMKBmz": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-02-18_at_11.16.57_AM.png",
             "link": ""
           }
         }
@@ -545,6 +540,7 @@
         "secondary_btn_hover_bg": "#f5eeef",
         "addtocart_btn_bg": "#e8d5d8",
         "addtocart_btn_color": "#5c4a4d",
+        "coming_soon_bg": "#2d5016",
         "card_title_color": "#1a1a1a",
         "card_price_color": "#1a1a1a",
         "card_media_bg": "#fafafa",
@@ -589,6 +585,7 @@
         "secondary_btn_hover_bg": "#f5eeef",
         "addtocart_btn_bg": "#e8d5d8",
         "addtocart_btn_color": "#5c4a4d",
+        "coming_soon_bg": "#2d5016",
         "card_title_color": "#1a1a1a",
         "card_price_color": "#1a1a1a",
         "card_media_bg": "#fafafa",

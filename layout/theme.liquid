@@ -120,6 +120,7 @@
 
         {% comment %} Swiper {% endcomment %}
         {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+        
         {% if template.suffix == 'no-rules-coming-soon' %}
             {{ 'ew-coming-soon.css' | asset_url | stylesheet_tag }}
         {% endif %}
@@ -129,8 +130,43 @@
         <div class="body-content-wrapper">
             <a class="skip-to-content-link button visually-hidden" href="#MainContent">{{ "accessibility.skip_to_text" | t }}</a>
             {% render 'preload-screen' %}
-            {% sections 'header-group' %}
-            {% render 'wrapper-header' %}
+            {% if page.template_suffix == 'no-rules-landing' %}
+                {% sections 'header-no-rules-group' %}
+              
+              {% elsif collection and collection.metafields.custom.no_rule_header_footer == true %}
+                {% sections 'header-no-rules-group' %}
+                 <style>
+                   .halo-productBadges .badge.sold-out-badge{background:#7fbe8d  !important;}
+                  is-loading, .pagination-page-infinite .button,.restock-rocket-button, .productView-action .button{background:#dcb8ba !important;}
+                   .halo-productBadges .badge.sold-out-badge {
+                      font-weight:500px;
+                      padding: 0.8rem;
+                      font-size:1.3rem;
+              }
+                   </style>
+              
+              {% elsif product and product.metafields.custom.no_rule_header_footer == true %}
+                  {% comment %}
+                  style block
+                  {% endcomment %}
+                   <style>
+                      .halo-productBadges .badge.sold-out-badge{background:#7fbe8d  !important;}
+                   .restock-rocket-button,.productView-action .button{background:#dcb8ba !important;}
+                   .halo-productBadges .badge.sold-out-badge {
+                      font-weight:500px;
+                      padding: 1rem;
+                      font-size:1.5rem;
+              }
+                   </style>
+                {% sections 'header-no-rules-group' %}
+              
+              {% elsif page.metafields.custom.no_rule_header_footer == true %}
+                {% sections 'header-no-rules-group' %}
+              
+              {% else %}
+                {% sections 'header-group' %}
+                {% render 'wrapper-header' %}
+              {% endif %}
 
             {%- if settings.layout_body == 'boxed' -%}
                 <div class="wrapper-hasbanner-adv">
@@ -144,7 +180,22 @@
                 </div>
             {%- endif -%}
 
-            <div class="wrapper-footer">{% sections 'footer-group' %}</div>
+            
+            {% if page.template_suffix == 'no-rules-landing' %}
+                {% sections 'footer-no-rules-group' %}
+              
+              {% elsif collection and collection.metafields.custom.no_rule_header_footer == true %}
+                {% sections 'footer-no-rules-group' %}
+              
+              {% elsif product and product.metafields.custom.no_rule_header_footer == true %}
+                {% sections 'footer-no-rules-group' %}
+              
+              {% elsif page.metafields.custom.no_rule_header_footer == true %}
+                {% sections 'footer-no-rules-group' %}
+              
+              {% else %}
+                <div class="wrapper-footer">{% sections 'footer-group' %}</div>
+              {% endif %}
 
             {% section 'halo-toolbar-mobile' %}
 

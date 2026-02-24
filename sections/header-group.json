@@ -198,7 +198,7 @@
         "main_menu_JWKV8N": {
           "type": "main_menu",
           "settings": {
-            "menu": "astoria-17-feb",
+            "menu": "r-latest-no-rules",
             "menu_top_spacing": 11,
             "menu_bottom_spacing": 12,
             "grid_gap_menu_item": 20,
